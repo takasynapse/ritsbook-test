@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>310026055100-3331pma8fhs8reqhk9292phj9eto5uhs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.310026055100-3331pma8fhs8reqhk9292phj9eto5uhs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB4EM3ZbVop9B6MkEdcf0U90dn0i7D41Xg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>310026055100</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.projectritsbookNative</string>
+	<key>PROJECT_ID</key>
+	<string>project-ritsbook-test</string>
+	<key>STORAGE_BUCKET</key>
+	<string>project-ritsbook-test.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:310026055100:ios:37df615d7b19798d57cfb9</string>
+</dict>
+</plist>
