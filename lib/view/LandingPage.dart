@@ -60,6 +60,7 @@ class _LandingPageState extends State<LandingPage> {
                 },
               child:Text('Googleでログイン')),
             ],
+            
           ),
         ),
       ),
