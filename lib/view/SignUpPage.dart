@@ -7,13 +7,13 @@ import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart'
 import 'package:projectritsbook_native/components/Header.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 
-class LandingPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LandingPageState createState() => _LandingPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
-  String newEmail = "";
+class _LoginPageState extends State<LoginPage>{
+   String newEmail = "";
   String newPassword = "";
   String infoText = "";
 
@@ -94,11 +94,6 @@ class _LandingPageState extends State<LandingPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          // Navigator.push(
-          //   context,
-          //   // MaterialPageRoute(builder: (context) => SecondPage()),
-          //   // print('object'),
-          // );
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
