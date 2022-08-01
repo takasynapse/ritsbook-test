@@ -1,17 +1,49 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:projectritsbook_native/components/Header.dart';
-import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
-import 'package:projectritsbook_native/components/Header.dart';
-import 'package:projectritsbook_native/view_model/Signup.dart';
+import 'package:projectritsbook_native/view_model/Items.dart';
 
-class LoginPage extends StatefulWidget {
+
+class LandingPageAfter extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LandingPageAfterState createState() => _LandingPageAfterState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  
+class _LandingPageAfterState extends State<LandingPageAfter>{
+  List<Item> items = [];
+
+  Future<void> fetchBooks() async{
+    final snapshot = await FirebaseFirestore.instance.collection('textbooks').get();
+    setState(() {
+      List items = snapshot.docs;
+    });
+  }
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ランディングページ'),
+      ),
+      body: Center(
+        child: Column(
+
+        children:<Widget> [
+          ListView(
+            children: items.map((Item item){
+              return ListTile(
+                title: Text(item.item),
+              );
+            }).toList(),
+          ),
+          ElevatedButton(
+            onPressed: (){
+              fetchBooks();
+            },
+            child: Text('更新'),
+          ),
+        ],
+        ),
+        ),
+      );
+      }
 }

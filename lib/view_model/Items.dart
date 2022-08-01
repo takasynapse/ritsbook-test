@@ -4,8 +4,8 @@ class Item{
   // ドキュメントを扱くdocumentsnapshotを引数にしたコンストラクタ
 
   Item(DocumentSnapshot doc){
-   title = doc['item'];
+   item = doc['item'];
   }
   // フィールドを定義
-  late String title;
+  late String item;
 }
