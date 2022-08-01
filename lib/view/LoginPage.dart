@@ -7,11 +7,6 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      initialRoute: '/userLogin',
-      routes: {
-        '/userLogin': (context) => const UserLogin(),
-        '/content': (context) => const MainContent(),
-      },
     ),
   );
 }
