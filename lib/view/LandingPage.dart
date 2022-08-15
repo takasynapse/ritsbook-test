@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:projectritsbook_native/components/Header.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
+import 'package:projectritsbook_native/view/Sell.dart';
 import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
 import 'package:projectritsbook_native/components/Header.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
@@ -87,6 +88,16 @@ class _LandingPageState extends State<LandingPage> {
                     }
                   },
                   child:Text("Googleアカウントで登録"),
+                ),
+                  ElevatedButton(
+                  onPressed:(){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Exhibition(),
+                      ));
+                  },
+                  child:Text("出品画面に移動"),
                 ),
                   ElevatedButton(
                   onPressed:(){
