@@ -82,7 +82,7 @@ class _LandingPageState extends State<LandingPage> {
                   onPressed: () async {
                     try{
                     print("Googleログイン"); 
-                    await signUp(context);
+                    await SignUp(context);
                     }catch(e){
                       print(e);
                     }

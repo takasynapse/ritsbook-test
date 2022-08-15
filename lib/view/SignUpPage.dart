@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage>{
                   onPressed: () async {
                     try{
                     print("Googleログイン"); 
-                    await signUp(context);
+                    await SignUp(context);
                     }catch(e){
                       print(e);
                     }
