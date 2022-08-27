@@ -14,12 +14,13 @@ Future<void> SignUp(BuildContext context) async {
         accessToken: googleSignInAuthentication.accessToken);
     try {
       UserCredential result = await auth.signInWithCredential(authCredential);
-      User user = result.user!;
+      User? user = result.user;
       if (result != null) {
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Secondpage()));
         print('aaa');
       }
     } on FirebaseAuthException catch (e) {
+      print('ERR');
       print(e.code);
     }
   }
