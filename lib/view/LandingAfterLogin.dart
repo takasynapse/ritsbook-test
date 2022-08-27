@@ -59,7 +59,9 @@ class LandingPageAfter extends StatelessWidget{
               itemCount: documentList.length,
               itemBuilder: (BuildContext context,int item){
                 return ListTile(
-                  title: Text(documentList[item]["item"])
+                  title: Text(documentList[item]["item"]),
+                  leading: Image.network(documentList[item]["imageurl"]),
+                  subtitle: Text(documentList[item]["price"].toString()),
                 );
               }
             );
@@ -71,28 +73,28 @@ class LandingPageAfter extends StatelessWidget{
   }
 }
 
-Widget _buildListItem(document) {
-  return Container(
-    decoration: new BoxDecoration(
-      border:new Border(
-        bottom: new BorderSide(
-          color: Colors.grey,
-        ),
-      ),
-    ),
-    child: ListTile(
-      leading: Image.asset("images/logo.png"),
-      title: Text(
-        "aaあ",
-        style:TextStyle(
-          color: Colors.black,
-          fontSize: 20,
-        )
-      ),
-      onTap: (){
-        print("aaaa");
-      },
+// Widget _buildListItem(document) {
+//   return Container(
+//     decoration: new BoxDecoration(
+//       border:new Border(
+//         bottom: new BorderSide(
+//           color: Colors.grey,
+//         ),
+//       ),
+//     ),
+//     child: ListTile(
+//       leading: Image.network(document["imageUrl"]),
+//       title: Text(
+//         "aaあ",
+//         style:TextStyle(
+//           color: Colors.black,
+//           fontSize: 20,
+//         )
+//       ),
+//       onTap: (){
+//         print("aaaa");
+//       },
       
-    )
-      );
-    }
+//     )
+//       );
+//     }
