@@ -29,6 +29,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["item"]),
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
+            Text(widget.document["condition"]),
           ],
         ),
       ),
