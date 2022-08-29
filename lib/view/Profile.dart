@@ -7,7 +7,9 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String user = 'aaaaa';
+  String username = '未設定';
+  String qualifity = '未設定';
+  String grade = '未設定';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +23,11 @@ class _ProfileState extends State<Profile> {
             child:ListView(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                const Text('さんのマイページ'),         
-                const Text('ユーザー名'),
+                Text('${username}さんのマイページ'),         
                 Text('学部学科'),
+                Text('${qualifity}'),
                 Text('学年'),
+                Text('${grade}'),
                 TextButton.icon(
                   onPressed: (){
                     Navigator.push(
