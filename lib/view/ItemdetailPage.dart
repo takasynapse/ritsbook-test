@@ -7,6 +7,8 @@ import 'package:projectritsbook_native/view_model/FetchBook.dart';
 import "package:projectritsbook_native/view_model/Items.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:projectritsbook_native/view/EditItem.dart';
+
 
 class ItemdetailPage extends StatefulWidget {
   final DocumentSnapshot document;
@@ -16,7 +18,6 @@ class ItemdetailPage extends StatefulWidget {
   @override
   _ItemdetailPageState createState() => _ItemdetailPageState();
 }
-
 
 Future<void>Purchase(itemID) async{
   FirebaseAuth.instance.authStateChanges().listen((user) {
@@ -31,7 +32,6 @@ Future<void>Purchase(itemID) async{
   });
 }
 class _ItemdetailPageState extends State<ItemdetailPage> {
-  // var itemdetail = widget.document.data();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +54,10 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             ),
             ElevatedButton(
               onPressed: (){
-                print(widget.document);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditItem(widget.document)),
+                );
               }, 
               child: Text("編集する"),
             ),

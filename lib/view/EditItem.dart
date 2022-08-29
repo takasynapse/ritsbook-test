@@ -1,27 +1,19 @@
+
 import 'dart:io';
 import 'package:flutter/services.dart';
-// import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
+import 'package:firebase_auth/firebase_auth.dart'; // new // new
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart'; // new
-// import 'exhibition.dart';
-// import 'firebase_options.dart'; // new
-// import 'src/authentication.dart'; // new
-// import 'src/widgets.dart';
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
-class ConfirmationDialog extends StatelessWidget {
-  const ConfirmationDialog({Key? key}) : super(key: key);
-
+class EditItema extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -36,21 +28,22 @@ class ConfirmationDialog extends StatelessWidget {
   }
 }
 
-class Exhibition extends StatefulWidget {
+class EditItem extends StatefulWidget {
+  final DocumentSnapshot document;
+  EditItem(this.document);
   @override
-  _Exhibition createState() => _Exhibition();
+  _EditItemState createState() => _EditItemState();
 }
 
-class _Exhibition extends State<Exhibition> {
+class _EditItemState extends State<EditItem> {
   //null許容でとりあえず教科書の状態の変数宣言
-  String? condition;
-  String? description;
-  String _imageurl =
-      "https://firebasestorage.googleapis.com/v0/b/ritsbook-997bf.appspot.com/o/images%2Fcamera.png?alt=media&token=de6c74f8-f799-448d-8625-f8a34258b531";
-  bool? isSold;
-  String? item;
-  int? price;
-  String? seller;
+  late String? condition = widget.document["condition"];
+  late String? description = widget.document["description"];
+  late String _imageurl = widget.document["imageurl"];
+  late bool? isSold = widget.document["isSold"];
+  late String? item = widget.document["item"];
+  late int? price = widget.document["price"];
+  // late String? seller = widget.document["seller"];
   String? timestamp;
   String? userID;
 
@@ -88,7 +81,6 @@ class _Exhibition extends State<Exhibition> {
       setState(() {
         _imageurl = uploadedImageURL;
       });
-      print(_imageurl);
     } catch (e) {
       print(e);
       print("アップロード失敗");
@@ -98,7 +90,7 @@ class _Exhibition extends State<Exhibition> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('出品画面やで'),
+        title: Text('編集画面やで'),
       ),
       body: Container(
         child: ListView(
@@ -107,9 +99,10 @@ class _Exhibition extends State<Exhibition> {
               Text("商品名"),
               TextField(
                 decoration: InputDecoration(hintText: '商品名'),
-                onChanged: (String text) {
+                controller: TextEditingController(text: item),
+                onChanged: (String? value) {
                   setState(() {
-                    item = text;
+                    item = value;
                   });
                 },
               ),
@@ -118,6 +111,7 @@ class _Exhibition extends State<Exhibition> {
               ElevatedButton(onPressed: _upload, child: Text('画像を選択')),
               TextField(
                 decoration: InputDecoration(hintText: '商品の説明'),
+                controller: TextEditingController(text: description),
                 onChanged: (String text) {
                     setState((){
                       description = text;
@@ -155,24 +149,21 @@ class _Exhibition extends State<Exhibition> {
                 },
                 value: condition,
               ),
-              Text('$condition'),
               Text("値段"),
               TextField(
                 keyboardType: TextInputType.number,
+                controller: TextEditingController(text: price.toString()),
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(hintText: ''),
                 onChanged: (value) {
                   price = int.parse(value);
-                  print(price);
                 },
               ),
               ElevatedButton(
                   onPressed: () {
-                    print(userID);
-                    print(price);
-                    CollectionReference exhibit =
-                        FirebaseFirestore.instance.collection("textbooks");
-                    exhibit.add({
+                    var exhibit =
+                        FirebaseFirestore.instance.collection("textbooks").doc(widget.document.id);
+                    exhibit.update({
                       "condition": condition,
                       "item": item,
                       "description": description,
