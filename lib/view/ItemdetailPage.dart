@@ -9,29 +9,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class ItemdetailPage extends StatefulWidget {
-  // final DocumentSnapshot document;
-  final Map document;
+  final DocumentSnapshot document;
+  // final String itemID;
+  // final items  = ModalRoute.of(context)!.settings.arguments;
   ItemdetailPage(this.document);
   @override
   _ItemdetailPageState createState() => _ItemdetailPageState();
 }
 
 
-Future<void>Purchase(item) async{
+Future<void>Purchase(itemID) async{
   FirebaseAuth.instance.authStateChanges().listen((user) {
     if (user != null) {
-      print('aaaaaaaaaaaaaaaaa');
-      // print(item.id);
       FirebaseFirestore.instance.collection('users').doc(user.uid).collection('purchase').doc().set({
-        'itemID': item["id"],
+        'itemID': itemID,
       });
-      FirebaseFirestore.instance.collection('items').doc(item["itemID"]).update({
+      FirebaseFirestore.instance.collection('textbooks').doc(itemID).update({
         'isSold': false,
       });
     }
   });
 }
 class _ItemdetailPageState extends State<ItemdetailPage> {
+  // var itemdetail = widget.document.data();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["condition"]),
             ElevatedButton(
               onPressed:(){
-              Purchase(widget.document);
+              Purchase(widget.document.id);
               },
               child: Text("購入する"),
             ),

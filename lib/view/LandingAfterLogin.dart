@@ -35,7 +35,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                   leading: Image.network(documentList[item]["imageurl"]),
                   subtitle: Text(documentList[item]["price"].toString()),
                   onTap:() {
-                    print('ah');
+                    // print(documentList[item].id);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

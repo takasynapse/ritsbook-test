@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
 
@@ -6,17 +8,36 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
+Future getUser() async {
+  FirebaseAuth.instance.authStateChanges()
+  .listen((User? user) {
+    if (user != null) {
+      print(user.uid);
+      try{
+      final users = FirebaseFirestore.instance.collection('users').doc(user.uid);
+      users.get().then((DocumentSnapshot ds) {
+        print(ds.data());
+      });
+      }catch(e){
+        print(e);
+      }
+    }
+  });
+}
+
 class _ProfileState extends State<Profile> {
   String username = '未設定';
   String qualifity = '未設定';
   String grade = '未設定';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('マイページ'),
-      ),
-      body: Center(
+    return MaterialApp(
+      home: Scaffold(
+        // build:(_)=> getUser(),
+        appBar: AppBar(
+          title: Text('プロフィール'),
+        ),
+        body: Center(
         child:Center(
           child:Padding(
             padding:const EdgeInsets.all(10.0),
@@ -66,12 +87,16 @@ class _ProfileState extends State<Profile> {
                   icon:Icon(Icons.favorite),
                   label:Text('いいね（未実装）'),
                 ),
+                ElevatedButton(onPressed:(){
+                  getUser();
+                } , child: Text('aa'))
                 ],
             )
           )
         ) ,
-        
-      ),
+            
+          ),
+        ),
     );
   }
 }

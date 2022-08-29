@@ -13,8 +13,8 @@ Future<void>Edit_profile(name,faculity,grade)async{
     if (user != null) {
       FirebaseFirestore.instance.collection('users').doc(user.uid).set({
         'name': name,
-        'email': faculity,
-        'password': grade,
+        'faculity': faculity,
+        'grade': grade,
       });
     }
   });
