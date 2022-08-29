@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:projectritsbook_native/components/Header.dart';
+
 import 'package:projectritsbook_native/view/Exhibitation.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
-import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
-import 'package:projectritsbook_native/components/Header.dart';
+// import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 
 class LandingPage extends StatefulWidget {

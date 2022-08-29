@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 import 'package:projectritsbook_native/view/LandingPage.dart';
 import 'package:projectritsbook_native/view/Exhibitation.dart';
+import 'package:projectritsbook_native/view/Profile.dart';
 import 'firebase_options.dart';
 // final constProvider =StateProvider((ref)=>0);
 void main() async{
@@ -30,7 +31,7 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp>{
   var _navIndex = 0;
   var _label = '';
-  var _titles = [LandingPage(),LandingPageAfter(),Exhibition()];
+  var _titles = [LandingPage(),LandingPageAfter(),Exhibition(),Profile()];
 
   void _onItemTapped(int index){
     setState(() {
@@ -59,6 +60,10 @@ class _State extends State<MyApp>{
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance),
             label: 'Exhibition',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
           ),
         ],
     type: BottomNavigationBarType.fixed,
