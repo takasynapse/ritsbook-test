@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectritsbook_native/view/EditProfilePage.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -20,13 +21,16 @@ class _ProfileState extends State<Profile> {
             child:ListView(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text('さんのマイページ'),         
-                Text('ユーザー名'),
+                const Text('さんのマイページ'),         
+                const Text('ユーザー名'),
                 Text('学部学科'),
                 Text('学年'),
                 TextButton.icon(
                   onPressed: (){
-                    print('aa');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfilePage()),
+                    );                    
                   },
                   icon:Icon(Icons.edit),
                   label:Text('プロフィール編集'),
