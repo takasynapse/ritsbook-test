@@ -2,12 +2,14 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import 'package:projectritsbook_native/view/Chat.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/view_model/FetchBook.dart';
 import "package:projectritsbook_native/view_model/Items.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
+
 
 
 class ItemdetailPage extends StatefulWidget {
@@ -39,7 +41,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
         title: Text("商品詳細"),
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Image.network(widget.document["imageurl"]),
             Text(widget.document["item"]),
@@ -60,6 +62,14 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 );
               }, 
               child: Text("編集する"),
+            ),
+            ElevatedButton(
+              onPressed:(){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatPage(widget.document)),
+                );              },
+              child: Text("test"),
             ),
           ],
         ),

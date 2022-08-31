@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:projectritsbook_native/view/Chat.dart';
 
 import 'package:projectritsbook_native/view/Exhibitation.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
@@ -100,13 +101,13 @@ class _LandingPageState extends State<LandingPage> {
                 ),
                   ElevatedButton(
                   onPressed:(){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LandingPageAfter(),
-                      ));
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) =>ChatPage(),
+                    //   ));
                   },
-                  child:Text("ランディングページに移動"),
+                  child:Text("chat"),
                 ),
               ],
             ),
