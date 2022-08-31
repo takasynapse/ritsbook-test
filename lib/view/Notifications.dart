@@ -9,10 +9,11 @@ class NotificationPage extends StatefulWidget{
   @override
   _NotificationPageState createState() => _NotificationPageState();
 }
+var itemData;
 // <>の中は戻り値の指定
-  Future<DocumentSnapshot> getBook(itemID)async{
-    DocumentSnapshot docs = await FirebaseFirestore.instance.collection("textbooks").doc(itemID).get() as DocumentSnapshot;
-    return docs as DocumentSnapshot;
+  Future getBook(itemID)async{
+    DocumentSnapshot docs = await FirebaseFirestore.instance.collection("textbooks").doc(itemID).get();
+    itemData = docs;
   }
 class _NotificationPageState extends State<NotificationPage>{
   Widget build(BuildContext context){
@@ -32,11 +33,12 @@ class _NotificationPageState extends State<NotificationPage>{
                 return ListTile(
                   title: Text(documentList[item]["information"]),
                   onTap:() {
-                    final DocumentSnapshot test = getBook(documentList[item].id) as DocumentSnapshot;
+                    // final DocumentSnapshot test = getBook(documentList[item].id) as DocumentSnapshot;
+                    getBook(documentList[item].id);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ItemdetailPage(test),
+                        builder: (context) => ItemdetailPage(itemData),
                       ),
                     );
                     },
