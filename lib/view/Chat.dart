@@ -77,7 +77,16 @@ class _ChatPageState extends State<ChatPage> {
       'created': DateTime.now(),
       'userName' : FirebaseAuth.instance.currentUser!.displayName,
     }).then((value) => print("success")).catchError((error) => print(error));
-    message='';
+    setState(() {
+      message = '';
+    });
+    if(FirebaseAuth.instance.currentUser!.uid != widget.document['userID']){
+      await FirebaseFirestore.instance.collection('users').doc(widget.document["userID"]).collection('information').doc().set({
+        'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
+        'isRead': false,
+        'timestamp': DateTime.now(),
+      }).then((value) => print("success")).catchError((error) => print(error));
+    }
   }
   void _handleSendPressed(types.PartialText message) async {
     _addMessage(message.text);
