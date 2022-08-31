@@ -6,6 +6,8 @@ import 'package:projectritsbook_native/view/Chat.dart';
 
 import 'package:projectritsbook_native/view/Exhibitation.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
+import 'package:projectritsbook_native/view/LoginPage.dart';
+import 'package:projectritsbook_native/view/SignUpPage.dart';
 // import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 
@@ -101,13 +103,13 @@ class _LandingPageState extends State<LandingPage> {
                 ),
                   ElevatedButton(
                   onPressed:(){
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) =>ChatPage(),
-                    //   ));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>UserLogin(),
+                      ));
                   },
-                  child:Text("chat"),
+                  child:Text("ログイン"),
                 ),
               ],
             ),

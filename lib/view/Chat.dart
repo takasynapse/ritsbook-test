@@ -80,8 +80,9 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       message = '';
     });
+
     if(FirebaseAuth.instance.currentUser!.uid != widget.document['userID']){
-      await FirebaseFirestore.instance.collection('users').doc(widget.document["userID"]).collection('information').doc().set({
+      await FirebaseFirestore.instance.collection('users').doc(widget.document["userID"]).collection('information').doc(widget.document.id).set({
         'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
         'isRead': false,
         'timestamp': DateTime.now(),
