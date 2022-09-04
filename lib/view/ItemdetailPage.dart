@@ -34,6 +34,31 @@ Future<void>Purchase(itemID) async{
   });
 }
 class _ItemdetailPageState extends State<ItemdetailPage> {
+  Future<void>_showDialog()async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('購入しますか？'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('購入'),
+              onPressed: () {
+                Purchase(widget.document.id);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +75,8 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["condition"]),
             ElevatedButton(
               onPressed:(){
-              Purchase(widget.document.id);
+              // Purchase(widget.document.id);
+              _showDialog();
               },
               child: Text("購入する"),
             ),

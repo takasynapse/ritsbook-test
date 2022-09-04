@@ -71,7 +71,7 @@ class _Exhibition extends State<Exhibition> {
     });
   }
 
-  void _upload() async {
+  void _uploadImage() async {
     final ImagePicker _picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
@@ -94,6 +94,44 @@ class _Exhibition extends State<Exhibition> {
       print("アップロード失敗");
     }
   }
+   Future<void>_showDialog()async {
+    await showDialog(
+      context: this.context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('出品しますか'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('出品'),
+              onPressed: () {
+                uploadBook();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  Future<void> uploadBook() async {
+    CollectionReference exhibit =
+        FirebaseFirestore.instance.collection("textbooks");
+    exhibit.add({
+      "condition": condition,
+      "item": item,
+      "description": description,
+      "price": price,
+      "userID": userID,
+      "imageurl": _imageurl,
+      "isSold": true
+    });
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,20 +153,20 @@ class _Exhibition extends State<Exhibition> {
               ),
               Text("画像を選択"),
               Image(image: NetworkImage(_imageurl)),
-              ElevatedButton(onPressed: _upload, child: Text('画像を選択')),
+              ElevatedButton(onPressed: _uploadImage, child: Text('画像を選択')),
               TextField(
                 decoration: InputDecoration(hintText: '商品の説明'),
                 onChanged: (String text) {
-                    setState((){
-                      description = text;
-                    });
+                  setState(() {
+                    description = text;
+                  });
                 },
               ),
-              Text("商品の状態"),
+              const Text("商品の状態"),
               DropdownButton(
                 items: const [
                   DropdownMenuItem(
-                    child: Text('新品・未使用'),
+                    child:Text('新品・未使用'),
                     value: '新品・未使用',
                   ),
                   DropdownMenuItem(
@@ -163,26 +201,12 @@ class _Exhibition extends State<Exhibition> {
                 decoration: InputDecoration(hintText: ''),
                 onChanged: (value) {
                   price = int.parse(value);
-                  print(price);
                 },
               ),
               ElevatedButton(
-                  onPressed: () {
-                    print(userID);
-                    print(price);
-                    CollectionReference exhibit =
-                        FirebaseFirestore.instance.collection("textbooks");
-                    exhibit.add({
-                      "condition": condition,
-                      "item": item,
-                      "description": description,
-                      "price": price,
-                      "userID": userID,
-                      "imageurl": _imageurl,
-                      "isSold": true
-                    });
-                  },
-                  child: Text('出品する'))
+                onPressed: () {
+                _showDialog();
+              }, child: Text('出品する'))
             ]),
       ),
     );
