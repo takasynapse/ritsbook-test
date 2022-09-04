@@ -75,7 +75,7 @@ class _Exhibition extends State<Exhibition> {
     final ImagePicker _picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 80);
+        .pickImage(source: ImageSource.gallery, imageQuality: 80,maxWidth: 250,maxHeight: 250);
     File file = File(pickerFile!.path);
     //ファイル名取得
     String filename = basename(file.path);
@@ -119,6 +119,24 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
+   Future<void>_showDialogafterupload()async {
+    await showDialog(
+      context: this.context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('出品が完了しました。\n出品した商品はマイページから確認できます。'),
+          actions: [
+            TextButton(
+              child: Text('閉じる'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   Future<void> uploadBook() async {
     CollectionReference exhibit =
         FirebaseFirestore.instance.collection("textbooks");
@@ -130,7 +148,7 @@ class _Exhibition extends State<Exhibition> {
       "userID": userID,
       "imageurl": _imageurl,
       "isSold": true
-    });
+    }).then((value) => _showDialogafterupload());
   }
 
   Widget build(BuildContext context) {
