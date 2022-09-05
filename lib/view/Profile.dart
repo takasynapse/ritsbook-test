@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
+import 'package:projectritsbook_native/view/PurchasedList.dart';
+import 'package:projectritsbook_native/view/SellingList.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -68,14 +70,22 @@ class _ProfileState extends State<Profile> {
                 ),
                 TextButton.icon(
                   onPressed: (){
-                    print('aa');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SellingList(),
+                      ));
                   },
                   icon:Icon(Icons.camera_alt_outlined),
                   label:Text('出品した商品'),
                 ),
                 TextButton.icon(
                   onPressed: (){
-                    print('aa');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PurchasedList(),
+                      ));
                   },
                   icon:Icon(Icons.shopping_bag),
                   label:Text('購入した商品'),
