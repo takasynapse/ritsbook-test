@@ -21,6 +21,26 @@ class _LandingPageState extends State<LandingPage> {
   String newPassword = "";
   String infoText = "";
 
+  //googleログイン
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+  // ↑ここまで
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,14 +102,10 @@ class _LandingPageState extends State<LandingPage> {
                 const SizedBox(height:8),
                 ElevatedButton(
                   onPressed: () async {
-                    try{
-                    print("Googleログイン"); 
-                    await SignUp(context);
-                    }catch(e){
-                      print(e);
-                    }
+                    // サインイン画面を表示する
+                    signInWithGoogle();
                   },
-                  child:Text("Googleアカウントで登録"),
+                  child:Text("Googleアカウントで登録de"),
                 ),
                   ElevatedButton(
                   onPressed:(){
