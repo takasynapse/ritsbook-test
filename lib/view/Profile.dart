@@ -61,13 +61,16 @@ class _ProfileState extends State<Profile> {
                   icon:Icon(Icons.edit),
                   label:Text('プロフィール編集'),
                 ),
-                TextButton.icon(
-                  onPressed: (){
-                    print('aa');
-                  },
-                  icon:Icon(Icons.notifications),
-                  label:Text('お知らせ'),
-                ),
+                // TextButton.icon(
+                //   onPressed: (){
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => Notification()),
+                //     );
+                //   },
+                //   icon:Icon(Icons.notifications),
+                //   label:Text('お知らせ'),
+                // ),
                 TextButton.icon(
                   onPressed: (){
                     Navigator.push(
@@ -97,9 +100,9 @@ class _ProfileState extends State<Profile> {
                   icon:Icon(Icons.favorite),
                   label:Text('いいね（未実装）'),
                 ),
-                ElevatedButton(onPressed:(){
-                  getUser();
-                } , child: Text('aa'))
+                // ElevatedButton(onPressed:(){
+                //   getUser();
+                // } , child: Text('aa'))
                 ],
             )
           )

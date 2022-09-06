@@ -14,8 +14,6 @@ import 'package:projectritsbook_native/view/EditItem.dart';
 
 class ItemdetailPage extends StatefulWidget {
   final DocumentSnapshot document;
-  // final String itemID;
-  // final items  = ModalRoute.of(context)!.settings.arguments;
   ItemdetailPage(this.document);
   @override
   _ItemdetailPageState createState() => _ItemdetailPageState();
@@ -34,6 +32,8 @@ Future<void>Purchase(itemID) async{
   });
 }
 class _ItemdetailPageState extends State<ItemdetailPage> {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  String test = 'test';
   Future<void>_showDialog()async {
     await showDialog(
       context: context,
@@ -73,13 +73,13 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
             Text(widget.document["condition"]),
-            ElevatedButton(
+            if (uid == widget.document['userID'])ElevatedButton(
               onPressed:(){
-              // Purchase(widget.document.id);
               _showDialog();
               },
               child: Text("購入する"),
-            ),
+            )
+            else
             ElevatedButton(
               onPressed: (){
                 Navigator.push(
@@ -95,7 +95,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   context,
                   MaterialPageRoute(builder: (context) => ChatPage(widget.document)),
                 );              },
-              child: Text("test"),
+              child: Text("チャットを見る"),
             ),
           ],
         ),
