@@ -75,7 +75,7 @@ class _Exhibition extends State<Exhibition> {
     final ImagePicker _picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 80,maxWidth: 250,maxHeight: 250);
+        .pickImage(source: ImageSource.gallery, imageQuality: 80);
     File file = File(pickerFile!.path);
     //ファイル名取得
     String filename = basename(file.path);

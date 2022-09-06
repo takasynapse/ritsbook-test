@@ -42,14 +42,31 @@ class _ChatPageState extends State<ChatPage> {
           child: Consumer<MainModel>(
             builder:(context,model,child){
               final documentList = model.documentList;
-              return ListView.builder(
-                itemCount: documentList.length,
-                itemBuilder: (BuildContext context,int item){
-                  return ListTile(
-                    title: Text(documentList[item]["userName"].toString()),
-                    subtitle: Text(documentList[item]["message"]),
-                  );
-                }
+              return Column(
+                children: <Widget>[
+                  Expanded(
+                    child:ListView.builder(
+                    itemCount: documentList.length,
+                    itemBuilder: (BuildContext context,int item){
+                      return ListTile(
+                        title: Text(documentList[item]["message"]),
+                        subtitle: Text(documentList[item]["userName"].toString()),
+                      );
+                    }
+                  )
+                  ),
+          TextField(
+              onChanged: (value) => message = value,
+              decoration: InputDecoration(
+                hintText: 'メッセージを入力してください',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: (){
+              _addMessage(message); 
+              },
+            child: Text('送信')),
+                ],
               );
             }
           ),
@@ -58,30 +75,6 @@ class _ChatPageState extends State<ChatPage> {
         )
         );
   }
-
-
-  // @override
-  // Widget build(BuildContext context) => Scaffold(
-  //       appBar: AppBar(
-  //         title: Text('チャット'),
-  //       ),
-  //       body: Column(
-  //         mainAxisAlignment:MainAxisAlignment.end,
-  //         children: <Widget>[
-  //           TextField(
-  //             onChanged: (value) => message = value,
-  //             decoration: InputDecoration(
-  //               hintText: 'メッセージを入力してください',
-  //             ),
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: (){
-  //             _addMessage(message); 
-  //             },
-  //           child: Text('送信')),
-  //         ],
-  //       ),
-  //     );
 
   void _sendMessage(types.PartialText text) {
     print(text);
