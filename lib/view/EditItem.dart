@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new // new
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
@@ -17,16 +17,17 @@ class EditItema extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('上記の内容で出品しますか？'),
+      title:const Text('上記の内容で出品しますか？'),
       actions: <Widget>[
         GestureDetector(
-          child: Text('はい'),
+          child:const Text('はい'),
           onTap: () {},
         )
       ],
     );
   }
 }
+// ignore_for_file: avoid_print
 
 class EditItem extends StatefulWidget {
   final DocumentSnapshot document;
@@ -90,7 +91,7 @@ class _EditItemState extends State<EditItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('編集画面やで'),
+        title:const Text('編集画面やで'),
       ),
       body: Container(
         child: ListView(
@@ -98,7 +99,7 @@ class _EditItemState extends State<EditItem> {
             children: [
               Text("商品名"),
               TextField(
-                decoration: InputDecoration(hintText: '商品名'),
+                decoration:const InputDecoration(hintText: '商品名'),
                 controller: TextEditingController(text: item),
                 onChanged: (String? value) {
                   setState(() {
@@ -106,9 +107,9 @@ class _EditItemState extends State<EditItem> {
                   });
                 },
               ),
-              Text("画像を選択"),
+              const Text("画像を選択"),
               Image(image: NetworkImage(_imageurl)),
-              ElevatedButton(onPressed: _upload, child: Text('画像を選択')),
+              ElevatedButton(onPressed: _upload, child:const Text('画像を選択')),
               TextField(
                 decoration: InputDecoration(hintText: '商品の説明'),
                 controller: TextEditingController(text: description),
