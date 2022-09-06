@@ -73,7 +73,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
             Text(widget.document["condition"]),
-            if (uid == widget.document['userID'])ElevatedButton(
+            if (uid != widget.document['userID'])ElevatedButton(
               onPressed:(){
               _showDialog();
               },
@@ -87,7 +87,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   MaterialPageRoute(builder: (context) => EditItem(widget.document)),
                 );
               }, 
-              child: Text("編集する"),
+              child:const Text("編集する"),
             ),
             ElevatedButton(
               onPressed:(){
@@ -95,7 +95,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   context,
                   MaterialPageRoute(builder: (context) => ChatPage(widget.document)),
                 );              },
-              child: Text("チャットを見る"),
+              child:const Text("チャットを見る"),
             ),
           ],
         ),
