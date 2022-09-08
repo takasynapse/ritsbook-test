@@ -39,16 +39,16 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('購入しますか？'),
+          title:const Text('購入しますか？'),
           actions: <Widget>[
             TextButton(
-              child: Text('キャンセル'),
+              child:const Text('キャンセル'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('購入'),
+              child:const Text('購入'),
               onPressed: () {
                 Purchase(widget.document.id);
                 Navigator.pop(context);
@@ -73,13 +73,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
             Text(widget.document["condition"]),
-            if (uid != widget.document['userID'])ElevatedButton(
-              onPressed:(){
-              _showDialog();
-              },
-              child: Text("購入する"),
-            )
-            else
+            if (uid != widget.document['userID'])
             ElevatedButton(
               onPressed: (){
                 Navigator.push(
@@ -88,6 +82,17 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 );
               }, 
               child:const Text("編集する"),
+            )
+            else
+            ElevatedButton(
+              onPressed:(){
+                if(widget.document["isSold"] == true){
+                _showDialog();
+                }
+                else
+                {null;}
+              },
+              child: Text("購入する"),
             ),
             ElevatedButton(
               onPressed:(){
