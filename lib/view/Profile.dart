@@ -8,17 +8,21 @@ import 'package:projectritsbook_native/view/SellingList.dart';
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
+  
 }
+
 
 Future getUser() async {
   FirebaseAuth.instance.authStateChanges()
   .listen((User? user) {
     if (user != null) {
-      print(user.uid);
       try{
       final users = FirebaseFirestore.instance.collection('users').doc(user.uid);
       users.get().then((DocumentSnapshot ds) {
-        print(ds.data());
+        print(ds["grade"]);
+        print(ds["name"]);
+        print(ds["faculity"]);
+        return ds["name"];
       });
       }catch(e){
         print(e);
@@ -26,14 +30,14 @@ Future getUser() async {
     }
   });
 }
-
 class _ProfileState extends State<Profile> {
   String username = '未設定';
   String qualifity = '未設定';
-  String grade = '未設定';
+  String grade = '未設定 ';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // builder:(context)=> getUser(),
       home: Scaffold(
         // build:(_)=> getUser(),
         appBar: AppBar(
@@ -43,6 +47,7 @@ class _ProfileState extends State<Profile> {
         child:Center(
           child:Padding(
             padding:const EdgeInsets.all(10.0),
+            
             child:ListView(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -59,18 +64,8 @@ class _ProfileState extends State<Profile> {
                     );                    
                   },
                   icon:Icon(Icons.edit),
-                  label:Text('プロフィール編集'),
+                  label:const Text('プロフィール編集'),
                 ),
-                // TextButton.icon(
-                //   onPressed: (){
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => Notification()),
-                //     );
-                //   },
-                //   icon:Icon(Icons.notifications),
-                //   label:Text('お知らせ'),
-                // ),
                 TextButton.icon(
                   onPressed: (){
                     Navigator.push(
@@ -79,8 +74,8 @@ class _ProfileState extends State<Profile> {
                         builder: (context) => SellingList(),
                       ));
                   },
-                  icon:Icon(Icons.camera_alt_outlined),
-                  label:Text('出品した商品'),
+                  icon:const Icon(Icons.camera_alt_outlined),
+                  label:const Text('出品した商品'),
                 ),
                 TextButton.icon(
                   onPressed: (){

@@ -34,7 +34,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                   title: Text(documentList[item]["item"]),
                   leading: Image.network(documentList[item]["imageurl"]),
                   subtitle: Text(documentList[item]["price"].toString()),
-                  trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("売り切れ"),
+                  trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("販売中"),
                   onTap:() {
                     // print(documentList[item].id);
                     Navigator.push(
