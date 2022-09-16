@@ -10,6 +10,10 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
+String username = '未設定';
+String qualifity = '未設定';
+String grade = '未設定';
+
 getUser() async {
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user != null) {
@@ -20,6 +24,9 @@ getUser() async {
           print(ds["grade"]);
           print(ds["name"]);
           print(ds["faculity"]);
+          username = ds["name"];
+          qualifity = ds["faculity"];
+          grade = ds["grade"];
           // username = ds["name"];
           // return username;
         });
@@ -31,9 +38,6 @@ getUser() async {
 }
 
 class _ProfileState extends State<Profile> {
-  String username = '未設定';
-  String qualifity = '未設定';
-  String grade = '未設定';
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -45,6 +49,9 @@ class _ProfileState extends State<Profile> {
             username = ds["name"];
             qualifity = ds["faculity"];
             grade = ds["grade"];
+            print(username);
+            print(qualifity);
+            print(grade);
           });
         } catch (e) {
           print(e);
@@ -64,9 +71,9 @@ class _ProfileState extends State<Profile> {
                 child: ListView.builder(
                     itemCount: 1,
                     itemBuilder: (BuildContext context, int index) {
-                      // username = getUser().toString();
-                      // qualifity = getUser().toString();
-                      // grade = getUser().toString();
+                      // username = username;
+                      // qualifity = qualifity;
+                      // grade = grade;
                       return ListTile(
                         title: Text(username),
                         subtitle: Text(grade),

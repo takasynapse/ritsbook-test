@@ -10,6 +10,10 @@ import 'package:projectritsbook_native/view/LoginPage.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 // import 'package:projectritsbook_native/view_model/Landing_page_googleLogin.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+
+
 
 class LandingPage extends StatefulWidget {
   @override
@@ -40,6 +44,8 @@ class _LandingPageState extends State<LandingPage> {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
   // ↑ここまで
+
+  
 
   @override
   Widget build(BuildContext context) {
