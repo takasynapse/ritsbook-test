@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:provider/provider.dart'; // new
 // import 'exhibition.dart';
 // import 'firebase_options.dart'; // new
@@ -94,6 +95,33 @@ class _Exhibition extends State<Exhibition> {
       print("アップロード失敗");
     }
   }
+    Future<void> _showDialogCheckauth() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ログインしてください'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text('ログインする'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
    Future<void>_showDialog()async {
     await showDialog(
       context: this.context,
@@ -150,6 +178,7 @@ class _Exhibition extends State<Exhibition> {
       "isSold": true
     }).then((value) => _showDialogafterupload());
   }
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,7 +252,13 @@ class _Exhibition extends State<Exhibition> {
               ),
               ElevatedButton(
                 onPressed: () {
-                _showDialog();
+                  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                    if (user!=null){
+                      _showDialog();
+                    }else{
+                      _showDialogCheckauth();
+                      }
+                  });
               }, child: Text('出品する'))
             ]),
       ),

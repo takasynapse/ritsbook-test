@@ -128,7 +128,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                         null;
                       }
                     } else {
-
+                      _showDialogCheckauth();
                     }
                   });
                 },
