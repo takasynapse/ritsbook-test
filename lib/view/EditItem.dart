@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
+import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
@@ -17,10 +17,10 @@ class EditItema extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title:const Text('上記の内容で出品しますか？'),
+      title: const Text('上記の内容で出品しますか？'),
       actions: <Widget>[
         GestureDetector(
-          child:const Text('はい'),
+          child: const Text('はい'),
           onTap: () {},
         )
       ],
@@ -88,10 +88,68 @@ class _EditItemState extends State<EditItem> {
     }
   }
 
+  Future<void> _showDialogAfterDelete() async {
+    await showDialog(
+      context: this.context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('商品を削除しました'),
+          actions: [
+            TextButton(
+              child: Text('閉じる'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteItem() async {
+    var deleteItem = FirebaseFirestore.instance
+        .collection("textbooks")
+        .doc(widget.document.id);
+    deleteItem.delete().then(((value) {
+      print("商品を削除しました");
+      _showDialogAfterDelete();
+    })).catchError((e) => print(e));
+  }
+
+  Future<void> _showDeleteDialog() async {
+    await showDialog(
+      context: this.context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('商品を削除しますか'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('削除'),
+              onPressed: () {
+                _deleteItem();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingPageAfter()),
+                );   
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('編集画面やで'),
+        title: const Text('編集画面やで'),
       ),
       body: Container(
         child: ListView(
@@ -99,7 +157,7 @@ class _EditItemState extends State<EditItem> {
             children: [
               Text("商品名"),
               TextField(
-                decoration:const InputDecoration(hintText: '商品名'),
+                decoration: const InputDecoration(hintText: '商品名'),
                 controller: TextEditingController(text: item),
                 onChanged: (String? value) {
                   setState(() {
@@ -109,14 +167,14 @@ class _EditItemState extends State<EditItem> {
               ),
               const Text("画像を選択"),
               Image(image: NetworkImage(_imageurl)),
-              ElevatedButton(onPressed: _upload, child:const Text('画像を選択')),
+              ElevatedButton(onPressed: _upload, child: const Text('画像を選択')),
               TextField(
                 decoration: InputDecoration(hintText: '商品の説明'),
                 controller: TextEditingController(text: description),
                 onChanged: (String text) {
-                    setState((){
-                      description = text;
-                    });
+                  setState(() {
+                    description = text;
+                  });
                 },
               ),
               Text("商品の状態"),
@@ -162,8 +220,9 @@ class _EditItemState extends State<EditItem> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    var exhibit =
-                        FirebaseFirestore.instance.collection("textbooks").doc(widget.document.id);
+                    var exhibit = FirebaseFirestore.instance
+                        .collection("textbooks")
+                        .doc(widget.document.id);
                     exhibit.update({
                       "condition": condition,
                       "item": item,
@@ -174,7 +233,12 @@ class _EditItemState extends State<EditItem> {
                       "isSold": true
                     });
                   },
-                  child: Text('出品する'))
+                  child: Text('出品する')),
+              ElevatedButton(
+                  onPressed: () {
+                    _showDeleteDialog();
+                  },
+                  child: Text('商品を削除する'))
             ]),
       ),
     );
