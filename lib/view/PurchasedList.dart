@@ -1,10 +1,11 @@
-//購入した商品一覧のページ
+//購入した商品一覧のペー
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
 import 'package:firebase_core/firebase_core.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:projectritsbook_native/view/ItemdetailPage.dart';
 
 class PurchasedList extends StatefulWidget {
   @override
@@ -32,7 +33,6 @@ class _PurchasedListState extends State<PurchasedList> {
   var purchasedItemList = [];
   @override
   Widget build(BuildContext context) {
-    print('aa');
     stream:FirebaseFirestore.instance
             .collection('users')
             .doc(uid)
@@ -41,23 +41,30 @@ class _PurchasedListState extends State<PurchasedList> {
             .forEach((element) {
               element.docs.forEach((element) {
                 purchasedList.add(element.data());
+                print(element.data());
               });
             });
     stream: for(var i in purchasedList){
-     purchasedItemList.add(FirebaseFirestore.instance
+      FirebaseFirestore.instance
             .collection('textbooks')
-            .doc(i['itemID'])
-            .snapshots());
-    }
-    return Scaffold(
-              body: ListView(
-            children: purchasedItemList.map((DocumentSnapshot document) {
+            .doc(i['item'])
+            .snapshots()
+            .forEach((element) {
+              purchasedItemList.add(element.data());
+              print(element.data());
+            });
+        return Scaffold(
+          body: ListView.builder(
+            itemCount: purchasedItemList.length,
+            itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                title: Text(document['itemID']),
-                // subtitle: Text(document['price'].toString()),
+                title: Text(purchasedItemList[index]['item']),
+                leading: Image.network(purchasedItemList[index]['imageurl']),
+                subtitle: Text(purchasedItemList[index]['price'].toString())
               );
-            }).toList(),
-          );
-    );
+            },
+          ),
+        );
   }
+}
 }
