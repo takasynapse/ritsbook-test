@@ -119,7 +119,7 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
-   Future<void>_showDialogafterupload()async {
+  Future<void>_showDialogafterupload() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {

@@ -99,7 +99,8 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ChatPage(widget.document)),
-                );              },
+                );              
+              },
               child:const Text("チャットを見る"),
             ),
           ],
