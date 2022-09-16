@@ -122,7 +122,7 @@ class _EditItemState extends State<EditItem> {
       context: this.context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('商品を削除しますか'),
+          title:const Text('商品を削除しますか'),
           actions: <Widget>[
             TextButton(
               child: Text('キャンセル'),

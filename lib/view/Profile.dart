@@ -73,6 +73,22 @@ class _ProfileState extends State<Profile> {
                       );
                     }),
               ),
+              ElevatedButton(
+                child: Text('編集'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child:Text('サインアウト'),
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
+              )
+
               // Padding(
               //   padding:const EdgeInsets.all(10.0),
               //   child:ListView(

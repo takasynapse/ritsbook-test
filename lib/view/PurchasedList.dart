@@ -23,21 +23,17 @@ class _PurchasedListState extends State<PurchasedList> {
       } else {
         print('User is signed in!');
         print('userinfo:');
-        print(user);
-        // final Object userinfo = user;
         userID = user.uid;
       }
     });
   }
   final String uid = FirebaseAuth.instance.currentUser!.uid;
-
+  var purchasedList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('購入した商品一覧ンゴ'),
-      ),
-       body: StreamBuilder<QuerySnapshot>(
+      body: StreamBuilder<QuerySnapshot>(
+        
         stream: FirebaseFirestore.instance
             .collection('users')
             .doc(uid)
@@ -45,17 +41,16 @@ class _PurchasedListState extends State<PurchasedList> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
-
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return const Text("Loading");
           }
-          return new ListView(
+          return  ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              return new ListTile(
-                title: new Text(document['itemID']),
-                // subtitle: new Text(document['price'].toString()),
+              return ListTile(
+                title: Text(document['itemID']),
+                // subtitle: Text(document['price'].toString()),
               );
             }).toList(),
           );

@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('テストです'),
+        title: Text('新規登録画面'),
       ),
       body: Center(
         child: Center(

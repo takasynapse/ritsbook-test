@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:projectritsbook_native/view/Chat.dart';
 
-import 'package:projectritsbook_native/view/Exhibitation.dart';
+import 'package:projectritsbook_native/view/Exhibition.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 import 'package:projectritsbook_native/view/LoginPage.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';

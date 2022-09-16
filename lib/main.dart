@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 import 'package:projectritsbook_native/view/LandingPage.dart';
-import 'package:projectritsbook_native/view/Exhibitation.dart';
+import 'package:projectritsbook_native/view/Exhibition.dart';
 import 'package:projectritsbook_native/view/Profile.dart';
 import 'package:projectritsbook_native/view/Notifications.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
