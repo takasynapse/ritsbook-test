@@ -113,42 +113,11 @@ class _LandingPageState extends State<LandingPage> {
                   },
                   child:Text("Googleアカウントで登録de"),
                 ),
-                  ElevatedButton(
-                  onPressed:(){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Exhibition(),
-                      ));
-                  },
-                  child:Text("出品画面に移動"),
-                ),
-                  ElevatedButton(
-                  onPressed:(){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>UserLogin(),
-                      ));
-                  },
-                  child:Text("ログイン"),
-                ),
               ],
             ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          // Navigator.push(
-          //   context,
-          //   // MaterialPageRoute(builder: (context) => SecondPage()),
-          //   // print('object'),
-          // );
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

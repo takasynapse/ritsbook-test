@@ -24,7 +24,6 @@ class _ChatPageState extends State<ChatPage> {
   final _controller = TextEditingController();
 
   Future _loadData() async {
-    print('aaa');
     await Future.delayed(Duration(seconds: 1));
   }
 
@@ -36,9 +35,6 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // home: ChangeNotifierProvider<MainModel>(
-        //     create: (_) => MainModel()..fetchChat(widget.document.id),
-        //     child: Scaffold(
               appBar: AppBar(
                 title:const Text("チャット"),
               ),
@@ -72,7 +68,7 @@ class _ChatPageState extends State<ChatPage> {
                               children: documents
                                   .map((document) => ListTile(
                                         title: Text(document['message']),
-                                        subtitle: Text(document['userName']??""),
+                                        subtitle: Text(document['userName']??"匿名さん"),
                                         // subtitle: Text(document['createdAt']
                                             // .toDate()
                                             // .toString()),

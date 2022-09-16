@@ -29,12 +29,37 @@ class _PurchasedListState extends State<PurchasedList> {
       }
     });
   }
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('購入した商品一覧ンゴ'),
+      ),
+       body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('purchase')
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          return new ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              return new ListTile(
+                title: new Text(document['itemID']),
+                // subtitle: new Text(document['price'].toString()),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

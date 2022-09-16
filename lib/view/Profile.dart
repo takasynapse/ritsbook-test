@@ -24,8 +24,6 @@ getUser() async {
           username = ds["name"];
           qualifity = ds["faculity"];
           grade = ds["grade"];
-          // username = ds["name"];
-          // return username;
         });
       } catch (e) {
         print(e);

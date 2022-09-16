@@ -6,6 +6,7 @@ import 'package:projectritsbook_native/view/LandingPage.dart';
 import 'package:projectritsbook_native/view/Exhibitation.dart';
 import 'package:projectritsbook_native/view/Profile.dart';
 import 'package:projectritsbook_native/view/Notifications.dart';
+import 'package:projectritsbook_native/view/TradingItem.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -57,7 +58,7 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp>{
   var _navIndex = 0;
   var _label = '';
-  var _titles = [LandingPage(),LandingPageAfter(),Exhibition(),Profile(),NotificationPage()];
+  var _titles = [LandingPage(),LandingPageAfter(),Exhibition(),Profile(),NotificationPage(),TradingItem()];
 
   void _onItemTapped(int index){
     setState(() {
@@ -94,6 +95,10 @@ class _State extends State<MyApp>{
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: 'Notification',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'trading',
           ),
         ],
     type: BottomNavigationBarType.fixed,
