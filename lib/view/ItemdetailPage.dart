@@ -38,7 +38,6 @@ Future<void> Purchase(itemID) async {
 
 class _ItemdetailPageState extends State<ItemdetailPage> {
   final String uid = FirebaseAuth.instance.currentUser!.uid;
-  String test = 'test';
   Future<void> _showDialog() async {
     await showDialog(
       context: context,
