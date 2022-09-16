@@ -12,9 +12,6 @@ import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
-
-
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -45,8 +42,6 @@ class _LandingPageState extends State<LandingPage> {
   }
   // ↑ここまで
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,32 +57,31 @@ class _LandingPageState extends State<LandingPage> {
               children: <Widget>[
                 // テキスト入力ラベル
                 TextFormField(
-                decoration:InputDecoration(labelText:"メールアドレス"),
-                onChanged:(String value){
-                  setState(() {
-                    newEmail = value;
-                  });
-                }
-                ),
-                const SizedBox(height:8),
+                    decoration: InputDecoration(labelText: "メールアドレス"),
+                    onChanged: (String value) {
+                      setState(() {
+                        newEmail = value;
+                      });
+                    }),
+                const SizedBox(height: 8),
                 TextFormField(
-                  decoration: InputDecoration(labelText:"パスワード"),
+                  decoration: InputDecoration(labelText: "パスワード"),
                   // パスワードガ見えないようにする
-                  obscureText:true,
-                  onChanged: (String value){
-                    setState((){
+                  obscureText: true,
+                  onChanged: (String value) {
+                    setState(() {
                       newPassword = value;
                     });
                   },
                 ),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () async {
-                    try{
+                    try {
                       // メールとパスワードでユーザー検索
                       final FirebaseAuth auth = FirebaseAuth.instance;
-                      final UserCredential result = 
-                      await auth.createUserWithEmailAndPassword(
+                      final UserCredential result =
+                          await auth.createUserWithEmailAndPassword(
                         email: newEmail,
                         password: newPassword,
                       );
@@ -95,23 +89,46 @@ class _LandingPageState extends State<LandingPage> {
                       setState(() {
                         infoText = "登録完了しました${user.email}";
                       });
-                    }catch(e){
+                    } catch (e) {
                       setState(() {
                         infoText = "登録できませんでした${e.toString()}";
                       });
                     }
                   },
-                  child:Text("ユーザー登録"),
+                  child: Text("ユーザー登録"),
                 ),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      // メールとパスワードでユーザー検索
+                      final FirebaseAuth auth = FirebaseAuth.instance;
+                      final UserCredential result =
+                          await auth.signInWithEmailAndPassword(
+                        email: newEmail,
+                        password: newPassword,
+                      );
+                      final User user = result.user!;
+                      setState(() {
+                        infoText = "登録完了しました${user.email}";
+                      });
+                    } catch (e) {
+                      setState(() {
+                        infoText = "登録できませんでした${e.toString()}";
+                      });
+                    }
+                  },
+                  child: Text("sign in"),
+                ),
+                const SizedBox(height: 8),
                 Text(infoText),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () async {
                     // サインイン画面を表示する
                     signInWithGoogle();
                   },
-                  child:Text("Googleアカウントで登録de"),
+                  child: Text("Googleアカウントで登録de"),
                 ),
               ],
             ),
