@@ -21,9 +21,6 @@ getUser() async {
         final users =
             FirebaseFirestore.instance.collection('users').doc(user.uid);
         users.get().then((DocumentSnapshot ds) {
-          print(ds["grade"]);
-          print(ds["name"]);
-          print(ds["faculity"]);
           username = ds["name"];
           qualifity = ds["faculity"];
           grade = ds["grade"];
@@ -49,9 +46,6 @@ class _ProfileState extends State<Profile> {
             username = ds["name"];
             qualifity = ds["faculity"];
             grade = ds["grade"];
-            print(username);
-            print(qualifity);
-            print(grade);
           });
         } catch (e) {
           print(e);
