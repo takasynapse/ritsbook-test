@@ -73,7 +73,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
             Text(widget.document["condition"]),
-            if (uid != widget.document['userID'])
+            if (uid == widget.document['userID'])
             ElevatedButton(
               onPressed: (){
                 Navigator.push(
