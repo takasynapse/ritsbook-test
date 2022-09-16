@@ -35,53 +35,70 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: ChangeNotifierProvider<MainModel>(
-            create: (_) => MainModel()..fetchChat(widget.document.id),
-            child: Scaffold(
+    return Scaffold(
+        // home: ChangeNotifierProvider<MainModel>(
+        //     create: (_) => MainModel()..fetchChat(widget.document.id),
+        //     child: Scaffold(
               appBar: AppBar(
                 title:const Text("チャット"),
               ),
-              body: Center(
-                child: Consumer<MainModel>(builder: (context, model, child) {
-                  final documentList = model.documentList;
-                  return Column(
-                    children: <Widget>[
-                      Expanded(
-                          child: RefreshIndicator(
-                        onRefresh: () async {
-                          await _loadData();
-                        },
-                        child: ListView.builder(
-                            physics:const AlwaysScrollableScrollPhysics(),
-                            itemCount: documentList.length,
-                            itemBuilder: (BuildContext context, int item) {
-                              return ListTile(
-                                title: Text(documentList[item]["message"]),
-                                subtitle: Text(
-                                    documentList[item]["userName"].toString()),
+              body: Consumer(builder: (context, model, child) {
+                return Column(
+                  children: <Widget>[
+                    Expanded(
+                        child: RefreshIndicator(
+                      onRefresh: () async {
+                        await _loadData();
+                      },
+                      child: StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection("textbooks")
+                              .doc(widget.document.id)
+                              .collection("chat")
+                              // .orderBy("createdAt", descending: true)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
                               );
-                            }),
-                      )),
-                      TextField(
-                        controller: _controller,
-                        onChanged: (value) => message = value,
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon:const Icon(Icons.send),
-                            onPressed: () {
-                              _addMessage(message);
-                              _controller.clear();
-                            },
-                          ),
-                          hintText: 'メッセージを入力してください',
+                            }
+                            final List<DocumentSnapshot> documents =
+                                snapshot.data!.docs;
+                                // print(documents);
+                                // print(widget.document.id);
+                            return ListView(
+                              reverse: true,
+                              children: documents
+                                  .map((document) => ListTile(
+                                        title: Text(document['message']),
+                                        subtitle: Text(document['userName']??""),
+                                        // subtitle: Text(document['createdAt']
+                                            // .toDate()
+                                            // .toString()),
+                                      ))
+                                  .toList(),
+                            );
+                          }),
+                    )),
+                    TextField(
+                      controller: _controller,
+                      onChanged: (value) => message = value,
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon:const Icon(Icons.send),
+                          onPressed: () {
+                            _addMessage(message);
+                            _controller.clear();
+                          },
                         ),
+                        hintText: 'メッセージを入力してください',
                       ),
-                    ],
-                  );
-                }),
-              ),
-            )));
+                    ),
+                  ],
+                );
+              }),
+            );
   }
 // ignore_for_file: avoid_print
   void _addMessage(String message) async {
