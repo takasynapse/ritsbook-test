@@ -119,7 +119,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
           .collection('information')
           .doc(widget.document.id)
           .set({
-            'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
+            'information': "取引中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
             'isRead': false,
             'timestamp': DateTime.now(),
           })

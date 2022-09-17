@@ -14,6 +14,9 @@ class ItemdetailPage extends StatefulWidget {
   _ItemdetailPageState createState() => _ItemdetailPageState();
 }
 
+
+class _ItemdetailPageState extends State<ItemdetailPage> {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
 Future<void> Purchase(itemID) async {
   FirebaseAuth.instance.authStateChanges().listen((user) {
     if (user != null) {
@@ -28,12 +31,23 @@ Future<void> Purchase(itemID) async {
       FirebaseFirestore.instance.collection('textbooks').doc(itemID).update({
         'isSold': false,
       });
+      if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.document["userID"])
+          .collection('information')
+          .doc(widget.document.id)
+          .set({
+            'information': "出品中の商品「”${widget.document["item"]}”」が購入されました。",
+            'isRead': false,
+            'timestamp': DateTime.now(),
+          })
+          .then((value) => print("success"))
+          .catchError((error) => print(error));
+    }
     }
   });
 }
-
-class _ItemdetailPageState extends State<ItemdetailPage> {
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
   Future<void> _showDialog() async {
     await showDialog(
       context: context,
@@ -159,11 +173,6 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             )
             else if (FirebaseFirestore.instance.
             collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() != null
-            // collection('users').
-            // doc(uid).
-            // collection('purchase')
-            // .doc()
-            // .collection("itemID")==widget.document.id
             && widget.document["isSold"] == false)
             ElevatedButton(
               onPressed: () {
