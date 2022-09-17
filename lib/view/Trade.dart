@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:provider/provider.dart';
 
-class ChatPage extends StatefulWidget {
+class TradeChatPage extends StatefulWidget {
   // const ChatPage({super.key});
   final DocumentSnapshot document;
-  ChatPage(this.document);
+  TradeChatPage(this.document);
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<TradeChatPage> createState() => _TradeChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _TradeChatPageState extends State<TradeChatPage> {
   // List<types.Message> _messages = [];
   String message = '';
   final String uid = FirebaseAuth.instance.currentUser!.uid;
@@ -34,7 +35,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
               appBar: AppBar(
-                title:const Text("チャット"),
+                title:const Text("取引画面チャット"),
               ),
               body: Consumer(builder: (context, model, child) {
                 return Column(
@@ -48,7 +49,7 @@ class _ChatPageState extends State<ChatPage> {
                           stream: FirebaseFirestore.instance
                               .collection("textbooks")
                               .doc(widget.document.id)
-                              .collection("chat")
+                              .collection("Tradechat")
                               // .orderBy("createdAt", descending: true)
                               .snapshots(),
                           builder: (context, snapshot) {
@@ -99,7 +100,7 @@ class _ChatPageState extends State<ChatPage> {
     await FirebaseFirestore.instance
         .collection('textbooks')
         .doc(widget.document.id)
-        .collection('chat')
+        .collection('Tradechat')
         .doc()
         .set({
           'uid': FirebaseAuth.instance.currentUser!.uid,
@@ -118,7 +119,7 @@ class _ChatPageState extends State<ChatPage> {
           .collection('information')
           .doc(widget.document.id)
           .set({
-            'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
+            'information': "取引中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
             'isRead': false,
             'timestamp': DateTime.now(),
           })

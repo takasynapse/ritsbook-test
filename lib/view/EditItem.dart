@@ -11,7 +11,6 @@ import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 
 class EditItema extends StatelessWidget {
   @override
@@ -122,7 +121,7 @@ class _EditItemState extends State<EditItem> {
       context: this.context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('商品を削除しますか'),
+          title:const Text('商品を削除しますか'),
           actions: <Widget>[
             TextButton(
               child: Text('キャンセル'),

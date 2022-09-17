@@ -4,37 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart'; // new
-// import 'exhibition.dart';
-// import 'firebase_options.dart'; // new
-// import 'src/authentication.dart'; // new
-// import 'src/widgets.dart';
+
+import 'package:projectritsbook_native/view/SignUpPage.dart';
+
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-
-class ConfirmationDialog extends StatelessWidget {
-  const ConfirmationDialog({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('上記の内容で出品しますか？'),
-      actions: <Widget>[
-        GestureDetector(
-          child: Text('はい'),
-          onTap: () {},
-        )
-      ],
-    );
-  }
-}
 
 class Exhibition extends StatefulWidget {
   @override
@@ -94,7 +71,7 @@ class _Exhibition extends State<Exhibition> {
       print("アップロード失敗");
     }
   }
-   Future<void>_showDialog()async {
+  Future<void>_showDialog()async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -137,6 +114,33 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
+      Future<void> _showDialogCheckauth() async {
+    await showDialog(
+      context: this.context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ログインしてください'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text('ログインする'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   Future<void> uploadBook() async {
     CollectionReference exhibit =
         FirebaseFirestore.instance.collection("textbooks");
@@ -151,6 +155,7 @@ class _Exhibition extends State<Exhibition> {
     }).then((value) => _showDialogafterupload());
   }
 
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -161,6 +166,7 @@ class _Exhibition extends State<Exhibition> {
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               Text("商品名"),
+
               TextField(
                 decoration: InputDecoration(hintText: '商品名'),
                 onChanged: (String text) {
@@ -223,7 +229,13 @@ class _Exhibition extends State<Exhibition> {
               ),
               ElevatedButton(
                 onPressed: () {
-                _showDialog();
+                  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                    if (user!=null){
+                      _showDialog();
+                    }else{
+                      _showDialogCheckauth();
+                      }
+                  });
               }, child: Text('出品する'))
             ]),
       ),

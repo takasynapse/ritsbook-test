@@ -1,10 +1,8 @@
 //購入した商品一覧のページ
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:projectritsbook_native/view/ItemdetailPage.dart';
 
 class SellingList extends StatefulWidget {
   @override
@@ -23,7 +21,6 @@ class _SellingListState extends State<SellingList> {
       } else {
         print('User is signed in!');
         print('userinfo:');
-        print(user);
         // final Object userinfo = user;
         userID = user.uid;
       }
@@ -34,27 +31,35 @@ class _SellingListState extends State<SellingList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('出品した商品一覧ンゴ'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('出品した商品一覧ンゴ'),
+      // ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('textbooks')
-            .where(uid)
+            .where("userID",isEqualTo: uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
           }
-
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text("Loading");
           }
-          return new ListView(
+          return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              return new ListTile(
-                title: new Text(document['item']),
-                subtitle: new Text(document['price'].toString()),
+              return  ListTile(
+                title:  Text(document['item']),
+                leading: Image.network(document['imageurl']),
+                subtitle: Text(document['price'].toString()),
+                onTap:() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ItemdetailPage(document),
+                    ),
+                  );
+                },
               );
             }).toList(),
           );

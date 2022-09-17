@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
-import 'package:projectritsbook_native/view/PurchasedList.dart';
-import 'package:projectritsbook_native/view/SellingList.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -73,6 +71,22 @@ class _ProfileState extends State<Profile> {
                       );
                     }),
               ),
+              ElevatedButton(
+                child: Text('編集'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditProfilePage()),
+                  );
+                },
+              ),
+              ElevatedButton(
+                child:Text('サインアウト'),
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
+              )
+
               // Padding(
               //   padding:const EdgeInsets.all(10.0),
               //   child:ListView(
