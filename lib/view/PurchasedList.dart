@@ -28,81 +28,46 @@ class _PurchasedListState extends State<PurchasedList> {
       }
     });
   }
+
   final String uid = FirebaseAuth.instance.currentUser!.uid;
-  var purchasedList = [];
-  var purchasedItemList = [];
-  // @override
-//   Widget build(BuildContext context) {
-//     stream:FirebaseFirestore.instance
-//             .collection('users')
-//             .doc(uid)
-//             .collection('purchase')
-//             .snapshots()
-//             .forEach((element) {
-//               element.docs.forEach((element) {
-//                 purchasedList.add(element.data());
-//               });
-//             });
-//     stream: for(var i in purchasedList){
-//       FirebaseFirestore.instance
-//             .collection('textbooks')
-//             .doc(i['item'])
-//             .snapshots()
-//             .forEach((element) {
-//               purchasedItemList.add(element.data());
-//               print(element.data());
-//             });
-//         return Scaffold(
-//           body: ListView.builder(
-//             itemCount: purchasedItemList.length,
-//             itemBuilder: (BuildContext context, int index) {
-//               return ListTile(
-//                 title: Text(purchasedItemList[index]['item']),
-//                 leading: Image.network(purchasedItemList[index]['imageurl']),
-//                 subtitle: Text(purchasedItemList[index]['price'].toString())
-//               );
-//             },
-//           ),
-//         );
-//   }
-// }
+  var purchasedList = <QueryDocumentSnapshot>[];
+  var purchasedItemList = <QuerySnapshot>[];
   @override
-  Widget build(BuildContext context){
- stream:FirebaseFirestore.instance
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
             .collection('users')
             .doc(uid)
             .collection('purchase')
-            .snapshots()
-            .forEach((element) {
-              element.docs.forEach((element) {
-                purchasedList.add(element.data());
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) return const Text('not found');
+          return ListView.builder(
+              itemCount: snapshot.data?.docs.length,
+              itemBuilder: (BuildContext context, index) {
+                var element = snapshot.data?.docs[index];
+                return StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('textbooks')
+                        .doc(element!.get('itemID'))
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      return ListTile(
+                        title: Text(
+                            snapshot.hasData ? snapshot.data!.get('item') : ''),
+                        leading: Image.network(snapshot.hasData
+                            ? snapshot.data!.get('imageurl')
+                            : ''),
+                        subtitle: Text(snapshot.hasData
+                            ? snapshot.data!.get('price').toString()
+                            : ''),
+                      );
+                    });
               });
-              print(purchasedList);
-        for(var i in purchasedList){
-      FirebaseFirestore.instance
-            .collection('textbooks')
-            .doc(i["itemID"].toString())
-            .snapshots()
-            .forEach((element) {
-              purchasedItemList.add(element.data());
-              print(element.data());
-              print(i);
-              print('aaaaaaaaaaaaaaaaaaaaaaaa');
-              print(purchasedItemList[0]["item"]);
-            });
-            }
-    }
-            );
-  return Scaffold(
-          body: ListView.builder(
-            itemCount: purchasedItemList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(purchasedItemList[index]['item']),
-                leading: Image.network(purchasedItemList[index]['imageurl']),
-                subtitle: Text(purchasedItemList[index]['price'].toString())
-              );
-            },
-          ),
-        );
-  }  }
+        },
+      ),
+    );
+  }
+}

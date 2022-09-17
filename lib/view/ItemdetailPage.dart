@@ -4,6 +4,7 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
+import 'package:projectritsbook_native/view/Trade.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/view_model/FetchBook.dart';
 import "package:projectritsbook_native/view_model/Items.dart";
@@ -55,7 +56,12 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
               child: const Text('購入'),
               onPressed: () {
                 Purchase(widget.document.id);
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TradeChatPage(widget.document),
+                )
+                );
               },
             ),
           ],
