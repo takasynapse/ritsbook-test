@@ -31,9 +31,44 @@ class _PurchasedListState extends State<PurchasedList> {
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   var purchasedList = [];
   var purchasedItemList = [];
+  // @override
+//   Widget build(BuildContext context) {
+//     stream:FirebaseFirestore.instance
+//             .collection('users')
+//             .doc(uid)
+//             .collection('purchase')
+//             .snapshots()
+//             .forEach((element) {
+//               element.docs.forEach((element) {
+//                 purchasedList.add(element.data());
+//               });
+//             });
+//     stream: for(var i in purchasedList){
+//       FirebaseFirestore.instance
+//             .collection('textbooks')
+//             .doc(i['item'])
+//             .snapshots()
+//             .forEach((element) {
+//               purchasedItemList.add(element.data());
+//               print(element.data());
+//             });
+//         return Scaffold(
+//           body: ListView.builder(
+//             itemCount: purchasedItemList.length,
+//             itemBuilder: (BuildContext context, int index) {
+//               return ListTile(
+//                 title: Text(purchasedItemList[index]['item']),
+//                 leading: Image.network(purchasedItemList[index]['imageurl']),
+//                 subtitle: Text(purchasedItemList[index]['price'].toString())
+//               );
+//             },
+//           ),
+//         );
+//   }
+// }
   @override
-  Widget build(BuildContext context) {
-    stream:FirebaseFirestore.instance
+  Widget build(BuildContext context){
+ stream:FirebaseFirestore.instance
             .collection('users')
             .doc(uid)
             .collection('purchase')
@@ -41,19 +76,24 @@ class _PurchasedListState extends State<PurchasedList> {
             .forEach((element) {
               element.docs.forEach((element) {
                 purchasedList.add(element.data());
-                print(element.data());
               });
-            });
-    stream: for(var i in purchasedList){
+              print(purchasedList);
+        for(var i in purchasedList){
       FirebaseFirestore.instance
             .collection('textbooks')
-            .doc(i['item'])
+            .doc(i["itemID"].toString())
             .snapshots()
             .forEach((element) {
               purchasedItemList.add(element.data());
               print(element.data());
+              print(i);
+              print('aaaaaaaaaaaaaaaaaaaaaaaa');
+              print(purchasedItemList[0]["item"]);
             });
-        return Scaffold(
+            }
+    }
+            );
+  return Scaffold(
           body: ListView.builder(
             itemCount: purchasedItemList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -65,6 +105,4 @@ class _PurchasedListState extends State<PurchasedList> {
             },
           ),
         );
-  }
-}
-}
+  }  }
