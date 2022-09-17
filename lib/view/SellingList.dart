@@ -50,7 +50,7 @@ class _SellingListState extends State<SellingList> {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               return  ListTile(
                 title:  Text(document['item']),
-                leading: Image.network(document['imageurl']),
+                leading: Image.network(document['img_url']),
                 subtitle: Text(document['price'].toString()),
                 onTap:() {
                   Navigator.push(

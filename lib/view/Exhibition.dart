@@ -150,7 +150,7 @@ class _Exhibition extends State<Exhibition> {
       "description": description,
       "price": price,
       "userID": userID,
-      "imageurl": _imageurl,
+      "img_url": _imageurl,
       "isSold": true
     }).then((value) => _showDialogafterupload());
   }

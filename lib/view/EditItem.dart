@@ -39,7 +39,7 @@ class _EditItemState extends State<EditItem> {
   //null許容でとりあえず教科書の状態の変数宣言
   late String? condition = widget.document["condition"];
   late String? description = widget.document["description"];
-  late String _imageurl = widget.document["imageurl"];
+  late String _imageurl = widget.document["img_url"];
   late bool? isSold = widget.document["isSold"];
   late String? item = widget.document["item"];
   late int? price = widget.document["price"];
@@ -228,7 +228,7 @@ class _EditItemState extends State<EditItem> {
                       "description": description,
                       "price": price,
                       "userID": userID,
-                      "imageurl": _imageurl,
+                      "img_url": _imageurl,
                       "isSold": true
                     });
                   },

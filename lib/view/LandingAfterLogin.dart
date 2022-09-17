@@ -29,7 +29,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
               itemBuilder: (BuildContext context,int item){
                 return ListTile(
                   title: Text(documentList[item]["item"]),
-                  leading: Image.network(documentList[item]["imageurl"]),
+                  leading: Image.network(documentList[item]["img_url"]),
                   subtitle: Text(documentList[item]["price"].toString()),
                   trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("売り切れ "),
                   onTap:() {

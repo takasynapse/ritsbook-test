@@ -55,7 +55,7 @@ class _PurchasedListState extends State<PurchasedList> {
                         title: Text(
                             snapshot.hasData ? snapshot.data!.get('item') : ''),
                         leading: Image.network(snapshot.hasData
-                            ? snapshot.data!.get('imageurl')
+                            ? snapshot.data!.get('img_url')
                             : ''),
                         subtitle: Text(snapshot.hasData
                             ? snapshot.data!.get('price').toString()

@@ -112,7 +112,7 @@ Future<void> Purchase(itemID) async {
       body: Center(
         child: ListView(
           children: <Widget>[
-            Image.network(widget.document["imageurl"]),
+            Image.network(widget.document["img_url"]),
             Text(widget.document["item"]),
             Text(widget.document["price"].toString()),
             Text(widget.document["description"]),
