@@ -26,7 +26,7 @@ class _PurchasedListState extends State<PurchasedList> {
     });
   }
 
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;
   var purchasedList = <QueryDocumentSnapshot>[];
   var purchasedItemList = <QuerySnapshot>[];
   @override

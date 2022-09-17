@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class MainModel extends ChangeNotifier{
   List documentList = [];
-  String userID = FirebaseAuth.instance.currentUser!.uid;
+  String? userID = FirebaseAuth.instance.currentUser?.uid;
   Future<void> fetchNotifications()async{
     final docs = await FirebaseFirestore.instance.collection("users").doc(userID).collection("information").get();
     // getter docs: docs(List<QueryDocumentSnapshot<T>>型)のドキュメント全てをリストにして取り出す。

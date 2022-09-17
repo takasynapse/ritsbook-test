@@ -19,7 +19,7 @@ class TradeChatPage extends StatefulWidget {
 class _TradeChatPageState extends State<TradeChatPage> {
   // List<types.Message> _messages = [];
   String message = '';
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;
   final _controller = TextEditingController();
 
   Future _loadData() async {

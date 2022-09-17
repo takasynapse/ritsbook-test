@@ -18,7 +18,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   // List<types.Message> _messages = [];
   String message = '';
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;
   final _controller = TextEditingController();
 
   Future _loadData() async {

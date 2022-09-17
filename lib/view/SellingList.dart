@@ -26,7 +26,7 @@ class _SellingListState extends State<SellingList> {
       }
     });
   }
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;
 
   @override
   Widget build(BuildContext context) {

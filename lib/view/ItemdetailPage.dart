@@ -4,7 +4,6 @@ import "package:flutter/material.dart";
 import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
 
 class ItemdetailPage extends StatefulWidget {
@@ -16,7 +15,7 @@ class ItemdetailPage extends StatefulWidget {
 
 
 class _ItemdetailPageState extends State<ItemdetailPage> {
-  final String uid = FirebaseAuth.instance.currentUser!.uid;
+final String? uid = FirebaseAuth.instance.currentUser?.uid;
 Future<void> Purchase(itemID) async {
   FirebaseAuth.instance.authStateChanges().listen((user) {
     if (user != null) {
@@ -31,7 +30,7 @@ Future<void> Purchase(itemID) async {
       FirebaseFirestore.instance.collection('textbooks').doc(itemID).update({
         'isSold': false,
       });
-       FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection('users')
           .doc(widget.document["userID"])
           .collection('information')
@@ -108,7 +107,7 @@ Future<void> Purchase(itemID) async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("商品詳細"),
+        title:const Text("商品詳細"),
       ),
       body: Center(
         child: ListView(
