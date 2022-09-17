@@ -31,8 +31,7 @@ Future<void> Purchase(itemID) async {
       FirebaseFirestore.instance.collection('textbooks').doc(itemID).update({
         'isSold': false,
       });
-      if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
-      FirebaseFirestore.instance
+       FirebaseFirestore.instance
           .collection('users')
           .doc(widget.document["userID"])
           .collection('information')
@@ -44,7 +43,6 @@ Future<void> Purchase(itemID) async {
           })
           .then((value) => print("success"))
           .catchError((error) => print(error));
-    }
     }
   });
 }
