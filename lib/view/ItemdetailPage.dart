@@ -157,6 +157,24 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
               },
               child: const Text("取引画面へ"),
             )
+            else if (FirebaseFirestore.instance.
+            collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() != null
+            // collection('users').
+            // doc(uid).
+            // collection('purchase')
+            // .doc()
+            // .collection("itemID")==widget.document.id
+            && widget.document["isSold"] == false)
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TradeChatPage(widget.document)),
+                );
+              },
+              child: const Text("取引画面へ"),
+            )
           ],
         ),
       ),

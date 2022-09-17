@@ -37,7 +37,7 @@ class _SellingListState extends State<SellingList> {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('textbooks')
-            .where(uid)
+            .where("userID",isEqualTo: uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
