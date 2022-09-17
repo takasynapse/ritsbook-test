@@ -11,7 +11,6 @@ import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 
 class EditItema extends StatelessWidget {
   @override

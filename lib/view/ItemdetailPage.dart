@@ -1,15 +1,10 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
-import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/view_model/FetchBook.dart';
-import "package:projectritsbook_native/view_model/Items.dart";
-import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
 
 class ItemdetailPage extends StatefulWidget {
@@ -122,7 +117,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 },
                 child: const Text("編集する"),
               )
-            else
+            else if (widget.document["isSold"] == true)
               ElevatedButton(
                 onPressed: () {
                   FirebaseAuth.instance.authStateChanges().listen((user) {
@@ -138,7 +133,9 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   });
                 },
                 child: Text("購入する"),
-              ),
+              )
+            else
+            ElevatedButton(onPressed: null, child: Text("売り切れ")),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -149,6 +146,17 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
               },
               child: const Text("チャットを見る"),
             ),
+            if(uid == widget.document['userID']&&widget.document["isSold"] == false)
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TradeChatPage(widget.document)),
+                );
+              },
+              child: const Text("取引画面へ"),
+            )
           ],
         ),
       ),

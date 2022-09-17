@@ -4,22 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:projectritsbook_native/view/SignUpPage.dart';
-import 'package:provider/provider.dart'; // new
-// import 'exhibition.dart';
-// import 'firebase_options.dart'; // new
-// import 'src/authentication.dart'; // new
-// import 'src/widgets.dart';
+
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-
 
 class Exhibition extends StatefulWidget {
   @override

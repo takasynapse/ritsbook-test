@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:projectritsbook_native/view/ItemdetailPage.dart';
 
 class SellingList extends StatefulWidget {

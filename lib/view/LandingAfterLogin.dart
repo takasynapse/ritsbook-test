@@ -1,11 +1,8 @@
-import "package:cloud_firestore/cloud_firestore.dart";
-import "package:flutter/cupertino.dart";
+
 import "package:flutter/material.dart";
 import 'package:projectritsbook_native/view/ItemdetailPage.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/view_model/FetchBook.dart';
-import "package:projectritsbook_native/view_model/Items.dart";
-import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class LandingPageAfter extends StatefulWidget {
@@ -34,7 +31,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                   title: Text(documentList[item]["item"]),
                   leading: Image.network(documentList[item]["imageurl"]),
                   subtitle: Text(documentList[item]["price"].toString()),
-                  trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("販売中"),
+                  trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("売り切れ "),
                   onTap:() {
                     // print(documentList[item].id);
                     Navigator.push(
