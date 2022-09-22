@@ -31,12 +31,10 @@ class _SellingListState extends State<SellingList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('出品した商品一覧ンゴ'),
-      // ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('textbooks')
+            .orderBy('timestamp', descending: true)
             .where("userID",isEqualTo: uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

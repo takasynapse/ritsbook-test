@@ -1,4 +1,4 @@
-package com.example.projectritsbook_native
+package ritsbook.projectritsbook_native
 
 import io.flutter.embedding.android.FlutterActivity
 

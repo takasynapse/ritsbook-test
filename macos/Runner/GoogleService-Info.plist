@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.projectritsbookNative</string>
+	<string>ritsbook.projectritsbookNative</string>
 	<key>PROJECT_ID</key>
 	<string>project-ritsbook-test</string>
 	<key>STORAGE_BUCKET</key>

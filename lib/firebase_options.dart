@@ -68,7 +68,7 @@ class DefaultFirebaseOptions {
     projectId: 'project-ritsbook-test',
     storageBucket: 'project-ritsbook-test.appspot.com',
     iosClientId: '310026055100-3331pma8fhs8reqhk9292phj9eto5uhs.apps.googleusercontent.com',
-    iosBundleId: 'com.example.projectritsbookNative',
+    iosBundleId: 'ritsbook.projectritsbookNative',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -78,6 +78,6 @@ class DefaultFirebaseOptions {
     projectId: 'project-ritsbook-test',
     storageBucket: 'project-ritsbook-test.appspot.com',
     iosClientId: '310026055100-3331pma8fhs8reqhk9292phj9eto5uhs.apps.googleusercontent.com',
-    iosBundleId: 'com.example.projectritsbookNative',
+    iosBundleId: 'ritsbook.projectritsbookNative',
   );
 }

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:310026055100:android:b2e1a05e989ee27657cfb9",
         "android_client_info": {
-          "package_name": "com.example.projectritsbook_native"
+          "package_name": "ritsbook.projectritsbook_native"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "310026055100-3331pma8fhs8reqhk9292phj9eto5uhs.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.projectritsbookNative"
+                "bundle_id": "ritsbook.projectritsbookNative"
               }
             }
           ]

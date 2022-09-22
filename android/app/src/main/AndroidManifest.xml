@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.projectritsbook_native">
+    package="ritsbook.projectritsbook_native">
    <application
         android:label="RitsBook"
         android:name="${applicationName}"

@@ -41,7 +41,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('テストです'),
+        title: Text('Ritsbook'),
       ),
       body: Center(
         child: Center(
@@ -101,7 +101,7 @@ class _LandingPageState extends State<LandingPage> {
                     // サインイン画面を表示する
                     signInWithGoogle();
                   },
-                  child:Text("Googleアカウントで登録de"),
+                  child:Text("Googleアカウントで登録"),
                 ),
               ],
             ),

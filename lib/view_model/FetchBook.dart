@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class MainModel extends ChangeNotifier{
   List documentList = [];
   Future<void> fetchBooks()async{
-    final docs = await FirebaseFirestore.instance.collection("textbooks").get();
+    final docs = await FirebaseFirestore.instance.collection("textbooks").orderBy("timestamp",descending: true).get();
     // getter docs: docs(List<QueryDocumentSnapshot<T>>型)のドキュメント全てをリストにして取り出す。
     // toList(): Map()から返ってきたIterable→Listに変換する
     final documentList = docs.docs.

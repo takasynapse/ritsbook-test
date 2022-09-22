@@ -33,6 +33,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
               appBar: AppBar(
                 title:const Text("チャット"),
               ),
@@ -76,6 +77,7 @@ class _ChatPageState extends State<ChatPage> {
                           }),
                     )),
                     TextField(
+                      autofocus: true,
                       controller: _controller,
                       onChanged: (value) => message = value,
                       decoration: InputDecoration(
