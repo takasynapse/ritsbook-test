@@ -20,7 +20,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
         title: Text('Ritsbook',
         style: TextStyle(color: Colors.black),),
         
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
       ),
       body: Consumer(builder: (context, model ,child){
         return Row(
@@ -37,6 +37,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GridView.builder(
+                      itemCount: snapshot.data!.docs.length,
                       gridDelegate:const  SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         mainAxisSpacing: 10,
@@ -58,44 +59,57 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                         return SizedBox(
                           height: 145,
                           width: 138,
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            elevation: 5,
-                            // shadowColor: Color(0x3f000000),
-                            child:Column(
-                              children: [
-                                SizedBox(height:10),
-                                Ink.image(image: document['img_url'] != null ? NetworkImage(document['img_url']) : AssetImage('assets/images/placeholder.png') as ImageProvider,
-                                  height: 112,
-                                  fit: BoxFit.cover,
-                                ),
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    document['item'],
-                                    // 文字が長い場合の折り返し
-                                    // overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    style:const TextStyle(
-                                      fontSize: 15,
-                                    ),
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ItemdetailPage(
+                                    document,
                                   ),
                                 ),
-                                
-                                // ListTile(
-                                //   title: Text(document['item']),
-                                //   // subtitle: Text(document['author']),
-                                //   onTap: (){
-                                //     Navigator.push(
-                                //       context,
-                                //       MaterialPageRoute(
-                                //         builder: (context) => ItemdetailPage(document),
-                                //       ),
-                                //     );
-                                //   },
-                                // ),
-                              ],
-                            ) 
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 5,
+                              
+                              // shadowColor: Color(0x3f000000),
+                              child:Column(
+                                children: [
+                                  SizedBox(height:10),
+                                  Ink.image(image: document['img_url'] != null ? NetworkImage(document['img_url']) : AssetImage('assets/images/placeholder.png') as ImageProvider,
+                                    height: 112,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      document['item'] != null ? document['item'] : 'No title',
+                                      // 文字が長い場合の折り返し
+                                      // overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      style:const TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  
+                                  // ListTile(
+                                  //   title: Text(document['item']),
+                                  //   // subtitle: Text(document['author']),
+                                  //   onTap: (){
+                                  //     Navigator.push(
+                                  //       context,
+                                  //       MaterialPageRoute(
+                                  //         builder: (context) => ItemdetailPage(document),
+                                  //       ),
+                                  //     );
+                                  //   },
+                                  // ),
+                                ],
+                              ) 
+                            ),
                           ),
                         );
                       },

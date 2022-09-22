@@ -112,11 +112,38 @@ Future<void> Purchase(itemID) async {
       body: Center(
         child: ListView(
           children: <Widget>[
+
             Image.network(widget.document["img_url"]),
-            Text(widget.document["item"]),
-            Text(widget.document["price"].toString()),
-            Text(widget.document["description"]),
-            Text(widget.document["condition"]),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.document["item"],style: TextStyle(fontSize: 20),),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('￥'+widget.document["price"].toString(),style: 
+              TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.document["description"],
+              style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Opacity(opacity: 0.5,child: Text('商品の状態')),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.document["condition"]),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.document["seller"] + "さんの出品"),
+            ),
             if (uid == widget.document['userID'])
               ElevatedButton(
                 onPressed: () {
