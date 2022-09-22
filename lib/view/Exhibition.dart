@@ -151,6 +151,7 @@ class _Exhibition extends State<Exhibition> {
       "price": price,
       "userID": userID,
       "img_url": _imageurl,
+      "timestamp": FieldValue.serverTimestamp(),
       "isSold": true
     }).then((value) => _showDialogafterupload());
   }

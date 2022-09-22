@@ -27,9 +27,16 @@ class _SellingListState extends State<SellingList> {
     });
   }
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
-
   @override
   Widget build(BuildContext context) {
+    if (uid == null) {
+      return Scaffold(
+        body: Center(
+          child: Text('ログインしてください'),
+        ),
+      );
+    }
+    else{
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -43,6 +50,9 @@ class _SellingListState extends State<SellingList> {
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text("Loading");
+          }
+          if (snapshot.data!.docs.length == 0) {
+            return Text("購入した商品はありません");
           }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -66,3 +76,4 @@ class _SellingListState extends State<SellingList> {
     );
   }
 }
+    }

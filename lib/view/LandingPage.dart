@@ -70,6 +70,29 @@ class _LandingPageState extends State<LandingPage> {
                     });
                   },
                 ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      // メールとパスワードでユーザー検索
+                      final FirebaseAuth auth = FirebaseAuth.instance;
+                      final UserCredential result =
+                          await auth.signInWithEmailAndPassword(
+                        email: newEmail,
+                        password: newPassword,
+                      );
+                      final User user = result.user!;
+                      setState(() {
+                        infoText = "登録完了しました${user.email}";
+                      });
+                    } catch (e) {
+                      setState(() {
+                        infoText = "登録できませんでした${e.toString()}";
+                      });
+                    }
+                  },
+                  child: Text("sign in"),
+                ),
                 const SizedBox(height:8),
                 ElevatedButton(
                   onPressed: () async {
@@ -99,7 +122,13 @@ class _LandingPageState extends State<LandingPage> {
                 ElevatedButton(
                   onPressed: () async {
                     // サインイン画面を表示する
+                    try{
                     signInWithGoogle();
+                    }catch(e){
+                      setState(() {
+                        infoText = "登録できませんでした${e.toString()}";
+                      });
+                    }
                   },
                   child:Text("Googleアカウントで登録"),
                 ),
