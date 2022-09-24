@@ -16,12 +16,6 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Ritsbook',
-        style: TextStyle(color: Colors.black),),
-        
-        // backgroundColor: Colors.white,
-      ),
       body: Consumer(builder: (context, model ,child){
         return Row(
           children: [

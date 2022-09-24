@@ -79,9 +79,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('プロフィール編集'),
-        ),
         body: Center(
             child: ListView(
           children: <Widget>[

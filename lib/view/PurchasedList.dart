@@ -31,6 +31,13 @@ class _PurchasedListState extends State<PurchasedList> {
   var purchasedItemList = <QuerySnapshot>[];
   @override
   Widget build(BuildContext context) {
+    if (uid == null) {
+      return const Scaffold(
+        body: Center(
+          child: Text('ログインしてください'),
+        ),
+      );
+    }
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -51,23 +58,35 @@ class _PurchasedListState extends State<PurchasedList> {
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<DocumentSnapshot> snapshot) {
-                      return ListTile(
-                        title: Text(
-                            snapshot.hasData ? snapshot.data!.get('item') : ''),
-                        leading: Image.network(snapshot.hasData
-                            ? snapshot.data!.get('img_url')
-                            : ''),
-                        subtitle: Text(snapshot.hasData
-                            ? snapshot.data!.get('price').toString()
-                            : ''),
-                        onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ItemdetailPage(snapshot.data!),
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey,
+                              width: 0.5,
                             ),
-                          );
-                        },
+                          ),
+                        ),
+                        child: ListTile(
+                          title: Text(snapshot.hasData
+                              ? snapshot.data!.get('item')
+                              : ''),
+                          leading: Image.network(snapshot.hasData
+                              ? snapshot.data!.get('img_url')
+                              : ''),
+                          subtitle: Text(snapshot.hasData
+                              ? snapshot.data!.get('price').toString()
+                              : ''),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ItemdetailPage(snapshot.data!),
+                              ),
+                            );
+                          },
+                        ),
                       );
                     });
               });

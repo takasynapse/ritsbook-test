@@ -51,9 +51,6 @@ class _ProfileState extends State<Profile> {
     return MaterialApp(
       home: Scaffold(
         // build:(_)=> getUser(),
-        appBar: AppBar(
-          title: const Text('プロフィール'),
-        ),
         body: Center(
           child: Column(
             children: <Widget>[

@@ -34,9 +34,6 @@ class _TradeChatPageState extends State<TradeChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              appBar: AppBar(
-                title:const Text("取引画面チャット"),
-              ),
               body: Consumer(builder: (context, model, child) {
                 return Column(
                   children: <Widget>[

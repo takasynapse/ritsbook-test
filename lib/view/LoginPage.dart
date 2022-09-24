@@ -27,9 +27,6 @@ class _UserLogin extends State<UserLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ログイン'),
-      ),
       body: Column(
         children: [
           Padding(

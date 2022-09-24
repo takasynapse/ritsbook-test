@@ -159,10 +159,6 @@ class _Exhibition extends State<Exhibition> {
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      appBar: AppBar(
-        title: Text('出品画面'),
-      ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

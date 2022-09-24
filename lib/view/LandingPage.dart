@@ -40,9 +40,6 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Ritsbook'),
-      ),
       body: Center(
         child: Center(
           child: Padding(
