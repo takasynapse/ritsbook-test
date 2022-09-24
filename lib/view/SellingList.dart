@@ -30,7 +30,7 @@ class _SellingListState extends State<SellingList> {
   @override
   Widget build(BuildContext context) {
     if (uid == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: Text('ログインしてください'),
         ),

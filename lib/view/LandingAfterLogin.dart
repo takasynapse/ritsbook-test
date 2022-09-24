@@ -73,17 +73,32 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               
                               // shadowColor: Color(0x3f000000),
                               child:Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(height:10),
                                   Ink.image(image: document['img_url'] != null ? NetworkImage(document['img_url']) : AssetImage('assets/images/placeholder.png') as ImageProvider,
                                     height: 112,
                                     fit: BoxFit.cover,
                                   ),
+                                  // Text('￥'+document['price'].toString(),
+                                  // style:TextStyle(
+                                  //   color: Colors.black,
+                                  //   fontSize: 10,
+                                  //   fontFamily: "Inter",
+                                  //   fontWeight: FontWeight.w700,
+                                  //   backgroundColor: Colors.black.withOpacity(0.1),
+                                  // ),
+                                  // ),
                                   Container(
-                                    alignment: Alignment.topLeft,
+                                    alignment: Alignment.center,
                                     child: Text(
                                       document['item'] != null ? document['item'] : 'No title',
                                       // 文字が長い場合の折り返し

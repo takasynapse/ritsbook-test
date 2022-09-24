@@ -5,7 +5,7 @@ import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
-
+            // ignore: prefer_const_literals_to_create_immutables
 class ItemdetailPage extends StatefulWidget {
   final DocumentSnapshot document;
   ItemdetailPage(this.document);
@@ -102,113 +102,168 @@ Future<void> Purchase(itemID) async {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        width:71,
+        height: 71,
+        child: FloatingActionButton(
+          onPressed: () {
+            if (uid == null) {
+              _showDialogCheckauth();
+            } else {
+              _showDialog();
+            }
+          },
+          child:Text("購入する",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600,fontFamily: "Inter"),),
+          backgroundColor: Colors.red,
+          // child: const Icon(Icons.shopping_cart),
+        ),
+      ),
       appBar: AppBar(
         title:const Text("商品詳細"),
       ),
-      body: Center(
-        child: ListView(
-          children: <Widget>[
-
-            Image.network(widget.document["img_url"]),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.document["item"],style: TextStyle(fontSize: 20),),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('￥'+widget.document["price"].toString(),style: 
-              TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Image.network(widget.document["img_url"]),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.document["item"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.document["description"],
-              style: TextStyle(fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('￥'+widget.document["price"].toString(),style: 
+                TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Opacity(opacity: 0.5,child: Text('商品の状態')),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.document["condition"]),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(widget.document["seller"] + "さんの出品"),
-            ),
-            if (uid == widget.document['userID'])
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => EditItem(widget.document)),
-                  );
-                },
-                child: const Text("編集する"),
-              )
-            else if (widget.document["isSold"] == true)
-              ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.authStateChanges().listen((user) {
-                    if (user != null) {
-                      if (widget.document["isSold"] == true) {
-                        _showDialog();
-                      } else {
-                        null;
-                      }
-                    } else {
-                      _showDialogCheckauth();
-                    }
-                  });
-                },
-                child: Text("購入する"),
-              )
-            else
-            ElevatedButton(onPressed: null, child: Text("売り切れ")),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChatPage(widget.document)),
-                );
-              },
-              child: const Text("チャットを見る"),
-            ),
-            if(uid == widget.document['userID']&&widget.document["isSold"] == false)
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TradeChatPage(widget.document)),
-                );
-              },
-              child: const Text("取引画面へ"),
-            )
-            else if (FirebaseFirestore.instance.
-            collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() != null
-            && widget.document["isSold"] == false)
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TradeChatPage(widget.document)),
-                );
-              },
-              child: const Text("取引画面へ"),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.document["description"],
+                style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Opacity(opacity: 0.5,child: Text('商品の状態')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.document["condition"]),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Text(widget.document["seller"] + "さんの出品"!=null?widget.document["seller"] + "さんの出品":""),
+              // ),
+              SizedBox(
+                      height: 20,
+                    ),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: ElevatedButton.icon(
+                        style:ElevatedButton.styleFrom(
+                          side:const BorderSide(
+                            width: 2.0,
+                            color: Color(0xff727272)),
+                          primary: Colors.white,
+                          onPrimary: Color(0xff727272),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatPage(widget.document)),
+                          );
+                        },
+                        icon: Icon(Icons.message),
+                        label: Text("コメントする"),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                if (uid == widget.document['userID'])
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditItem(widget.document)),
+                      );
+                    },
+                    child: const Text("編集する"),
+                  )
+                else if (widget.document["isSold"] == true)
+                  Container(
+                    width: 200,
+                    height: 50,
+                    child: ElevatedButton.icon(
+                      style :ElevatedButton.styleFrom(
+                        side: BorderSide(
+                          width: 2.0, 
+                          color: Color(0xfff13838)),
+                        primary: Colors.white,
+                        onPrimary: Color(0xfff13838),
+                      ),
+                      onPressed: () {
+                        FirebaseAuth.instance.authStateChanges().listen((user) {
+                          if (user != null) {
+                            if (widget.document["isSold"] == true) {
+                              _showDialog();
+                            } else {
+                              null;
+                            }
+                          } else {
+                            _showDialogCheckauth();
+                          }
+                        });
+                      },
+                      icon:const Icon(Icons.shopping_cart),
+                      label:const Text("購入する"),
+                      // child: Text("購入する"),
+                    ),
+                  )
+                else
+                ElevatedButton(onPressed: null, child: Text("売り切れ")),
+                if(uid == widget.document['userID']&&widget.document["isSold"] == false)
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TradeChatPage(widget.document)),
+                    );
+                  },
+                  child: const Text("取引画面へ"),
+                )
+                else if (FirebaseFirestore.instance.
+                collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() != null
+                && widget.document["isSold"] == false)
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TradeChatPage(widget.document)),
+                    );
+                  },
+                  child: const Text("取引画面へ"),
+                ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
