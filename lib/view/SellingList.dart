@@ -12,20 +12,7 @@ class SellingList extends StatefulWidget {
 class _SellingListState extends State<SellingList> {
   String? userID;
   //ライフサイクルフックにおいてcreated時にユーザがログインしているか検証
-  @override
-  void initState() {
-    super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-        print('userinfo:');
-        // final Object userinfo = user;
-        userID = user.uid;
-      }
-    });
-  }
+
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
   @override
   Widget build(BuildContext context) {
@@ -35,45 +22,55 @@ class _SellingListState extends State<SellingList> {
           child: Text('ログインしてください'),
         ),
       );
-    }
-    else{
-    return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('textbooks')
-            // .orderBy('timestamp', descending: true)
-            .where("userID",isEqualTo: uid)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something went wrong');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
-          }
-          if (snapshot.data!.docs.length == 0) {
-            return Text("購入した商品はありません");
-          }
-          return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              return  ListTile(
-                title:  Text(document['item']),
-                leading: Image.network(document['img_url']),
-                subtitle: Text(document['price'].toString()),
-                onTap:() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ItemdetailPage(document),
+    } else {
+      return Scaffold(
+        body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('textbooks')
+              // .orderBy('timestamp', descending: true)
+              .where("userID", isEqualTo: uid)
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+            if (snapshot.data!.docs.length == 0) {
+              return Text("出品した商品はありません");
+            }
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Colors.grey,
+                        width: 0.5,
+                      ),
                     ),
-                  );
-                },
-              );
-            }).toList(),
-          );
-        },
-      ),
-    );
+                  ),
+                  child: ListTile(
+                    title: Text(document['item']),
+                    leading: Image.network(document['img_url']),
+                    subtitle: Text(document['price'].toString()),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ItemdetailPage(document),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }).toList(),
+            );
+          },
+        ),
+      );
+    }
   }
 }
-    }

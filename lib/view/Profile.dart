@@ -50,10 +50,13 @@ class _ProfileState extends State<Profile> {
     });
     return MaterialApp(
       home: Scaffold(
-        // build:(_)=> getUser(),
-        appBar: AppBar(
-          title: const Text('プロフィール'),
+      appBar: PreferredSize(  
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+        backgroundColor: Colors.white,
         ),
+      ),
+        // build:(_)=> getUser(),
         body: Center(
           child: Column(
             children: <Widget>[

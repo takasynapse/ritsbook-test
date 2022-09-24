@@ -16,9 +16,6 @@ class _LoginPageState extends State<LoginPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('新規登録画面'),
-      ),
       body: Center(
         child: Center(
           child: Padding(

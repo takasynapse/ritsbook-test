@@ -159,11 +159,12 @@ class _Exhibition extends State<Exhibition> {
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      appBar: AppBar(
-        title: Text('出品画面'),
-      ),
-      body: SingleChildScrollView(
+      appBar: PreferredSize(  
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+        backgroundColor: Colors.white,
+        ),
+      ),      body: SingleChildScrollView(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),

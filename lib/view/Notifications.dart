@@ -21,7 +21,9 @@ class _NotificationPageState extends State<NotificationPage>{
         create:(_) => MainModel()..fetchNotifications(),
         child:Scaffold(
         appBar:AppBar(
-          title:Text("通知"),
+          title:Text("通知",style: TextStyle(color: Colors.black),),
+          backgroundColor: Colors.white,
+          
         ),
         body:Consumer<MainModel>(
           builder:(context,model,child){

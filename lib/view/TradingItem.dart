@@ -17,7 +17,7 @@ class _TradingItemState extends State<TradingItem> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('取引中の商品'),
+            backgroundColor: Color.fromARGB(255, 196, 183, 183),
             bottom: const TabBar(
               tabs: <Widget>[
                 Tab(

@@ -147,8 +147,11 @@ class _EditItemState extends State<EditItem> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('編集画面やで'),
+      appBar: PreferredSize(  
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+        backgroundColor: Colors.white,
+        ),
       ),
       body: Container(
         child: ListView(

@@ -122,7 +122,7 @@ Future<void> Purchase(itemID) async {
         ),
       ),
       appBar: AppBar(
-        title:const Text("商品詳細"),
+        title: Text(widget.document["item"]),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -230,7 +230,6 @@ Future<void> Purchase(itemID) async {
                       },
                       icon:const Icon(Icons.shopping_cart),
                       label:const Text("購入する"),
-                      // child: Text("購入する"),
                     ),
                   )
                 else
