@@ -108,12 +108,18 @@ Future<void> Purchase(itemID) async {
       floatingActionButton: Container(
         width:71,
         height: 71,
-        child: FloatingActionButton(
+        child:
+         FloatingActionButton(
           onPressed: () {
+            if (widget.document['isSold'] ==true)
             if (uid == null) {
               _showDialogCheckauth();
             } else {
               _showDialog();
+            }
+            else
+            {
+              print('aa');
             }
           },
           child:Text("購入する",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600,fontFamily: "Inter"),),
@@ -193,15 +199,26 @@ Future<void> Purchase(itemID) async {
                       height: 20,
                     ),
                 if (uid == widget.document['userID'])
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditItem(widget.document)),
-                      );
-                    },
-                    child: const Text("編集する"),
+                  SizedBox(
+                    width: 200,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                            width: 2.0,
+                            color: Color(0xff727272)),
+                        primary: Colors.white,
+                        onPrimary: Color(0xff727272),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditItem(widget.document)),
+                        );
+                      },
+                      child: const Text("編集する"),
+                    ),
                   )
                 else if (widget.document["isSold"] == true)
                   Container(
@@ -233,9 +250,19 @@ Future<void> Purchase(itemID) async {
                     ),
                   )
                 else
-                ElevatedButton(onPressed: null, child: Text("売り切れ")),
-                if(uid == widget.document['userID']&&widget.document["isSold"] == false)
+                SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: ElevatedButton(onPressed: null, child: Text("売り切れ"))),
+                if(uid !=null && uid == widget.document['userID'] &&widget.document["isSold"] == false)
                 ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                      side: const BorderSide(
+                          width: 2.0,
+                          color: Color.fromARGB(255, 74, 176, 106)),
+                      primary: Colors.white,
+                      onPrimary: Color.fromARGB(255, 74, 176, 106),
+                    ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -246,17 +273,28 @@ Future<void> Purchase(itemID) async {
                   child: const Text("取引画面へ"),
                 )
                 else if (FirebaseFirestore.instance.
-                collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() != null
+                collection('users').doc(uid).collection('purchase').doc(widget.document.id).get() == widget.document['userID']
                 && widget.document["isSold"] == false)
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TradeChatPage(widget.document)),
-                    );
-                  },
-                  child: const Text("取引画面へ"),
+                SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      side: const BorderSide(
+                          width: 2.0,
+                          color: Color.fromARGB(255, 141, 83, 83)),
+                      primary: Colors.white,
+                      onPrimary: Color.fromARGB(255, 141, 83, 83),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TradeChatPage(widget.document)),
+                      );
+                    },
+                    child: const Text("取引画面へ"),
+                  ),
                 ),
                   ],
                 ),

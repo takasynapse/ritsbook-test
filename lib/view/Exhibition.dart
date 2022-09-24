@@ -172,7 +172,14 @@ class _Exhibition extends State<Exhibition> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("商品情報を入力してください"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  
+                  Text("商品情報を入力してください",
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                   Image(image: NetworkImage(_imageurl)),
                   ElevatedButton(onPressed: _uploadImage, child: Text('画像を選択')),
                   Text("商品名(必須)",

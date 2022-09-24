@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:projectritsbook_native/view/ItemdetailPage.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
@@ -83,10 +84,29 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(height:10),
+                                  if (document["isSold"] == true)
                                   Ink.image(image: document['img_url'] != null ? NetworkImage(document['img_url']) : AssetImage('assets/images/placeholder.png') as ImageProvider,
                                     height: 112,
                                     fit: BoxFit.cover,
+                                  )
+                                  else if (document["isSold"] == false)
+                                  Stack(
+                                    children:[
+                                  Ink.image(image: document['img_url'] != null ? NetworkImage(document['img_url']) : AssetImage('assets/images/placeholder.png') as ImageProvider,
+                                    height: 112,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Container(
+                                    height: 112,
+                                    width: 138,
+                                    color:Colors.black.withOpacity(0.5),
+                                    child: Center(
+                                      child: Text("SOLD",style: TextStyle(color:Colors.white,fontSize: 20),
+                                      
+                                      ),
+                                    ),
+                                  )
+                                    ]
                                   ),
                                   // Text('￥'+document['price'].toString(),
                                   // style:TextStyle(
@@ -109,19 +129,6 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                       ),
                                     ),
                                   ),
-                                  
-                                  // ListTile(
-                                  //   title: Text(document['item']),
-                                  //   // subtitle: Text(document['author']),
-                                  //   onTap: (){
-                                  //     Navigator.push(
-                                  //       context,
-                                  //       MaterialPageRoute(
-                                  //         builder: (context) => ItemdetailPage(document),
-                                  //       ),
-                                  //     );
-                                  //   },
-                                  // ),
                                 ],
                               ) 
                             ),
@@ -138,39 +145,5 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
       }),
     );  
   }
-    // return MaterialApp(
-    //   home: ChangeNotifierProvider<MainModel>(
-    //     create:(_) => MainModel()..fetchBooks(),
-    //     child:Scaffold(
-    //     appBar:AppBar(
-    //       title:Text("ランディングページ"),
-    //     ),
-    //     body:Consumer<MainModel>(
-    //       builder:(context,model,child){
-    //         final documentList = model.documentList;
-    //         return ListView.builder(
-    //           itemCount: documentList.length,
-    //           itemBuilder: (BuildContext context,int item){
-    //             return ListTile(
-    //               title: Text(documentList[item]["item"]),
-    //               leading: Image.network(documentList[item]["img_url"]),
-    //               subtitle: Text(documentList[item]["price"].toString()),
-    //               trailing: documentList[item]["isSold"] == true ? Text("販売中") : Text("売り切れ "),
-    //               onTap:() {
-    //                 // print(documentList[item].id);
-    //                 Navigator.push(
-    //                   context,
-    //                   MaterialPageRoute(
-    //                     builder: (context) => ItemdetailPage(documentList[item]),
-    //                   ),
-    //                 );},
-    //             );
-    //           }
-    //         );
-    //       }
-    //     )
-    //     )
-    //     )
-    //     );
   }
 
