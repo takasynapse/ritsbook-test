@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
-import 'package:projectritsbook_native/view/LandingPage.dart';
+// import 'package:projectritsbook_native/view/LandingPage.dart';
 import 'package:projectritsbook_native/view/Exhibition.dart';
 import 'package:projectritsbook_native/view/Profile.dart';
 import 'package:projectritsbook_native/view/Notifications.dart';
@@ -57,8 +57,8 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp>{
   var _navIndex = 0;
   var _label = '';
-  var _titles = [LandingPage(),LandingPageAfter(),Exhibition(),Profile(),NotificationPage(),TradingItem()];
-
+  // var _titles = [LandingPageAfter(),Exhibition(),Profile(),NotificationPage(),TradingItem()];
+     var _titles = [LandingPageAfter(),NotificationPage(),Exhibition(),TradingItem(),Profile()];
   void _onItemTapped(int index){
     setState(() {
       _navIndex = index;
@@ -76,28 +76,24 @@ class _State extends State<MyApp>{
         onTap: _onItemTapped,
         items:const <BottomNavigationBarItem> [
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Login',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance),
-            label: 'Exhibition',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
+            label: 'ホーム',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: 'Notification',
+            label: 'お知らせ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'trading',
+            icon: Icon(Icons.camera_alt_outlined),
+            label: '出品',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.compare_arrows_outlined),
+            label: '取引',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'マイページ',
           ),
         ],
     type: BottomNavigationBarType.fixed,
