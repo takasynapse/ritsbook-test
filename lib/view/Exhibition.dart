@@ -164,7 +164,8 @@ class _Exhibition extends State<Exhibition> {
         child: AppBar(
         backgroundColor: Colors.white,
         ),
-      ),      body: SingleChildScrollView(
+      ),      
+      body: SingleChildScrollView(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
