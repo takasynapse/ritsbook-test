@@ -105,7 +105,8 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                       
                                       ),
                                     ),
-                                  )
+                                    
+                                  ),
                                     ]
                                   ),
                                   // Text('￥'+document['price'].toString(),
