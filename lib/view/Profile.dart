@@ -32,6 +32,7 @@ getUser() async {
     }
   });
 }
+
 class _ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
@@ -63,6 +64,7 @@ class _ProfileState extends State<Profile> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -135,24 +137,27 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           width: 50,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(username),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(qualifity),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(grade),
-                          ],
-                        ),      
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(username),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(qualifity),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(grade),
+                            ],
+                          ),
+                        ),
                         Container(
-                          margin: EdgeInsets.only(top: 50),
-                          width: 150,
-                          height: 50,
+                          padding: EdgeInsets.only(top: 50,
+                          ),
+                          // width: 150,
+                          // height: 50,
                           child: Align(
                             alignment: Alignment.bottomRight,
                             child: ElevatedButton(
@@ -160,15 +165,19 @@ class _ProfileState extends State<Profile> {
                                   primary: Color(0xffffcfcf),
                                   onPrimary: Colors.black,
                                   shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
                                 onPressed: () {
-                                  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                                  FirebaseAuth.instance
+                                      .authStateChanges()
+                                      .listen((User? user) {
                                     if (user != null) {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) => EditProfilePage()),
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                EditProfilePage()),
                                       );
                                     } else {
                                       _showDialogCheckauth();
@@ -176,9 +185,9 @@ class _ProfileState extends State<Profile> {
                                   });
                                 },
                                 child: Text('編集')),
-                          ),                        ),
+                          ),
+                        ),
                       ],
-                      
                     ),
                   ),
                 ),
@@ -192,7 +201,7 @@ class _ProfileState extends State<Profile> {
                     leading: Icon(Icons.check_box_outlined),
                     title: Text('出品した商品・購入した商品'),
                     onTap: () {
-                      Navigator.push (
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => TradingItem()),
                       );
@@ -218,7 +227,6 @@ class _ProfileState extends State<Profile> {
                     title: Text('利用規約'),
                     onTap: () {
                       launchUrl(terms);
-                    
                     },
                   ),
                   Divider(
@@ -228,9 +236,8 @@ class _ProfileState extends State<Profile> {
                   ListTile(
                     leading: Icon(Icons.chat),
                     title: Text('Twitter'),
-                    onTap: ()async {
-                     await launchUrl(url);
-                    
+                    onTap: () async {
+                      await launchUrl(url);
                     },
                   ),
                   Divider(
