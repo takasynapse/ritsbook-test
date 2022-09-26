@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
+import 'package:projectritsbook_native/view/TradingItem.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -69,7 +70,9 @@ class _ProfileState extends State<Profile> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.only(
+                    left:16.0,
+                    top: 16.0,),
                   child: Container(
                     child: Center(
                       child: Column(
@@ -129,19 +132,19 @@ class _ProfileState extends State<Profile> {
                                   primary: Color(0xffffcfcf),
                                   onPrimary: Colors.black,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
                                 onPressed: () {
                                   Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            EditProfilePage()),
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          EditProfilePage()),
                                   );
                                 },
                                 child: Text('編集')),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -154,10 +157,78 @@ class _ProfileState extends State<Profile> {
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
               },
-            )
+            ),
+            Container(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.check_box_outlined),
+                    title: Text('出品した商品・購入した商品'),
+                    onTap: () {
+                      Navigator.push (
+                        context,
+                        MaterialPageRoute(builder: (context) => TradingItem()),
+                      );
+                    },
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.question_mark),
+                    title: Text('RitsBookの使い方'),
+                    onTap: () {},
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.event_note_rounded),
+                    title: Text('利用規約'),
+                    onTap: () {},
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.chat),
+                    title: Text('Twitter'),
+                    onTap: () {},
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.exit_to_app),
+                    title: Text('ログアウト'),
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut();
+                    },
+                  ),
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+// 後でこれで書き直す
+// listview.separated
+Widget _menuItem(String title, Icon icon, Function onTap()) {
+  return ListTile(
+    leading: icon,
+    title: Text(title),
+  );
 }
