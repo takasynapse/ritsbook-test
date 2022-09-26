@@ -90,6 +90,8 @@ class _ProfileState extends State<Profile> {
         ),
         // build:(_)=> getUser(),
         body: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -101,62 +103,57 @@ class _ProfileState extends State<Profile> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    left:16.0,
-                    top: 16.0,),
+                  padding: const EdgeInsets.all(18.0),
                   child: Container(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 12.0),
-                                child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text('ユーザー名',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        )),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text('学部',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        )),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text('学年',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                width: 50,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(username),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(qualifity),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(grade),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Align(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text('ユーザー名',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('学部',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('学年',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(username),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(qualifity),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(grade),
+                          ],
+                        ),      
+                        Container(
+                          margin: EdgeInsets.only(top: 50),
+                          width: 150,
+                          height: 50,
+                          child: Align(
                             alignment: Alignment.bottomRight,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -179,9 +176,9 @@ class _ProfileState extends State<Profile> {
                                   });
                                 },
                                 child: Text('編集')),
-                          ),
-                        ],
-                      ),
+                          ),                        ),
+                      ],
+                      
                     ),
                   ),
                 ),

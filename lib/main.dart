@@ -8,6 +8,8 @@ import 'package:projectritsbook_native/view/Notifications.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/rendering.dart';
+
 
 // final constProvider =StateProvider((ref)=>0);
 void main() async{
@@ -40,6 +42,7 @@ void main() async{
   });
 
 
+  // debugPaintSizeEnabled=true;
   runApp(
     MaterialApp(
       home:MyApp(),

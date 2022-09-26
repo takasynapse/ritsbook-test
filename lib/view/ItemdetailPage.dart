@@ -128,8 +128,19 @@ Future<void> Purchase(itemID) async {
         ),
       ),
       appBar: AppBar(
-        title: Text(widget.document["item"]),
-        shadowColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(widget.document["item"],
+        
+        style: 
+        TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          fontFamily: "Inter",
+          color: Colors.black,
+        ),
+        ),
+        backgroundColor: Colors.white,
+
       ),
       body: SingleChildScrollView(
         child: Padding(
