@@ -50,103 +50,112 @@ class _ProfileState extends State<Profile> {
     });
     return MaterialApp(
       home: Scaffold(
-      appBar: PreferredSize(  
-        preferredSize: Size.fromHeight(0),
-        child: AppBar(
-        backgroundColor: Colors.white,
-        ),
-      ),
-        // build:(_)=> getUser(),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView.builder(
-                    itemCount: 1,
-                    itemBuilder: (BuildContext context, int index) {
-                      // username = username;
-                      // qualifity = qualifity;
-                      // grade = grade;
-                      return ListTile(
-                        title: Text(username),
-                        subtitle: Text(grade),
-                        trailing: Text(qualifity),
-                      );
-                    }),
-              ),
-              ElevatedButton(
-                child: Text('編集'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfilePage()),
-                  );
-                },
-              ),
-              ElevatedButton(
-                child:Text('サインアウト'),
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                },
-              )
-
-              // Padding(
-              //   padding:const EdgeInsets.all(10.0),
-              //   child:ListView(
-              //     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: <Widget>[
-              //       Text('${username}さんのマイページ'),
-              //       Text('学部学科'),
-              //       Text('${qualifity}'),
-              //       Text('学年'),
-              //       Text('${grade}'),
-              //       TextButton.icon(
-              //         onPressed: (){
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(builder: (context) => EditProfilePage()),
-              //           );
-              //         },
-              //         icon:Icon(Icons.edit),
-              //         label:const Text('プロフィール編集'),
-              //       ),
-              //       TextButton.icon(
-              //         onPressed: (){
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) => SellingList(),
-              //             ));
-              //         },
-              //         icon:const Icon(Icons.camera_alt_outlined),
-              //         label:const Text('出品した商品'),
-              //       ),
-              //       TextButton.icon(
-              //         onPressed: (){
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) => PurchasedList(),
-              //             ));
-              //         },
-              //         icon:Icon(Icons.shopping_bag),
-              //         label:Text('購入した商品'),
-              //       ),
-              //       TextButton.icon(
-              //         onPressed: (){
-              //           print('aa');
-              //         },
-              //         icon:Icon(Icons.favorite),
-              //         label:Text('いいね（未実装）'),
-              //       ),
-              //       // ElevatedButton(onPressed:(){
-              //       //   getUser();
-              //       // } , child: Text('aa'))
-              //       ],
-              //   )
-              // ),
-            ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(0),
+          child: AppBar(
+            backgroundColor: Colors.white,
           ),
+        ),
+        // build:(_)=> getUser(),
+        body: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                margin: EdgeInsets.only(top: 50),
+                // height: 150,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xffff6b6b)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12.0),
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('ユーザー名',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        )),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('学部',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        )),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('学年',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        )),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(username),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(qualifity),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(grade),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffcfcf),
+                                  onPrimary: Colors.black,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            EditProfilePage()),
+                                  );
+                                },
+                                child: Text('編集')),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              child: Text('サインアウト'),
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+              },
+            )
+          ],
         ),
       ),
     );
