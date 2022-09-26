@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
+import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,11 +32,37 @@ getUser() async {
     }
   });
 }
-
 class _ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
   final guide = Uri.parse("https://ritsbook.netlify.app/guide");
+  Future<void> _showDialogCheckauth() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ログインしてください'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: const Text('ログインする'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -140,12 +167,16 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EditProfilePage()),
-                                  );
+                                  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                                    if (user != null) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => EditProfilePage()),
+                                      );
+                                    } else {
+                                      _showDialogCheckauth();
+                                    }
+                                  });
                                 },
                                 child: Text('編集')),
                           ),
