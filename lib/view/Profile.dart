@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -32,6 +33,9 @@ getUser() async {
 }
 
 class _ProfileState extends State<Profile> {
+  final url = Uri.parse("https://twitter.com/ritsbook");
+  final terms = Uri.parse("https://ritsbook.netlify.app/policy");
+  final guide = Uri.parse("https://ritsbook.netlify.app/guide");
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -152,12 +156,6 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-            ElevatedButton(
-              child: Text('サインアウト'),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-              },
-            ),
             Container(
               child: ListView(
                 shrinkWrap: true,
@@ -179,7 +177,9 @@ class _ProfileState extends State<Profile> {
                   ListTile(
                     leading: Icon(Icons.question_mark),
                     title: Text('RitsBookの使い方'),
-                    onTap: () {},
+                    onTap: () {
+                      launchUrl(guide);
+                    },
                   ),
                   Divider(
                     height: 1,
@@ -188,7 +188,10 @@ class _ProfileState extends State<Profile> {
                   ListTile(
                     leading: Icon(Icons.event_note_rounded),
                     title: Text('利用規約'),
-                    onTap: () {},
+                    onTap: () {
+                      launchUrl(terms);
+                    
+                    },
                   ),
                   Divider(
                     height: 1,
@@ -197,7 +200,10 @@ class _ProfileState extends State<Profile> {
                   ListTile(
                     leading: Icon(Icons.chat),
                     title: Text('Twitter'),
-                    onTap: () {},
+                    onTap: ()async {
+                     await launchUrl(url);
+                    
+                    },
                   ),
                   Divider(
                     height: 1,
