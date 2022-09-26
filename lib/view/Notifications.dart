@@ -33,6 +33,7 @@ class _NotificationPageState extends State<NotificationPage>{
               itemBuilder: (BuildContext context,int item){
                 return ListTile(
                   title: Text(documentList[item]["information"]),
+                  trailing: Icon(Icons.arrow_forward_ios),
                   onTap:() {
                     // final DocumentSnapshot test = getBook(documentList[item].id) as DocumentSnapshot;
                     getBook(documentList[item].id);
