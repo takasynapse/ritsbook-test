@@ -45,6 +45,7 @@ void main() async{
   // debugPaintSizeEnabled=true;
   runApp(
     MaterialApp(
+      debugShowCheckedModeBunner: false,
       home:MyApp(),
       )
       );
