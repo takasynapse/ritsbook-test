@@ -100,7 +100,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                       child: Align(
                                         widthFactor: 0.5,
                                         alignment: Alignment.bottomLeft,
-                                        child: Text('￥'+document['price'].toString(),
+                                        child: Text('¥'+document['price'].toString(),
                                         style:TextStyle(
                                           color: Colors.black,
                                           fontSize: 18,
