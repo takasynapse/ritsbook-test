@@ -154,7 +154,8 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: 50,
+                          padding: EdgeInsets.only(
+                            top: 50,
                           ),
                           // width: 150,
                           // height: 50,

@@ -96,7 +96,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                         fit: BoxFit.cover,
                                       ),
                                                                           Container(
-                                      margin: const EdgeInsets.only(top: 70),
+                                      margin: const EdgeInsets.only(top: 80),
                                       child: Align(
                                         widthFactor: 0.5,
                                         alignment: Alignment.bottomLeft,
