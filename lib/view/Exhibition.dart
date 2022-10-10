@@ -71,7 +71,8 @@ class _Exhibition extends State<Exhibition> {
       print("アップロード失敗");
     }
   }
-  Future<void>_showDialog()async {
+
+  Future<void> _showDialog() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -96,7 +97,8 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
-  Future<void>_showDialogafterupload() async {
+
+  Future<void> _showDialogafterupload() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -114,7 +116,8 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
-      Future<void> _showDialogCheckauth() async {
+
+  Future<void> _showDialogCheckauth() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -141,6 +144,7 @@ class _Exhibition extends State<Exhibition> {
       },
     );
   }
+
   Future<void> uploadBook() async {
     CollectionReference exhibit =
         FirebaseFirestore.instance.collection("textbooks");
@@ -155,27 +159,27 @@ class _Exhibition extends State<Exhibition> {
       "isSold": true
     }).then((value) => _showDialogafterupload());
   }
+
 // ignore: prefer_const_literals_to_create_immutables
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(  
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(0),
         child: AppBar(
-        backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
         ),
-      ),      
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: 20,
                   ),
-                  
                   Text("商品情報を入力してください",
                       style: TextStyle(
                         fontSize: 16,
@@ -191,11 +195,13 @@ class _Exhibition extends State<Exhibition> {
                     child: TextField(
                       maxLines: 1,
                       decoration: InputDecoration(
-                        hintText: '商品名',
-                        // contentPadding: EdgeInsets.all(20),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
-                        )),
+                          hintText: '商品名',
+                          // contentPadding: EdgeInsets.all(20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10)),
+                          )),
                       onChanged: (String text) {
                         setState(() {
                           item = text;
@@ -209,14 +215,14 @@ class _Exhibition extends State<Exhibition> {
                       maxLines: 8,
                       decoration: InputDecoration(
                         hintText: ' 商品の説明\n・教科書の破損状態\n・使用した授業\n  など',
-                        border:OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(10),
                             bottomRight: Radius.circular(10),
-                            ),
+                          ),
                         ),
-                        ),
-                        keyboardType: TextInputType.multiline,
+                      ),
+                      keyboardType: TextInputType.multiline,
                       onChanged: (String text) {
                         setState(() {
                           description = text;
@@ -224,20 +230,22 @@ class _Exhibition extends State<Exhibition> {
                       },
                     ),
                   ),
-                                      SizedBox(
-                        height: 20,
-                      ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   const Text("商品の状態"),
                   SizedBox(
                     width: 300,
                     child: DropdownButtonFormField(
                       decoration: InputDecoration(
-                        labelText:"商品の状態",
-                        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                        labelText: "商品の状態",
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
                       items: const [
                         DropdownMenuItem(
-                          child:Text('新品・未使用'),
+                          child: Text('新品・未使用'),
                           value: '新品・未使用',
                         ),
                         DropdownMenuItem(
@@ -266,52 +274,55 @@ class _Exhibition extends State<Exhibition> {
                     ),
                   ),
                   Text("値段"),
-                                      SizedBox(
-                        height: 20,
-                      ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   SizedBox(
                     width: 300,
                     child: TextField(
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       decoration: InputDecoration(
-                        labelText: '値段',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                          labelText: '値段',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)))),
                       onChanged: (value) {
                         price = int.parse(value);
                       },
                     ),
                   ),
                   SizedBox(
-                        height: 28,
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 200,
-                        height: 50,
-                        child: ElevatedButton.icon(
-                          style :ElevatedButton.styleFrom(
-                            side: BorderSide(
-                              width: 2.0, 
-                              color: Color(0xfff13838)),
-                            primary: Colors.white,
-                            onPrimary: Color(0xfff13838),
-                          ),
-                          onPressed: () {
-                            FirebaseAuth.instance.authStateChanges().listen((user) {
-                              if (user != null) {
-                                _showDialog();
-                              } else {
-                                _showDialogCheckauth();
-                            }
-                            });
-                          },
-                          icon:const Icon(Icons.camera_alt_outlined),
-                          label:const Text("出品する"),
+                    height: 28,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 200,
+                      height: 50,
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          side:
+                              BorderSide(width: 2.0, color: Color(0xfff13838)),
+                          primary: Colors.white,
+                          onPrimary: Color(0xfff13838),
                         ),
+                        onPressed: () {
+                          FirebaseAuth.instance
+                              .authStateChanges()
+                              .listen((user) {
+                            if (user != null) {
+                              _showDialog();
+                            } else {
+                              _showDialogCheckauth();
+                            }
+                          });
+                        },
+                        icon: const Icon(Icons.camera_alt_outlined),
+                        label: const Text("出品する"),
                       ),
-                    )
+                    ),
+                  )
                 ]),
           ),
         ),

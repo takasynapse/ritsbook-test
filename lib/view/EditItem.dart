@@ -121,7 +121,7 @@ class _EditItemState extends State<EditItem> {
       context: this.context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:const Text('商品を削除しますか'),
+          title: const Text('商品を削除しますか'),
           actions: <Widget>[
             TextButton(
               child: Text('キャンセル'),
@@ -136,7 +136,7 @@ class _EditItemState extends State<EditItem> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LandingPageAfter()),
-                );   
+                );
               },
             ),
           ],
@@ -147,10 +147,10 @@ class _EditItemState extends State<EditItem> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(  
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(0),
         child: AppBar(
-        backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
         ),
       ),
       body: Container(

@@ -81,61 +81,61 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
         body: Center(
             child: ListView(
-          children: <Widget>[
-            Text('ユーザ名'),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  username = value;
-                  print(username);
-                });
-              },
-            ),
-            Text('学部学科（選択してください）'),
-            Container(
-              height: 50.0,
-              child: DropdownButton<String>(
-                items: faculity_list.map((String dropDownStringItem) {
-                  return DropdownMenuItem<String>(
-                    value: dropDownStringItem,
-                    child: Text(dropDownStringItem),
-                  );
-                }).toList(),
-                //ドロップダウンから選択されたら、isSelected_faculityが更新される
-                onChanged: (String? value) {
-                  setState(() {
-                    isSelected_faculity = value!;
-                  });
-                },
-                value: isSelected_faculity,
-              ),
-            ),
-            Text('学年(選択してください)'),
-            Container(
-              height: 50.0,
-              child: DropdownButton<String>(
-                items: grade_list.map((String dropDownStringItem) {
-                  return DropdownMenuItem<String>(
-                    value: dropDownStringItem,
-                    child: Text(dropDownStringItem),
-                  );
-                }).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    isSelected_grade = value!;
-                    print(isSelected_grade);
-                  });
-                },
-                value: isSelected_grade,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Edit_profile(username, isSelected_faculity, isSelected_grade);
-              },
-              child: Text('編集を完了する'),
-            )
-          ],
-        )));
+      children: <Widget>[
+        Text('ユーザ名'),
+        TextField(
+          onChanged: (value) {
+            setState(() {
+              username = value;
+              print(username);
+            });
+          },
+        ),
+        Text('学部学科（選択してください）'),
+        Container(
+          height: 50.0,
+          child: DropdownButton<String>(
+            items: faculity_list.map((String dropDownStringItem) {
+              return DropdownMenuItem<String>(
+                value: dropDownStringItem,
+                child: Text(dropDownStringItem),
+              );
+            }).toList(),
+            //ドロップダウンから選択されたら、isSelected_faculityが更新される
+            onChanged: (String? value) {
+              setState(() {
+                isSelected_faculity = value!;
+              });
+            },
+            value: isSelected_faculity,
+          ),
+        ),
+        Text('学年(選択してください)'),
+        Container(
+          height: 50.0,
+          child: DropdownButton<String>(
+            items: grade_list.map((String dropDownStringItem) {
+              return DropdownMenuItem<String>(
+                value: dropDownStringItem,
+                child: Text(dropDownStringItem),
+              );
+            }).toList(),
+            onChanged: (String? value) {
+              setState(() {
+                isSelected_grade = value!;
+                print(isSelected_grade);
+              });
+            },
+            value: isSelected_grade,
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Edit_profile(username, isSelected_faculity, isSelected_grade);
+          },
+          child: Text('編集を完了する'),
+        )
+      ],
+    )));
   }
 }

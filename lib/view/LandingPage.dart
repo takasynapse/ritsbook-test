@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
-
-
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -35,15 +32,13 @@ class _LandingPageState extends State<LandingPage> {
   }
   // ↑ここまで
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(  
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(0),
         child: AppBar(
-        backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
         ),
       ),
       body: Center(
@@ -55,20 +50,19 @@ class _LandingPageState extends State<LandingPage> {
               children: <Widget>[
                 // テキスト入力ラベル
                 TextFormField(
-                decoration:InputDecoration(labelText:"メールアドレス"),
-                onChanged:(String value){
-                  setState(() {
-                    newEmail = value;
-                  });
-                }
-                ),
-                const SizedBox(height:8),
+                    decoration: InputDecoration(labelText: "メールアドレス"),
+                    onChanged: (String value) {
+                      setState(() {
+                        newEmail = value;
+                      });
+                    }),
+                const SizedBox(height: 8),
                 TextFormField(
-                  decoration: InputDecoration(labelText:"パスワード"),
+                  decoration: InputDecoration(labelText: "パスワード"),
                   // パスワードガ見えないようにする
-                  obscureText:true,
-                  onChanged: (String value){
-                    setState((){
+                  obscureText: true,
+                  onChanged: (String value) {
+                    setState(() {
                       newPassword = value;
                     });
                   },
@@ -96,14 +90,14 @@ class _LandingPageState extends State<LandingPage> {
                   },
                   child: Text("sign in"),
                 ),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () async {
-                    try{
+                    try {
                       // メールとパスワードでユーザー検索
                       final FirebaseAuth auth = FirebaseAuth.instance;
-                      final UserCredential result = 
-                      await auth.createUserWithEmailAndPassword(
+                      final UserCredential result =
+                          await auth.createUserWithEmailAndPassword(
                         email: newEmail,
                         password: newPassword,
                       );
@@ -111,29 +105,29 @@ class _LandingPageState extends State<LandingPage> {
                       setState(() {
                         infoText = "登録完了しました${user.email}";
                       });
-                    }catch(e){
+                    } catch (e) {
                       setState(() {
                         infoText = "登録できませんでした${e.toString()}";
                       });
                     }
                   },
-                  child:Text("ユーザー登録"),
+                  child: Text("ユーザー登録"),
                 ),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
                 Text(infoText),
-                const SizedBox(height:8),
+                const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () async {
                     // サインイン画面を表示する
-                    try{
-                    signInWithGoogle();
-                    }catch(e){
+                    try {
+                      signInWithGoogle();
+                    } catch (e) {
                       setState(() {
                         infoText = "登録できませんでした${e.toString()}";
                       });
                     }
                   },
-                  child:Text("Googleアカウントで登録"),
+                  child: Text("Googleアカウントで登録"),
                 ),
               ],
             ),

@@ -8,7 +8,6 @@ class TradingItem extends StatefulWidget {
   _TradingItemState createState() => _TradingItemState();
 }
 
-
 class _TradingItemState extends State<TradingItem> {
   @override
   Widget build(BuildContext context) {
@@ -19,14 +18,14 @@ class _TradingItemState extends State<TradingItem> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: Center(
-              child: Text("商品一覧 ",style: 
-              TextStyle(
+                child: Text(
+              "商品一覧 ",
+              style: TextStyle(
                 color: Colors.black,
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w700,
               ),
-              )
-            ),            
+            )),
             bottom: const TabBar(
               labelColor: Colors.black,
               // labelStyle: TextStyle(fontSize: 20),
@@ -36,9 +35,7 @@ class _TradingItemState extends State<TradingItem> {
                   text: '購入した商品',
                 ),
                 Tab(
-                  
                   text: '出品した商品',
-                  
                 ),
               ],
             ),
@@ -53,5 +50,4 @@ class _TradingItemState extends State<TradingItem> {
       ),
     );
   }
-
 }

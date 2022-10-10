@@ -84,36 +84,43 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     if (document["isSold"] == true)
-                                    Stack(
-                                      children: [
-                                      Ink.image(
-                                        image: document['img_url'] != null
-                                            ? NetworkImage(document['img_url'])
-                                            : AssetImage(
-                                                    'assets/images/placeholder.png')
-                                                as ImageProvider,
-                                        height: 112,
-                                        fit: BoxFit.cover,
-                                      ),
-                                                                          Container(
-                                      margin: const EdgeInsets.only(top: 80),
-                                      child: Align(
-                                        widthFactor: 0.5,
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text('¥'+document['price'].toString(),
-                                        style:TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700,
-                                          backgroundColor: Color.fromARGB(255, 107, 103, 103).withOpacity(0.3),
-                                        ),
-                                        ),
-                                      ),
-                                    ),
-                                      ],
-                                    )
-                                      
+                                      Stack(
+                                        children: [
+                                          Ink.image(
+                                            image: document['img_url'] != null
+                                                ? NetworkImage(
+                                                    document['img_url'])
+                                                : AssetImage(
+                                                        'assets/images/placeholder.png')
+                                                    as ImageProvider,
+                                            height: 112,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 80),
+                                            child: Align(
+                                              widthFactor: 0.5,
+                                              alignment: Alignment.bottomLeft,
+                                              child: Text(
+                                                '¥' +
+                                                    document['price']
+                                                        .toString(),
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 18,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                  backgroundColor:
+                                                      Color.fromARGB(255, 107,
+                                                              103, 103)
+                                                          .withOpacity(0.3),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     else if (document["isSold"] == false)
                                       Stack(children: [
                                         Ink.image(
@@ -139,22 +146,27 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             ),
                                           ),
                                         ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 70),
-                                      child: Align(
-                                        widthFactor: 0.5,
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text('￥'+document['price'].toString(),
-                                        style:TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700,
-                                          backgroundColor: Color.fromARGB(255, 107, 103, 103).withOpacity(0.3),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 70),
+                                          child: Align(
+                                            widthFactor: 0.5,
+                                            alignment: Alignment.bottomLeft,
+                                            child: Text(
+                                              '￥' +
+                                                  document['price'].toString(),
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w700,
+                                                backgroundColor: Color.fromARGB(
+                                                        255, 107, 103, 103)
+                                                    .withOpacity(0.3),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                        ),
-                                      ),
-                                    ),
                                       ]),
                                     Container(
                                       alignment: Alignment.center,
