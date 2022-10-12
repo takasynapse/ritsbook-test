@@ -82,8 +82,8 @@ class _ProfileState extends State<Profile> {
         }
       }
     });
-    return MaterialApp(
-      home: Scaffold(
+    return (
+       Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(0),
           child: AppBar(
@@ -261,7 +261,7 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
