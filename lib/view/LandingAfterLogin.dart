@@ -143,7 +143,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                       ),
                                       Container(
                                         margin:
-                                            const EdgeInsets.only(top: 70),
+                                            const EdgeInsets.only(top: 90),
                                         child: Align(
                                           widthFactor: 0.5,
                                           alignment: Alignment.bottomLeft,
@@ -151,7 +151,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             '￥' +
                                                 document['price'].toString(),
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.white,
                                               fontSize: 18,
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w700,
