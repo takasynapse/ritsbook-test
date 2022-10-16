@@ -177,15 +177,79 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   widget.document["description"],
                   style: TextStyle(fontSize: 16),
                 ),
-                Opacity(opacity: 0.5, child: Text('商品の状態')),
-                Text(widget.document["condition"]),
-                SizedBox(
-                  height: 20,
-                ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey,width: 1),
+                    border: Border.all(
+                      color: Colors.grey,
+                    
+                    ),
                   ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text('状態'),
+                            Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            Text('価格'),
+                            Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            // Text('出品者'),
+                            // Divider(
+                            //   color: Colors.grey,
+                            //   height: 1,
+                            //   thickness: 1,
+                            // ),
+                            // Text('学部/学科'),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 100,
+                        child: VerticalDivider(
+                          color: Colors.grey,
+                          width: 1,
+                          thickness: 1,
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children:[
+                            Text(widget.document["condition"]),
+                              Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            Text('￥' + widget.document["price"].toString()),
+                                                      Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            // Text(widget.document["seller"]),
+                            // Text('テスト君'),
+                            //   Divider(
+                            //   color: Colors.grey,
+                            //   height: 1,
+                            //   thickness: 1,
+                            // ),
+                            // Text('テスト学部/テスト学科'),
+                          ]
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Center(
                   child: Column(

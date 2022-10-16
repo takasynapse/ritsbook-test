@@ -37,10 +37,10 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                   }
                   return Padding(
                     padding: const EdgeInsets.only(
-                        top: 80,
-                        left: 20,
-                        right: 20, 
-                        ),
+                      top: 80,
+                      left: 20,
+                      right: 20,
+                    ),
                     child: GridView.builder(
                       itemCount: snapshot.data!.docs.length,
                       gridDelegate:
@@ -99,17 +99,15 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             alignment: Alignment.bottomLeft,
                                             child: Text(
                                               '¥ ' +
-                                                  document['price']
-                                                      .toString(),
+                                                  document['price'].toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 18,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
-                                                backgroundColor:
-                                                    Color.fromARGB(255, 107,
-                                                            103, 103)
-                                                        .withOpacity(0.3),
+                                                backgroundColor: Color.fromARGB(
+                                                        255, 107, 103, 103)
+                                                    .withOpacity(0.3),
                                               ),
                                             ),
                                           ),
@@ -120,8 +118,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                     Stack(children: [
                                       Ink.image(
                                         image: document['img_url'] != null
-                                            ? NetworkImage(
-                                                document['img_url'])
+                                            ? NetworkImage(document['img_url'])
                                             : AssetImage(
                                                     'assets/images/placeholder.png')
                                                 as ImageProvider,
@@ -142,14 +139,12 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                         ),
                                       ),
                                       Container(
-                                        margin:
-                                            const EdgeInsets.only(top: 90),
+                                        margin: const EdgeInsets.only(top: 90),
                                         child: Align(
                                           widthFactor: 0.5,
                                           alignment: Alignment.bottomLeft,
                                           child: Text(
-                                            '￥ ' +
-                                                document['price'].toString(),
+                                            '￥ ' + document['price'].toString(),
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 18,
