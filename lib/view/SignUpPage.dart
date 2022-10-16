@@ -151,26 +151,26 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 8),
                   Text(infoText),
                   const SizedBox(height: 8),
-                  ElevatedButton.icon(
-                    icon: ImageIcon(AssetImage('images/googleicon.png')),
-                    // icon:  Icon(Icons.login),
-                    onPressed: () async {
-                      try {
-                        print("Googleログイン");
-                        await SignUp(context);
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
-                    label: Text("Googleアカウントで登録",
-                        style: TextStyle(
-                          color: Color(0xff727272),
-                        )),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
-                    ),
-                  ),
+                  // ElevatedButton.icon(
+                  //   icon: ImageIcon(AssetImage('images/googleicon.png')),
+                  //   // icon:  Icon(Icons.login),
+                  //   onPressed: () async {
+                  //     try {
+                  //       print("Googleログイン");
+                  //       await SignUp(context);
+                  //     } catch (e) {
+                  //       print(e);
+                  //     }
+                  //   },
+                  //   label: Text("Googleアカウントで登録",
+                  //       style: TextStyle(
+                  //         color: Color(0xff727272),
+                  //       )),
+                  //   style: ElevatedButton.styleFrom(
+                  //     primary: Colors.white,
+                  //     onPrimary: Colors.black,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
