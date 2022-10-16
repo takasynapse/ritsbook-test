@@ -41,7 +41,7 @@ void main() async{
   });
 
 
-  // debugPaintSizeEnabled=true;
+  debugPaintSizeEnabled=true;
   runApp(
     MaterialApp(
       // debug削除
