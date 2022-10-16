@@ -148,7 +148,7 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.only(
               right:40.0,
-              left: 40,),
+              left: 36,),
             child: Container(
               // margin: EdgeInsets.only(top: 50),
               // height: 150,
@@ -225,64 +225,78 @@ class _ProfileState extends State<Profile> {
             child: Padding(
               padding: const EdgeInsets.only(
               top: 30,
-              left: 40,
               ),
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  ListTile(
-                    leading: Icon(Icons.check_box_outlined),
-                    title: Text('出品した商品・購入した商品'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TradingItem()),
-                      );
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left:20),
+                    child: ListTile(
+                      leading: Icon(Icons.check_box_outlined),
+                      title: Text('出品した商品・購入した商品'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TradingItem()),
+                        );
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.question_mark),
-                    title: Text('RitsBookの使い方'),
-                    onTap: () {
-                      launchUrl(guide);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left:20),
+                    child: ListTile(
+                      leading: Icon(Icons.question_mark),
+                      title: Text('RitsBookの使い方'),
+                      onTap: () {
+                        launchUrl(guide);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.event_note_rounded),
-                    title: Text('利用規約'),
-                    onTap: () {
-                      launchUrl(terms);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left:20),
+                    child: ListTile(
+                      leading: Icon(Icons.event_note_rounded),
+                      title: Text('利用規約'),
+                      onTap: () {
+                        launchUrl(terms);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.chat),
-                    title: Text('Twitter'),
-                    onTap: () async {
-                      await launchUrl(url);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left:20),
+                    child: ListTile(
+                      leading: Icon(Icons.chat),
+                      title: Text('Twitter'),
+                      onTap: () async {
+                        await launchUrl(url);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.exit_to_app),
-                    title: Text('ログアウト'),
-                    onTap: () async {
-                      await FirebaseAuth.instance.signOut();
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left:20),
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('ログアウト'),
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
