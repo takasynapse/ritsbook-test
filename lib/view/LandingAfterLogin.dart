@@ -98,7 +98,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             widthFactor: 0.5,
                                             alignment: Alignment.bottomLeft,
                                             child: Text(
-                                              '¥' +
+                                              '¥ ' +
                                                   document['price']
                                                       .toString(),
                                               style: TextStyle(
@@ -148,7 +148,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                           widthFactor: 0.5,
                                           alignment: Alignment.bottomLeft,
                                           child: Text(
-                                            '￥' +
+                                            '￥ ' +
                                                 document['price'].toString(),
                                             style: TextStyle(
                                               color: Colors.white,
