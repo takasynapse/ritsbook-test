@@ -150,8 +150,6 @@ class _ProfileState extends State<Profile> {
               right:40.0,
               left: 36,),
             child: Container(
-              // margin: EdgeInsets.only(top: 50),
-              // height: 150,
               decoration: BoxDecoration(
                 border: Border.all(color: Color(0xffff6b6b)),
                 borderRadius: BorderRadius.circular(20),
@@ -229,6 +227,10 @@ class _ProfileState extends State<Profile> {
               child: ListView(
                 shrinkWrap: true,
                 children: [
+                                    Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left:20),
                     child: ListTile(
