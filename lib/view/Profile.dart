@@ -96,9 +96,37 @@ class _ProfileState extends State<Profile> {
           // mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width:double.infinity,
+                child: Text('プロフィール',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),),
+              ),
+            ),
+            Container(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  style: IconButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Color(0xffffcfcf),
+                    shape: const CircleBorder(),
+                  ),
+                  onPressed: (){print('aa');},
+                  
+                  child: Icon(Icons.edit_outlined),
+                  ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                margin: EdgeInsets.only(top: 50),
+                // margin: EdgeInsets.only(top: 50),
                 // height: 150,
                 decoration: BoxDecoration(
                   border: Border.all(color: Color(0xffff6b6b)),
@@ -162,8 +190,6 @@ class _ProfileState extends State<Profile> {
                           padding: EdgeInsets.only(
                             top: 50,
                           ),
-                          // width: 150,
-                          // height: 50,
                           child: Align(
                             alignment: Alignment.bottomRight,
                             child: ElevatedButton(
