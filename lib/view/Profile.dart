@@ -105,7 +105,11 @@ class _ProfileState extends State<Profile> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.only(
+                    top:18.0,
+                    bottom: 18.0,
+                    left: 18.0,
+                    ),
                   child: Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -154,6 +158,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         Container(
+                          margin: EdgeInsets.only(left: 80),
                           padding: EdgeInsets.only(
                             top: 50,
                           ),
