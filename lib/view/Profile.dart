@@ -222,17 +222,21 @@ class _ProfileState extends State<Profile> {
           Container(
             child: Padding(
               padding: const EdgeInsets.only(
-              top: 30,
+              top: 52,
               ),
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                                    Divider(
+                  Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:20),
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                    ),
                     child: ListTile(
                       leading: Icon(Icons.check_box_outlined),
                       title: Text('出品した商品・購入した商品'),
@@ -249,7 +253,11 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:20),
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
                     child: ListTile(
                       leading: Icon(Icons.question_mark),
                       title: Text('RitsBookの使い方'),
@@ -263,7 +271,11 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:20),
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
                     child: ListTile(
                       leading: Icon(Icons.event_note_rounded),
                       title: Text('利用規約'),
@@ -277,7 +289,11 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:20),
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
                     child: ListTile(
                       leading: Icon(Icons.chat),
                       title: Text('Twitter'),
@@ -291,7 +307,12 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:20),
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                    
+                      ),
                     child: ListTile(
                       leading: Icon(Icons.exit_to_app),
                       title: Text('ログアウト'),
