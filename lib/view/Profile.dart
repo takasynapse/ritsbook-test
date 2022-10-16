@@ -82,33 +82,43 @@ class _ProfileState extends State<Profile> {
         }
       }
     });
-    return (
-       Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0),
-          child: AppBar(
-            backgroundColor: Colors.white,
-          ),
+    return (Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: Colors.white,
         ),
-        // build:(_)=> getUser(),
-        body: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width:double.infinity,
-                child: Text('プロフィール',
+      ),
+      // build:(_)=> getUser(),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              top:40,
+              left: 40,
+              ),
+            child: Container(
+              width: double.infinity,
+              child: Text(
+                'プロフィール',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w700,
                   color: Colors.black,
-                ),),
+                ),
               ),
             ),
-            Container(
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 32,
+              bottom: 10
+              ),
+            child: Container(
               child: Align(
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
@@ -117,115 +127,106 @@ class _ProfileState extends State<Profile> {
                     backgroundColor: Color(0xffffcfcf),
                     shape: const CircleBorder(),
                   ),
-                  onPressed: (){print('aa');},
-                  
+                  onPressed: () {
+                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                      if (user != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditProfilePage()),
+                        );
+                      } else {
+                        _showDialogCheckauth();
+                      }
+                    });
+                  },
                   child: Icon(Icons.edit_outlined),
-                  ),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                // margin: EdgeInsets.only(top: 50),
-                // height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffff6b6b)),
-                  borderRadius: BorderRadius.circular(20),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right:40.0,
+              left: 40,),
+            child: Container(
+              // margin: EdgeInsets.only(top: 50),
+              // height: 150,
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xffff6b6b)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 18.0,
+                  bottom: 18.0,
+                  left: 18.0,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top:18.0,
-                    bottom: 18.0,
-                    left: 18.0,
-                    ),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text('ユーザー名',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('学部',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('学年',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('ユーザー名',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(username),
                             SizedBox(
                               height: 10,
                             ),
-                            Text('学部',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(qualifity),
                             SizedBox(
                               height: 10,
                             ),
-                            Text('学年',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(grade),
                           ],
                         ),
-                        SizedBox(
-                          width: 50,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 80),
+                        padding: EdgeInsets.only(
+                          top: 50,
                         ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(username),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(qualifity),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(grade),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 80),
-                          padding: EdgeInsets.only(
-                            top: 50,
-                          ),
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xffffcfcf),
-                                  onPrimary: Colors.black,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  FirebaseAuth.instance
-                                      .authStateChanges()
-                                      .listen((User? user) {
-                                    if (user != null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfilePage()),
-                                      );
-                                    } else {
-                                      _showDialogCheckauth();
-                                    }
-                                  });
-                                },
-                                child: Text('編集')),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-            Container(
+          ),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(
+              top: 30,
+              left: 40,
+              ),
               child: ListView(
                 shrinkWrap: true,
                 children: [
@@ -290,10 +291,10 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-          ],
-        ),
-      )
-    );
+          ),
+        ],
+      ),
+    ));
   }
 }
 
