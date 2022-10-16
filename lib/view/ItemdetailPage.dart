@@ -154,13 +154,24 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Image.network(widget.document["img_url"]),
-                Text(
-                  widget.document["item"],
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top:16,
+                    ),
+                  child: Text(
+                    widget.document["item"],
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                Text(
-                  '￥' + widget.document["price"].toString(),
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top:16,
+                    bottom: 32,
+                  ),
+                  child: Text(
+                    '￥' + widget.document["price"].toString(),
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Text(
                   widget.document["description"],
@@ -170,6 +181,11 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 Text(widget.document["condition"]),
                 SizedBox(
                   height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey,width: 1),
+                  ),
                 ),
                 Center(
                   child: Column(
