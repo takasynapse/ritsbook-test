@@ -7,7 +7,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>商品画像を参照するために、ライブラリにアクセスします。</string>
 	<key>CFBundleDisplayName</key>
-	<string>Projectritsbook Native</string>
+	<string>Ritsbook</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

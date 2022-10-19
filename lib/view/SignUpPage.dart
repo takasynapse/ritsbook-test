@@ -14,8 +14,9 @@ class _LoginPageState extends State<LoginPage> {
   String password = "";
   String infoText = "";
   final FirebaseAuth auth = FirebaseAuth.instance;
-  String isSelected_faculity = '情報理工学部情報理工学科';
+  String isSelected_faculity = '選択してください';
   final faculity_list = <String>[
+    '選択してください',
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -37,12 +38,13 @@ class _LoginPageState extends State<LoginPage> {
     '薬学部創薬科学科',
   ];
   final grade_list = <String>[
+    '選択してください',
     '1年',
     '2年',
     '3年',
     '4年',
   ];
-  String isSelected_grade = '1年';
+  String isSelected_grade = '選択してください';
 
   Future SignUP() async {
     try {
@@ -127,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                         'RITSBOOK',
                         style: TextStyle(
                           color: Color(0xff484848),
-                          fontSize: 36,
+                          fontSize: 34,
                           letterSpacing: 10.44,
                         ),
                       ),
@@ -251,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Container(
                           height: 33,
-                          width: 270,
+                          width: 300,
                           color: Colors.white,
                           child: DropdownButton<String>(
                             underline: Container(),
@@ -288,11 +290,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Container(
                           height: 33,
-                          width: 270,
+                          width: 300,
+                          
                           color: Colors.white,
                           child: DropdownButton<String>(
                             underline: Container(),
-                            items: faculity_list.map((String dropDownStringItem) {
+                            items: grade_list.map((String dropDownStringItem) {
                               return DropdownMenuItem<String>(
                                 value: dropDownStringItem,
                                 child: Text(
@@ -300,16 +303,16 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                     fontSize: 12
                                     )
-                                  ),
+                                    ),
                               );
                             }).toList(),
-                            //ドロップダウンから選択されたら、isSelected_faculityが更新される
                             onChanged: (String? value) {
                               setState(() {
-                                isSelected_faculity = value!;
+                                isSelected_grade = value!;
+                                print(isSelected_grade);
                               });
                             },
-                            value: isSelected_faculity,
+                            value: isSelected_grade,
                           ),
                         ),
                         const Divider(
@@ -335,7 +338,20 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(height: 30,),
+                  TextButton(
+                    onPressed: () {
+                      //ログイン画面に飛ばす処理
+                    }, 
+                    child: const Text(
+                      "アカウントをお持ちの方はこちら",
+                      style: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.underline
+                        ),
+                    )
+                    )
                 ],
               ),
             ),
