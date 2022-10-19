@@ -335,8 +335,48 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ],
                     ),
+<<<<<<< HEAD
                     
                   )
+=======
+                    // パスワードガ見えないようにする
+                    obscureText: true,
+                    onChanged: (String value) {
+                      setState(() {
+                         password = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () async {
+                      MailSignUp();},
+                    child: Text("ユーザー登録"),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(infoText),
+                  const SizedBox(height: 8),
+                  // ElevatedButton.icon(
+                  //   icon: ImageIcon(AssetImage('images/googleicon.png')),
+                  //   // icon:  Icon(Icons.login),
+                  //   onPressed: () async {
+                  //     try {
+                  //       print("Googleログイン");
+                  //       await SignUp(context);
+                  //     } catch (e) {
+                  //       print(e);
+                  //     }
+                  //   },
+                  //   label: Text("Googleアカウントで登録",
+                  //       style: TextStyle(
+                  //         color: Color(0xff727272),
+                  //       )),
+                  //   style: ElevatedButton.styleFrom(
+                  //     primary: Colors.white,
+                  //     onPrimary: Colors.black,
+                  //   ),
+                  // ),
+>>>>>>> 4a95cd332a35a3785d2675960d0935763fd65b74
                 ],
               ),
             ),

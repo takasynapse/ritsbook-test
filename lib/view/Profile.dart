@@ -82,175 +82,244 @@ class _ProfileState extends State<Profile> {
         }
       }
     });
-    return (
-       Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0),
-          child: AppBar(
-            backgroundColor: Colors.white,
-          ),
+    return (Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: Colors.white,
         ),
-        // build:(_)=> getUser(),
-        body: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                margin: EdgeInsets.only(top: 50),
-                // height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffff6b6b)),
-                  borderRadius: BorderRadius.circular(20),
+      ),
+      // build:(_)=> getUser(),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              top:40,
+              left: 40,
+              ),
+            child: Container(
+              width: double.infinity,
+              child: Text(
+                'プロフィール',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 32,
+              bottom: 10
+              ),
+            child: Container(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  style: IconButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Color(0xffffcfcf),
+                    shape: const CircleBorder(),
+                  ),
+                  onPressed: () {
+                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                      if (user != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditProfilePage()),
+                        );
+                      } else {
+                        _showDialogCheckauth();
+                      }
+                    });
+                  },
+                  child: Icon(Icons.edit_outlined),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              right:40.0,
+              left: 36,),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xffff6b6b)),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 18.0,
+                  bottom: 18.0,
+                  left: 18.0,
+                ),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text('ユーザー名',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('学部',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text('学年',
+                              style: TextStyle(
+                                fontSize: 16,
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('ユーザー名',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(username),
                             SizedBox(
                               height: 10,
                             ),
-                            Text('学部',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(qualifity),
                             SizedBox(
                               height: 10,
                             ),
-                            Text('学年',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
+                            Text(grade),
                           ],
                         ),
-                        SizedBox(
-                          width: 50,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 80),
+                        padding: EdgeInsets.only(
+                          top: 50,
                         ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(username),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(qualifity),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(grade),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                            top: 50,
-                          ),
-                          // width: 150,
-                          // height: 50,
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Color(0xffffcfcf),
-                                  onPrimary: Colors.black,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  FirebaseAuth.instance
-                                      .authStateChanges()
-                                      .listen((User? user) {
-                                    if (user != null) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfilePage()),
-                                      );
-                                    } else {
-                                      _showDialogCheckauth();
-                                    }
-                                  });
-                                },
-                                child: Text('編集')),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-            Container(
+          ),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(
+              top: 52,
+              ),
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  ListTile(
-                    leading: Icon(Icons.check_box_outlined),
-                    title: Text('出品した商品・購入した商品'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TradingItem()),
-                      );
-                    },
+                  Divider(
+                    height: 1,
+                    thickness: 1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.check_box_outlined),
+                      title: Text('出品した商品・購入した商品'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TradingItem()),
+                        );
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.question_mark),
-                    title: Text('RitsBookの使い方'),
-                    onTap: () {
-                      launchUrl(guide);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
+                    child: ListTile(
+                      leading: Icon(Icons.question_mark),
+                      title: Text('RitsBookの使い方'),
+                      onTap: () {
+                        launchUrl(guide);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.event_note_rounded),
-                    title: Text('利用規約'),
-                    onTap: () {
-                      launchUrl(terms);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
+                    child: ListTile(
+                      leading: Icon(Icons.event_note_rounded),
+                      title: Text('利用規約'),
+                      onTap: () {
+                        launchUrl(terms);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.chat),
-                    title: Text('Twitter'),
-                    onTap: () async {
-                      await launchUrl(url);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
+                    child: ListTile(
+                      leading: Icon(Icons.chat),
+                      title: Text('Twitter'),
+                      onTap: () async {
+                        await launchUrl(url);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
                     thickness: 1,
                   ),
-                  ListTile(
-                    leading: Icon(Icons.exit_to_app),
-                    title: Text('ログアウト'),
-                    onTap: () async {
-                      await FirebaseAuth.instance.signOut();
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                    
+                      ),
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('ログアウト'),
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                      },
+                    ),
                   ),
                   Divider(
                     height: 1,
@@ -259,10 +328,10 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-          ],
-        ),
-      )
-    );
+          ),
+        ],
+      ),
+    ));
   }
 }
 

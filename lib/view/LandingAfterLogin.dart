@@ -36,93 +36,51 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                     );
                   }
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                      top: 80,
+                      left: 20,
+                      right: 20,
+                    ),
                     child: GridView.builder(
                       itemCount: snapshot.data!.docs.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 0.7,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 4,
+                        childAspectRatio: 0.65,
                       ),
                       itemBuilder: (context, index) {
                         final document = snapshot.data!.docs[index];
                         decoration:
                         BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     blurRadius: 4.0,
-                          //     offset: const Offset(0, 4),
-                          //   ),
-                          // ],
                         );
-                        return SizedBox(
-                          height: 145,
-                          width: 138,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ItemdetailPage(
-                                    document,
-                                  ),
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ItemdetailPage(
+                                  document,
                                 ),
-                              );
-                            },
-                            child: Card(
-                                clipBehavior: Clip.antiAlias,
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    if (document["isSold"] == true)
-                                      Stack(
-                                        children: [
-                                          Ink.image(
-                                            image: document['img_url'] != null
-                                                ? NetworkImage(
-                                                    document['img_url'])
-                                                : AssetImage(
-                                                        'assets/images/placeholder.png')
-                                                    as ImageProvider,
-                                            height: 112,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 80),
-                                            child: Align(
-                                              widthFactor: 0.5,
-                                              alignment: Alignment.bottomLeft,
-                                              child: Text(
-                                                '¥' +
-                                                    document['price']
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w700,
-                                                  backgroundColor:
-                                                      Color.fromARGB(255, 107,
-                                                              103, 103)
-                                                          .withOpacity(0.3),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    else if (document["isSold"] == false)
-                                      Stack(children: [
+                              ),
+                            );
+                          },
+                          child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  if (document["isSold"] == true)
+                                    Stack(
+                                      children: [
                                         Ink.image(
                                           image: document['img_url'] != null
                                               ? NetworkImage(
@@ -130,33 +88,20 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                               : AssetImage(
                                                       'assets/images/placeholder.png')
                                                   as ImageProvider,
-                                          height: 112,
+                                          height: 116,
                                           fit: BoxFit.cover,
                                         ),
                                         Container(
-                                          height: 112,
-                                          width: 138,
-                                          color: Colors.black.withOpacity(0.5),
-                                          child: Center(
-                                            child: Text(
-                                              "SOLD",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
                                           margin:
-                                              const EdgeInsets.only(top: 70),
+                                              const EdgeInsets.only(top: 90),
                                           child: Align(
                                             widthFactor: 0.5,
                                             alignment: Alignment.bottomLeft,
                                             child: Text(
-                                              '￥' +
+                                              '¥ ' +
                                                   document['price'].toString(),
                                               style: TextStyle(
-                                                color: Colors.black,
+                                                color: Colors.white,
                                                 fontSize: 18,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
@@ -167,8 +112,55 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             ),
                                           ),
                                         ),
-                                      ]),
-                                    Container(
+                                      ],
+                                    )
+                                  else if (document["isSold"] == false)
+                                    Stack(children: [
+                                      Ink.image(
+                                        image: document['img_url'] != null
+                                            ? NetworkImage(document['img_url'])
+                                            : AssetImage(
+                                                    'assets/images/placeholder.png')
+                                                as ImageProvider,
+                                        height: 112,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      Container(
+                                        height: 112,
+                                        width: 138,
+                                        color: Colors.black.withOpacity(0.5),
+                                        child: Center(
+                                          child: Text(
+                                            "SOLD",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 90),
+                                        child: Align(
+                                          widthFactor: 0.5,
+                                          alignment: Alignment.bottomLeft,
+                                          child: Text(
+                                            '￥ ' + document['price'].toString(),
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w700,
+                                              backgroundColor: Color.fromARGB(
+                                                      255, 107, 103, 103)
+                                                  .withOpacity(0.3),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
                                         document['item'] != null
@@ -178,13 +170,13 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                         // overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
                                         style: const TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 12,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                )),
-                          ),
+                                  ),
+                                ],
+                              )),
                         );
                       },
                     ),
