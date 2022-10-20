@@ -122,9 +122,9 @@ class _ProfileState extends State<Profile> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
-                  style: IconButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Color(0xffffcfcf),
+                  style: ElevatedButton.styleFrom (
+                    onPrimary: Colors.black,
+                    primary: Color(0xffffcfcf),
                     shape: const CircleBorder(),
                   ),
                   onPressed: () {
