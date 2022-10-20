@@ -94,7 +94,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => SignUpPage()),
                 );
               },
             ),

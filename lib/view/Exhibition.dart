@@ -135,7 +135,7 @@ class _Exhibition extends State<Exhibition> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => SignUpPage()),
                 );
               },
             ),
