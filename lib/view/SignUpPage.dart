@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 import 'package:projectritsbook_native/view/LoginPage.dart';

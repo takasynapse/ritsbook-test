@@ -15,24 +15,6 @@ String username = '未設定';
 String qualifity = '未設定';
 String grade = '未設定';
 
-getUser() async {
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user != null) {
-      try {
-        final users =
-            FirebaseFirestore.instance.collection('users').doc(user.uid);
-        users.get().then((DocumentSnapshot ds) {
-          username = user.displayName!;
-          qualifity = ds["faculity"];
-          grade = ds["grade"];
-        });
-      } catch (e) {
-        print(e);
-      }
-    }
-  });
-}
-
 class _ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
@@ -89,7 +71,6 @@ class _ProfileState extends State<Profile> {
           backgroundColor: Colors.white,
         ),
       ),
-      // build:(_)=> getUser(),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         // mainAxisSize: MainAxisSize.min,
