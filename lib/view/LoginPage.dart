@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
+import 'package:projectritsbook_native/view/ResetPassword.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,78 +14,184 @@ void main() async {
   );
 }
 
-class UserLogin extends StatefulWidget {
-  const UserLogin({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _UserLogin createState() => _UserLogin();
+  _LoginPage createState() => _LoginPage();
 }
 
-class _UserLogin extends State<UserLogin> {
-  //ステップ１
-  final _auth = FirebaseAuth.instance;
-
+class _LoginPage extends State<LoginPage> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
+
+  Future login() async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      //ログインに成功した場合
+      await Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return LandingPageAfter();
+      }));
+    } catch (e) {
+      throw e;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
-        child: AppBar(
-          backgroundColor: Colors.white,
+      body: Container(
+        color: Color(0xffff6b6b),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            // 画面サイズに合わせて変化する
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '立命館大学生専用',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Text(
+                    '教科書フリマアプリ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    color: Colors.white,
+                    width: 258,
+                    height: 64,
+                    child: Center(
+                      child: Text(
+                        'RITSBOOK',
+                        style: TextStyle(
+                          color: Color(0xff484848),
+                          fontSize: 34,
+                          letterSpacing: 10.44,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 60),
+                  Container(
+                    padding: const EdgeInsets.all(30),
+                    child: Column(
+                      children: [
+                        Align(
+                          child: Text(
+                            "メールアドレス",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                          alignment: Alignment.centerLeft,
+                        ),
+                        Container(
+                          height: 33,
+                          child: TextFormField(
+                              style: TextStyle(fontSize: 12),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'メールアドレスを入力',
+                                fillColor: Colors.white,
+                                filled: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 15),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  email = value;
+                                });
+                              }),
+                        ),
+                        const SizedBox(height: 8),
+                        Align(
+                          child: Text(
+                            "パスワード",
+                            style: TextStyle(fontSize: 12),
+                          ),
+                          alignment: Alignment.centerLeft,
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          height: 33,
+                          child: TextFormField(
+                            style: TextStyle(fontSize: 12),
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "パスワードを作成",
+                              fillColor: Colors.white,
+                              filled: true,
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 15),
+                            ),
+                            // パスワードガ見えないようにする
+                            obscureText: true,
+                            onChanged: (String value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () async {
+                            //ログイン処理
+                            login();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                          ),
+                          child: const Text(
+                            "ログイン",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        TextButton(
+                      onPressed: () {
+                        //ログイン画面に飛ばす処理
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ResetPassword()));
+                      },
+                      child: const Text(
+                        "パスワードをお忘れの方はこちら",
+                        style: TextStyle(
+                            color: Colors.white,
+                            decoration: TextDecoration.underline),
+                      ))
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              onChanged: (value) {
-                email = value;
-              },
-              decoration: const InputDecoration(
-                hintText: 'メールアドレスを入力',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              onChanged: (value) {
-                password = value;
-              },
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'パスワードを入力',
-              ),
-            ),
-          ),
-          ElevatedButton(
-            child: const Text('ログイン'),
-            //ステップ２
-            onPressed: () async {
-              try {
-                final newUser = await _auth.signInWithEmailAndPassword(
-                    email: email, password: password);
-                if (newUser != null) {
-                  Navigator.pushNamed(context, '/content');
-                }
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'invalid-email') {
-                  print('メールアドレスのフォーマットが正しくありません');
-                } else if (e.code == 'user-disabled') {
-                  print('現在指定したメールアドレスは使用できません');
-                } else if (e.code == 'user-not-found') {
-                  print('指定したメールアドレスは登録されていません');
-                } else if (e.code == 'wrong-password') {
-                  print('パスワードが間違っています');
-                }
-              }
-            },
-          )
-        ],
       ),
     );
   }
