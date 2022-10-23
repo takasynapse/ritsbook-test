@@ -82,7 +82,9 @@ class _LoginPage extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 32,),
+                  Image.asset('images/Bookimage.png'),
+                  SizedBox(height: 32),
                   Container(
                     padding: const EdgeInsets.all(30),
                     child: Column(
