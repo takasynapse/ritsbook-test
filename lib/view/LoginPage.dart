@@ -9,9 +9,6 @@ import 'package:projectritsbook_native/view/ResetPassword.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(
-    MaterialApp(),
-  );
 }
 
 class LoginPage extends StatefulWidget {
