@@ -16,6 +16,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   String isSelected_faculity = '選択してください';
   final faculity_list = <String>[
+    '選択してください',
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -37,6 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
     '薬学部創薬科学科',
   ];
   final grade_list = <String>[
+    '選択してください',
     '1年',
     '2年',
     '3年',

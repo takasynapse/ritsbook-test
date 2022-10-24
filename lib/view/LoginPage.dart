@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
 import 'package:projectritsbook_native/view/ResetPassword.dart';
+import 'package:projectritsbook_native/view/SignUpPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -179,13 +180,25 @@ class _LoginPage extends State<LoginPage> {
                         style: TextStyle(
                             color: Colors.white,
                             decoration: TextDecoration.underline),
+                      )),
+                                        TextButton(
+                      onPressed: () {
+                        //ログイン画面に飛ばす処理
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()));
+                      },
+                      child: const Text(
+                        "新規登録の方はこちら",
+                        style: TextStyle(
+                            color: Colors.white,
+                            decoration: TextDecoration.underline),
                       ))
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
+
                 ],
               ),
             ),
