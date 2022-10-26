@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
+import 'package:projectritsbook_native/view/Withdrowal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {
@@ -71,9 +72,7 @@ class _ProfileState extends State<Profile> {
           backgroundColor: Colors.white,
         ),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // mainAxisSize: MainAxisSize.min,
+      body: ListView(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(
@@ -205,8 +204,7 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.only(
               top: 52,
               ),
-              child: ListView(
-                shrinkWrap: true,
+              child: Column(
                 children: [
                   Divider(
                     height: 1,
@@ -306,13 +304,34 @@ class _ProfileState extends State<Profile> {
                     height: 1,
                     thickness: 1,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left:20,
+                      top:8,
+                      bottom: 8
+                      ),
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('退会する'),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => WithdrawalPage()),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    height: 100,
+                  )
                 ],
               ),
             ),
           ),
         ],
       ),
-    ));
+      )
+    );
   }
 }
 
