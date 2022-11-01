@@ -16,6 +16,8 @@ String username = '未設定';
 String qualifity = '未設定';
 String grade = '未設定';
 
+Object? currentUser = '';
+
 class _ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
@@ -51,6 +53,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      currentUser = user as Object;
+      print(currentUser);
       if (user != null) {
         try {
           final users =
@@ -76,9 +80,9 @@ class _ProfileState extends State<Profile> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(
-              top:40,
+              top: 40,
               left: 40,
-              ),
+            ),
             child: Container(
               width: double.infinity,
               child: Text(
@@ -94,21 +98,20 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              right: 32,
-              bottom: 10
-              ),
+            padding: const EdgeInsets.only(right: 32, bottom: 10),
             child: Container(
               child: Align(
                 alignment: Alignment.centerRight,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom (
+                  style: ElevatedButton.styleFrom(
                     onPrimary: Colors.black,
                     primary: Color(0xffffcfcf),
                     shape: const CircleBorder(),
                   ),
                   onPressed: () {
-                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                    FirebaseAuth.instance
+                        .authStateChanges()
+                        .listen((User? user) {
                       if (user != null) {
                         Navigator.push(
                           context,
@@ -127,8 +130,9 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              right:40.0,
-              left: 36,),
+              right: 40.0,
+              left: 36,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Color(0xffff6b6b)),
@@ -202,7 +206,7 @@ class _ProfileState extends State<Profile> {
           Container(
             child: Padding(
               padding: const EdgeInsets.only(
-              top: 52,
+                top: 52,
               ),
               child: Column(
                 children: [
@@ -211,18 +215,15 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                    ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.check_box_outlined),
                       title: Text('出品した商品・購入した商品'),
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TradingItem()),
+                          MaterialPageRoute(
+                              builder: (context) => TradingItem()),
                         );
                       },
                     ),
@@ -232,11 +233,7 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                      ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.question_mark),
                       title: Text('RitsBookの使い方'),
@@ -250,11 +247,7 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                      ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.event_note_rounded),
                       title: Text('利用規約'),
@@ -268,11 +261,7 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                      ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.chat),
                       title: Text('Twitter'),
@@ -286,12 +275,7 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                    
-                      ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.exit_to_app),
                       title: Text('ログアウト'),
@@ -305,18 +289,15 @@ class _ProfileState extends State<Profile> {
                     thickness: 1,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left:20,
-                      top:8,
-                      bottom: 8
-                      ),
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
                       leading: Icon(Icons.exit_to_app),
                       title: Text('退会する'),
                       onTap: () async {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => WithdrawalPage()),
+                          MaterialPageRoute(
+                              builder: (context) => WithdrawalPage()),
                         );
                       },
                     ),
@@ -330,8 +311,7 @@ class _ProfileState extends State<Profile> {
           ),
         ],
       ),
-      )
-    );
+    ));
   }
 }
 

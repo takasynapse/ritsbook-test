@@ -46,24 +46,6 @@ class _SignUpPageState extends State<SignUpPage> {
   ];
   String isSelected_grade = '選択してください';
 
-  // Future SignUP() async {
-  //   try {
-  //     // メールとパスワードでユーザー検索
-  //     final UserCredential result = await auth.createUserWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     final User user = result.user!;
-  //     setState(() {
-  //       infoText = "登録完了しました${user.email}";
-  //     });
-  //   } catch (e) {
-  //     setState(() {
-  //       infoText = "登録できませんでした${e.toString()}";
-  //     });
-  //   }
-  // }
-
   Future MailSignUp() async {
     try {
       // バリデーション後のメールアドレスとパスワードでアカウント登録

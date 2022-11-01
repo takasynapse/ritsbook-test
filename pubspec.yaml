@@ -41,7 +41,7 @@ dependencies:
   firebase_auth: ^3.4.2
   cloud_firestore: ^3.4.2
   image_picker: ^0.8.5+3
-  firebase: ^9.0.3
+  # firebase: ^9.0.3
   firebase_storage: ^10.3.2
   flutter_chat_ui: ^1.6.4
   provider: ^6.0.3
