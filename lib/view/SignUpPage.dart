@@ -16,7 +16,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   String isSelected_faculity = '選択してください';
   final faculity_list = <String>[
-    '選択してください',
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -38,7 +37,6 @@ class _SignUpPageState extends State<SignUpPage> {
     '薬学部創薬科学科',
   ];
   final grade_list = <String>[
-    '選択してください',
     '1年',
     '2年',
     '3年',
@@ -187,25 +185,31 @@ class _SignUpPageState extends State<SignUpPage> {
                         Container(
                           height: 33,
                           width: 300,
-                          color: Colors.white,
-                          child: DropdownButton<String>(
-                            underline: Container(),
-
-                            items:
-                                faculity_list.map((String dropDownStringItem) {
-                              return DropdownMenuItem<String>(
-                                value: dropDownStringItem,
-                                child: Text(dropDownStringItem,
-                                    style: TextStyle(fontSize: 12)),
-                              );
-                            }).toList(),
-                            //ドロップダウンから選択されたら、isSelected_faculityが更新される
-                            onChanged: (String? value) {
-                              setState(() {
-                                isSelected_faculity = value!;
-                              });
-                            },
-                            value: isSelected_faculity,
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                          color: Colors.white,                              
+                          borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:16.0),
+                            child: DropdownButton<String>(
+                              underline: Container(),
+                              items:
+                                  faculity_list.map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(dropDownStringItem,
+                                      style: TextStyle(fontSize: 12)),
+                                );
+                              }).toList(),
+                              //ドロップダウンから選択されたら、isSelected_faculityが更新される
+                              onChanged: (String? value) {
+                                setState(() {
+                                  isSelected_faculity = value!;
+                                });
+                              },
+                              value: isSelected_faculity,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -216,23 +220,29 @@ class _SignUpPageState extends State<SignUpPage> {
                         Container(
                           height: 33,
                           width: 300,
+                          decoration: BoxDecoration(
                           color: Colors.white,
-                          child: DropdownButton<String>(
-                            underline: Container(),
-                            items: grade_list.map((String dropDownStringItem) {
-                              return DropdownMenuItem<String>(
-                                value: dropDownStringItem,
-                                child: Text(dropDownStringItem,
-                                    style: TextStyle(fontSize: 12)),
-                              );
-                            }).toList(),
-                            onChanged: (String? value) {
-                              setState(() {
-                                isSelected_grade = value!;
-                                print(isSelected_grade);
-                              });
-                            },
-                            value: isSelected_grade,
+                          borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:16.0),
+                            child: DropdownButton<String>(
+                              underline: Container(),
+                              items: grade_list.map((String dropDownStringItem) {
+                                return DropdownMenuItem<String>(
+                                  value: dropDownStringItem,
+                                  child: Text(dropDownStringItem,
+                                      style: TextStyle(fontSize: 12)),
+                                );
+                              }).toList(),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  isSelected_grade = value!;
+                                  print(isSelected_grade);
+                                });
+                              },
+                              value: isSelected_grade,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 16),
