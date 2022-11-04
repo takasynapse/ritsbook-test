@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
+import 'package:projectritsbook_native/view/Profile.dart';
 import 'package:projectritsbook_native/view_model/Signup.dart';
 import 'package:projectritsbook_native/view/LoginPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,9 +16,11 @@ class _SignUpPageState extends State<SignUpPage> {
   String email = "";
   String password = "";
   String infoText = "";
+  String username = "";
   final FirebaseAuth auth = FirebaseAuth.instance;
   String isSelected_faculity = '選択してください';
   final faculity_list = <String>[
+    '選択してください',
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -37,6 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
     '薬学部創薬科学科',
   ];
   final grade_list = <String>[
+    '選択してください',
     '1年',
     '2年',
     '3年',
@@ -44,7 +50,10 @@ class _SignUpPageState extends State<SignUpPage> {
   ];
   String isSelected_grade = '選択してください';
 
-  Future MailSignUp() async {
+  Future MailSignUp(username, faculity, grade) async {
+    print(username);
+    print(faculity);
+    print(grade);
     try {
       // バリデーション後のメールアドレスとパスワードでアカウント登録
       await auth.createUserWithEmailAndPassword(
@@ -52,6 +61,18 @@ class _SignUpPageState extends State<SignUpPage> {
       // 確認メール送信
       await auth.currentUser?.sendEmailVerification();
       print('メール送信');
+
+      final user = auth.currentUser;
+      print(user);
+      FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
+        'name': username,
+        'faculity': faculity,
+        'grade': grade,
+        'email': user?.email
+      }).then((value) {});
+
+      // ユーザIDをドキュメントIDにして、ユーザ情報を登録する
+
     } catch (e) {
       throw e;
     }
@@ -169,10 +190,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   EdgeInsets.symmetric(horizontal: 15),
                             ),
                             // パスワードガ見えないようにする
-                            obscureText: true,
                             onChanged: (String value) {
                               setState(() {
-                                password = value;
+                                username = value;
                               });
                             },
                           ),
@@ -187,15 +207,15 @@ class _SignUpPageState extends State<SignUpPage> {
                           width: 300,
                           // color: Colors.white,
                           decoration: BoxDecoration(
-                          color: Colors.white,                              
-                          borderRadius: BorderRadius.circular(16),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left:16.0),
+                            padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButton<String>(
                               underline: Container(),
-                              items:
-                                  faculity_list.map((String dropDownStringItem) {
+                              items: faculity_list
+                                  .map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
@@ -221,14 +241,15 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 33,
                           width: 300,
                           decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left:16.0),
+                            padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButton<String>(
                               underline: Container(),
-                              items: grade_list.map((String dropDownStringItem) {
+                              items:
+                                  grade_list.map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
@@ -254,7 +275,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ElevatedButton(
                           onPressed: () async {
                             //新規登録処理
-                            MailSignUp();
+                            MailSignUp(username, isSelected_faculity,
+                                isSelected_grade);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.white,
