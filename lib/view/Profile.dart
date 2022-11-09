@@ -78,12 +78,12 @@ class _ProfileState extends State<Profile> {
       ),
       body: ListView(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               top: 40,
               left: 40,
             ),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Text(
                 'プロフィール',
@@ -99,32 +99,28 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 32, bottom: 10),
-            child: Container(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    onPrimary: Colors.black,
-                    primary: Color(0xffffcfcf),
-                    shape: const CircleBorder(),
-                  ),
-                  onPressed: () {
-                    FirebaseAuth.instance
-                        .authStateChanges()
-                        .listen((User? user) {
-                      if (user != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditProfilePage()),
-                        );
-                      } else {
-                        _showDialogCheckauth();
-                      }
-                    });
-                  },
-                  child:const Icon(Icons.edit_outlined),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  backgroundColor: Color(0xffffcfcf),
+                  shape: const CircleBorder(),
                 ),
+                onPressed: () {
+                  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                    if (user != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditProfilePage()),
+                      );
+                    } else {
+                      _showDialogCheckauth();
+                    }
+                  });
+                },
+                child: const Icon(Icons.edit_outlined),
               ),
             ),
           ),
@@ -193,110 +189,107 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 52,
-              ),
-              child: Column(
-                children: [
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 52,
+            ),
+            child: Column(
+              children: [
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.check_box_outlined),
+                    title: const Text('出品した商品・購入した商品'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TradingItem()),
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.check_box_outlined),
-                      title: const Text('出品した商品・購入した商品'),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TradingItem()),
-                        );
-                      },
-                    ),
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.question_mark),
+                    title: const Text('RitsBookの使い方'),
+                    onTap: () {
+                      launchUrl(guide);
+                    },
                   ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.event_note_rounded),
+                    title: const Text('利用規約'),
+                    onTap: () {
+                      launchUrl(terms);
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading:const Icon(Icons.question_mark),
-                      title:const Text('RitsBookの使い方'),
-                      onTap: () {
-                        launchUrl(guide);
-                      },
-                    ),
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.chat),
+                    title: const Text('Twitter'),
+                    onTap: () async {
+                      await launchUrl(url);
+                    },
                   ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.exit_to_app),
+                    title: const Text('ログアウト'),
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut();
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.event_note_rounded),
-                      title: const Text('利用規約'),
-                      onTap: () {
-                        launchUrl(terms);
-                      },
-                    ),
+                ),
+                const Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                  child: ListTile(
+                    leading: const Icon(Icons.exit_to_app),
+                    title: const Text('退会する'),
+                    onTap: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WithdrawalPage()),
+                      );
+                    },
                   ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.chat),
-                      title: const Text('Twitter'),
-                      onTap: () async {
-                        await launchUrl(url);
-                      },
-                    ),
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.exit_to_app),
-                      title: const Text('ログアウト'),
-                      onTap: () async {
-                        await FirebaseAuth.instance.signOut();
-                      },
-                    ),
-                  ),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                    child: ListTile(
-                      leading: const Icon(Icons.exit_to_app),
-                      title: const Text('退会する'),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WithdrawalPage()),
-                        );
-                      },
-                    ),
-                  ),
-                  Container(
-                    height: 100,
-                  )
-                ],
-              ),
+                ),
+                Container(
+                  height: 100,
+                )
+              ],
             ),
           ),
         ],

@@ -1,6 +1,7 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
@@ -148,16 +149,17 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
           padding: const EdgeInsets.all(14.0),
           child: Padding(
             padding: const EdgeInsets.only(
-              left:16.0,
-              right: 16.0,),
+              left: 16.0,
+              right: 16.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Image.network(widget.document["img_url"]),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top:16,
-                    ),
+                    top: 16,
+                  ),
                   child: Text(
                     widget.document["item"],
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -165,7 +167,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top:16,
+                    top: 16,
                     bottom: 32,
                   ),
                   child: Text(
@@ -177,80 +179,41 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   widget.document["description"],
                   style: TextStyle(fontSize: 16),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                    
+                Gap(32),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const <Widget>[
+                          Text('状態'),
+                          Gap(8),
+                          Divider(
+                            height: 1,
+                            thickness: 1,
+                          ),
+                          Gap(8),
+                          Text('価格'),
+                        ],
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
+                    Expanded(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('状態'),
-                            Divider(
-                              color: Colors.grey,
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            Text('価格'),
-                            Divider(
-                              color: Colors.grey,
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            // Text('出品者'),
-                            // Divider(
-                            //   color: Colors.grey,
-                            //   height: 1,
-                            //   thickness: 1,
-                            // ),
-                            // Text('学部/学科'),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 100,
-                        child: VerticalDivider(
-                          color: Colors.grey,
-                          width: 1,
-                          thickness: 1,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children:[
                             Text(widget.document["condition"]),
-                              Divider(
-                              color: Colors.grey,
+                            Gap(8),
+                            Divider(
                               height: 1,
                               thickness: 1,
                             ),
+                            Gap(8),
                             Text('￥' + widget.document["price"].toString()),
-                                                      Divider(
-                              color: Colors.grey,
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            // Text(widget.document["seller"]),
-                            // Text('テスト君'),
-                            //   Divider(
-                            //   color: Colors.grey,
-                            //   height: 1,
-                            //   thickness: 1,
-                            // ),
-                            // Text('テスト学部/テスト学科'),
-                          ]
-                        ),
-                      ),
-                    ],
-                  ),
+                          ]),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                const Gap(20),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -261,10 +224,10 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                         height: 50,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
+                            foregroundColor: Color(0xff727272),
+                            backgroundColor: Colors.white,
                             side: const BorderSide(
                                 width: 2.0, color: Color(0xff727272)),
-                            primary: Colors.white,
-                            onPrimary: Color(0xff727272),
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -274,13 +237,11 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                                       ChatPage(widget.document)),
                             );
                           },
-                          icon: Icon(Icons.message),
-                          label: Text("コメントする"),
+                          icon: const Icon(Icons.message),
+                          label: const Text("コメントする"),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      const Gap(20),
                       if (uid == widget.document['userID'])
                         SizedBox(
                           width: 200,
@@ -309,10 +270,10 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           height: 50,
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: Color(0xfff13838),
+                              backgroundColor: Colors.white,
                               side: BorderSide(
                                   width: 2.0, color: Color(0xfff13838)),
-                              primary: Colors.white,
-                              onPrimary: Color(0xfff13838),
                             ),
                             onPressed: () {
                               FirebaseAuth.instance
