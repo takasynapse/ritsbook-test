@@ -7,7 +7,7 @@ import 'package:projectritsbook_native/view/Notifications.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 
 
 // final constProvider =StateProvider((ref)=>0);
@@ -30,13 +30,13 @@ void main() async{
     provisional: false,
     sound: true,
   );
-  print('User granted permission: ${settings.authorizationStatus}');
+  // print('User granted permission: ${settings.authorizationStatus}');
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-  print('Got a message whilst in the foreground!');
-  print('Message data: ${message.data}');
+  // print('Got a message whilst in the foreground!');
+  // print('Message data: ${message.data}');
 
   if (message.notification != null) {
-    print('Message also contained a notification: ${message.notification}');
+    // print('Message also contained a notification: ${message.notification}');
   }
   });
 
@@ -63,7 +63,7 @@ class _State extends State<MyApp>{
   var _navIndex = 0;
   var _label = '';
   // var _titles = [LandingPageAfter(),Exhibition(),Profile(),NotificationPage(),TradingItem()];
-     var _titles = [LandingPageAfter(),NotificationPage(),Exhibition(),TradingItem(),Profile()];
+     final _titles = [LandingPageAfter(),NotificationPage(),Exhibition(),TradingItem(),Profile()];
   void _onItemTapped(int index){
     setState(() {
       _navIndex = index;

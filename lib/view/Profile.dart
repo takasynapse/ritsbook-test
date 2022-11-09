@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/view/EditProfilePage.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/TradingItem.dart';
@@ -54,7 +55,6 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       currentUser = user as Object;
-      print(currentUser);
       if (user != null) {
         try {
           final users =
@@ -123,7 +123,7 @@ class _ProfileState extends State<Profile> {
                       }
                     });
                   },
-                  child: Icon(Icons.edit_outlined),
+                  child:const Icon(Icons.edit_outlined),
                 ),
               ),
             ),
@@ -144,61 +144,51 @@ class _ProfileState extends State<Profile> {
                   bottom: 18.0,
                   left: 18.0,
                 ),
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const <Widget>[
+                        Text('ユーザー名',
+                            style: TextStyle(
+                              fontSize: 16,
+                            )),
+                        Gap(10),
+                        Text('学部',
+                            style: TextStyle(
+                              fontSize: 16,
+                            )),
+                        Gap(10),
+                        Text('学年',
+                            style: TextStyle(
+                              fontSize: 16,
+                            )),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('ユーザー名',
-                              style: TextStyle(
-                                fontSize: 16,
-                              )),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text('学部',
-                              style: TextStyle(
-                                fontSize: 16,
-                              )),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text('学年',
-                              style: TextStyle(
-                                fontSize: 16,
-                              )),
+                          Text(username),
+                          Gap(10),
+                          Text(qualifity),
+                          Gap(10),
+                          Text(grade),
                         ],
                       ),
-                      SizedBox(
-                        width: 50,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 80),
+                      padding: const EdgeInsets.only(
+                        top: 50,
                       ),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(username),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(qualifity),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(grade),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 80),
-                        padding: EdgeInsets.only(
-                          top: 50,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -210,15 +200,15 @@ class _ProfileState extends State<Profile> {
               ),
               child: Column(
                 children: [
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.check_box_outlined),
-                      title: Text('出品した商品・購入した商品'),
+                      leading: const Icon(Icons.check_box_outlined),
+                      title: const Text('出品した商品・購入した商品'),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -228,71 +218,71 @@ class _ProfileState extends State<Profile> {
                       },
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.question_mark),
-                      title: Text('RitsBookの使い方'),
+                      leading:const Icon(Icons.question_mark),
+                      title:const Text('RitsBookの使い方'),
                       onTap: () {
                         launchUrl(guide);
                       },
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.event_note_rounded),
-                      title: Text('利用規約'),
+                      leading: const Icon(Icons.event_note_rounded),
+                      title: const Text('利用規約'),
                       onTap: () {
                         launchUrl(terms);
                       },
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.chat),
-                      title: Text('Twitter'),
+                      leading: const Icon(Icons.chat),
+                      title: const Text('Twitter'),
                       onTap: () async {
                         await launchUrl(url);
                       },
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.exit_to_app),
-                      title: Text('ログアウト'),
+                      leading: const Icon(Icons.exit_to_app),
+                      title: const Text('ログアウト'),
                       onTap: () async {
                         await FirebaseAuth.instance.signOut();
                       },
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1,
                     thickness: 1,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                     child: ListTile(
-                      leading: Icon(Icons.exit_to_app),
-                      title: Text('退会する'),
+                      leading: const Icon(Icons.exit_to_app),
+                      title: const Text('退会する'),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -317,9 +307,9 @@ class _ProfileState extends State<Profile> {
 
 // 後でこれで書き直す
 // listview.separated
-Widget _menuItem(String title, Icon icon, Function onTap()) {
-  return ListTile(
-    leading: icon,
-    title: Text(title),
-  );
-}
+// Widget _menuItem(String title, Icon icon, Function onTap()) {
+//   return ListTile(
+//     leading: icon,
+//     title: Text(title),
+//   );
+// }
