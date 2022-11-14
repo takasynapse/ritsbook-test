@@ -23,6 +23,7 @@ class _ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
   final guide = Uri.parse("https://ritsbook.netlify.app/guide");
+  final uid = FirebaseAuth.instance.currentUser?.uid;
   Future<void> _showDialogCheckauth() async {
     await showDialog(
       context: context,
@@ -97,6 +98,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
+          if (uid ==true)
           Padding(
             padding: const EdgeInsets.only(right: 32, bottom: 10),
             child: Align(
@@ -124,12 +126,14 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
+          if (uid ==true)
           Padding(
             padding: const EdgeInsets.only(
               right: 40.0,
               left: 36,
             ),
-            child: Container(
+            child: 
+            Container(
               decoration: BoxDecoration(
                 border: Border.all(color: const Color(0xffff6b6b)),
                 borderRadius: BorderRadius.circular(20),
@@ -188,7 +192,11 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-          ),
+          )
+          else
+          const SizedBox(
+            height: 200,
+            child: const Text('ログインしてください')),
           Padding(
             padding: const EdgeInsets.only(
               top: 52,
@@ -272,6 +280,7 @@ class _ProfileState extends State<Profile> {
                   height: 1,
                   thickness: 1,
                 ),
+                if (uid ==true)
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
                   child: ListTile(
