@@ -196,7 +196,7 @@ class _ProfileState extends State<Profile> {
           else
           const SizedBox(
             height: 200,
-            child: const Text('ログインしてください')),
+            child: Center(child: Text('ログインしてください'))),
           Padding(
             padding: const EdgeInsets.only(
               top: 52,
