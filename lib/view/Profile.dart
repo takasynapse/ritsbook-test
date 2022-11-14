@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
     });
     return (Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
         ),
@@ -104,7 +104,7 @@ class _ProfileState extends State<Profile> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.black,
-                  backgroundColor: Color(0xffffcfcf),
+                  backgroundColor: const Color(0xffffcfcf),
                   shape: const CircleBorder(),
                 ),
                 onPressed: () {
@@ -131,7 +131,7 @@ class _ProfileState extends State<Profile> {
             ),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffff6b6b)),
+                border: Border.all(color: const Color(0xffff6b6b)),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
@@ -171,9 +171,9 @@ class _ProfileState extends State<Profile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(username),
-                          Gap(10),
+                          const Gap(10),
                           Text(qualifity),
-                          Gap(10),
+                          const Gap(10),
                           Text(grade),
                         ],
                       ),

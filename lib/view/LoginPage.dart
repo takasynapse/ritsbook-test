@@ -40,7 +40,7 @@ class _LoginPage extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xffff6b6b),
+        color: const Color(0xffff6b6b),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(32),
@@ -49,26 +49,26 @@ class _LoginPage extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     '立命館大学生専用',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                     ),
                   ),
-                  Text(
+                  const Text(
                     '教科書フリマアプリ',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Container(
                     color: Colors.white,
                     width: 258,
                     height: 64,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'RITSBOOK',
                         style: TextStyle(
@@ -79,25 +79,27 @@ class _LoginPage extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 32,),
+                  const SizedBox(
+                    height: 32,
+                  ),
                   Image.asset('images/Bookimage.png'),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Container(
                     padding: const EdgeInsets.all(30),
                     child: Column(
                       children: [
-                        Align(
+                        const Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             "メールアドレス",
                             style: TextStyle(fontSize: 12),
                           ),
-                          alignment: Alignment.centerLeft,
                         ),
-                        Container(
+                        SizedBox(
                           height: 33,
                           child: TextFormField(
-                              style: TextStyle(fontSize: 12),
-                              decoration: InputDecoration(
+                              style: const TextStyle(fontSize: 12),
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'メールアドレスを入力',
                                 fillColor: Colors.white,
@@ -112,19 +114,19 @@ class _LoginPage extends State<LoginPage> {
                               }),
                         ),
                         const SizedBox(height: 8),
-                        Align(
+                        const Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             "パスワード",
                             style: TextStyle(fontSize: 12),
                           ),
-                          alignment: Alignment.centerLeft,
                         ),
                         const SizedBox(height: 8),
-                        Container(
+                        SizedBox(
                           height: 33,
                           child: TextFormField(
-                            style: TextStyle(fontSize: 12),
-                            decoration: InputDecoration(
+                            style: const TextStyle(fontSize: 12),
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "パスワードを作成",
                               fillColor: Colors.white,
@@ -153,7 +155,7 @@ class _LoginPage extends State<LoginPage> {
                             login();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
+                            backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
                             ),
@@ -163,41 +165,40 @@ class _LoginPage extends State<LoginPage> {
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         TextButton(
-                      onPressed: () {
-                        //ログイン画面に飛ばす処理
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ResetPassword()));
-                      },
-                      child: const Text(
-                        "パスワードをお忘れの方はこちら",
-                        style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline),
-                      )),
-                                        TextButton(
-                      onPressed: () {
-                        //ログイン画面に飛ばす処理
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()));
-                      },
-                      child: const Text(
-                        "新規登録の方はこちら",
-                        style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline),
-                      ))
+                            onPressed: () {
+                              //ログイン画面に飛ばす処理
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ResetPassword()));
+                            },
+                            child: const Text(
+                              "パスワードをお忘れの方はこちら",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline),
+                            )),
+                        TextButton(
+                            onPressed: () {
+                              //ログイン画面に飛ばす処理
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpPage()));
+                            },
+                            child: const Text(
+                              "新規登録の方はこちら",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline),
+                            ))
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -220,9 +221,9 @@ class _MainContentState extends State<MainContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('成功'),
+        title: const Text('成功'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('ログイン成功！'),
       ),
     );

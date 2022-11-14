@@ -92,10 +92,10 @@ class _EditItemState extends State<EditItem> {
       context: this.context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('商品を削除しました'),
+          title: const Text('商品を削除しました'),
           actions: [
             TextButton(
-              child: Text('閉じる'),
+              child: const Text('閉じる'),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -124,13 +124,13 @@ class _EditItemState extends State<EditItem> {
           title: const Text('商品を削除しますか'),
           actions: <Widget>[
             TextButton(
-              child: Text('キャンセル'),
+              child: const Text('キャンセル'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('削除'),
+              child: const Text('削除'),
               onPressed: () {
                 _deleteItem();
                 Navigator.push(
@@ -148,7 +148,7 @@ class _EditItemState extends State<EditItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
         ),
@@ -157,7 +157,7 @@ class _EditItemState extends State<EditItem> {
         child: ListView(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              Text("商品名"),
+              const Text("商品名"),
               TextField(
                 decoration: const InputDecoration(hintText: '商品名'),
                 controller: TextEditingController(text: item),
@@ -171,7 +171,7 @@ class _EditItemState extends State<EditItem> {
               Image(image: NetworkImage(_imageurl)),
               ElevatedButton(onPressed: _upload, child: const Text('画像を選択')),
               TextField(
-                decoration: InputDecoration(hintText: '商品の説明'),
+                decoration: const InputDecoration(hintText: '商品の説明'),
                 controller: TextEditingController(text: description),
                 onChanged: (String text) {
                   setState(() {
@@ -179,7 +179,7 @@ class _EditItemState extends State<EditItem> {
                   });
                 },
               ),
-              Text("商品の状態"),
+              const Text("商品の状態"),
               DropdownButton(
                 items: const [
                   DropdownMenuItem(
@@ -210,12 +210,12 @@ class _EditItemState extends State<EditItem> {
                 },
                 value: condition,
               ),
-              Text("値段"),
+              const Text("値段"),
               TextField(
                 keyboardType: TextInputType.number,
                 controller: TextEditingController(text: price.toString()),
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: InputDecoration(hintText: ''),
+                decoration: const InputDecoration(hintText: ''),
                 onChanged: (value) {
                   price = int.parse(value);
                 },
@@ -235,12 +235,12 @@ class _EditItemState extends State<EditItem> {
                       "isSold": true
                     });
                   },
-                  child: Text('出品する')),
+                  child: const Text('出品する')),
               ElevatedButton(
                   onPressed: () {
                     _showDeleteDialog();
                   },
-                  child: Text('商品を削除する'))
+                  child: const Text('商品を削除する'))
             ]),
       ),
     );

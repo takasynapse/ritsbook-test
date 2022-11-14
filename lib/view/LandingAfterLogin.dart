@@ -16,7 +16,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
         ),
@@ -85,7 +85,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                           image: document['img_url'] != null
                                               ? NetworkImage(
                                                   document['img_url'])
-                                              : AssetImage(
+                                              : const AssetImage(
                                                       'assets/images/placeholder.png')
                                                   as ImageProvider,
                                           height: 116,
@@ -105,7 +105,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                                 fontSize: 18,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
-                                                backgroundColor: Color.fromARGB(
+                                                backgroundColor: const Color.fromARGB(
                                                         255, 107, 103, 103)
                                                     .withOpacity(0.3),
                                               ),
@@ -119,7 +119,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                       Ink.image(
                                         image: document['img_url'] != null
                                             ? NetworkImage(document['img_url'])
-                                            : AssetImage(
+                                            : const AssetImage(
                                                     'assets/images/placeholder.png')
                                                 as ImageProvider,
                                         height: 112,
@@ -129,7 +129,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                         height: 112,
                                         width: 138,
                                         color: Colors.black.withOpacity(0.5),
-                                        child: Center(
+                                        child: const Center(
                                           child: Text(
                                             "SOLD",
                                             style: TextStyle(
@@ -150,7 +150,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                               fontSize: 18,
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w700,
-                                              backgroundColor: Color.fromARGB(
+                                              backgroundColor: const Color.fromARGB(
                                                       255, 107, 103, 103)
                                                   .withOpacity(0.3),
                                             ),

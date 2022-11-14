@@ -23,7 +23,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
   final _controller = TextEditingController();
 
   Future _loadData() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override

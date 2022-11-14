@@ -36,7 +36,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.white,
         ),
@@ -50,7 +50,7 @@ class _LandingPageState extends State<LandingPage> {
               children: <Widget>[
                 // テキスト入力ラベル
                 TextFormField(
-                    decoration: InputDecoration(labelText: "メールアドレス"),
+                    decoration: const InputDecoration(labelText: "メールアドレス"),
                     onChanged: (String value) {
                       setState(() {
                         newEmail = value;
@@ -58,7 +58,7 @@ class _LandingPageState extends State<LandingPage> {
                     }),
                 const SizedBox(height: 8),
                 TextFormField(
-                  decoration: InputDecoration(labelText: "パスワード"),
+                  decoration: const InputDecoration(labelText: "パスワード"),
                   // パスワードガ見えないようにする
                   obscureText: true,
                   onChanged: (String value) {
@@ -88,7 +88,7 @@ class _LandingPageState extends State<LandingPage> {
                       });
                     }
                   },
-                  child: Text("sign in"),
+                  child: const Text("sign in"),
                 ),
                 const SizedBox(height: 8),
                 ElevatedButton(
@@ -111,7 +111,7 @@ class _LandingPageState extends State<LandingPage> {
                       });
                     }
                   },
-                  child: Text("ユーザー登録"),
+                  child: const Text("ユーザー登録"),
                 ),
                 const SizedBox(height: 8),
                 Text(infoText),
@@ -127,7 +127,7 @@ class _LandingPageState extends State<LandingPage> {
                       });
                     }
                   },
-                  child: Text("Googleアカウントで登録"),
+                  child: const Text("Googleアカウントで登録"),
                 ),
               ],
             ),

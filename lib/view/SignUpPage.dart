@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
-import 'package:projectritsbook_native/view/Profile.dart';
-import 'package:projectritsbook_native/view_model/Signup.dart';
+import 'package:gap/gap.dart';
+// import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+// import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
+// import 'package:projectritsbook_native/view/Profile.dart';
+// import 'package:projectritsbook_native/view_model/Signup.dart';
 import 'package:projectritsbook_native/view/LoginPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -51,9 +52,6 @@ class _SignUpPageState extends State<SignUpPage> {
   String isSelected_grade = '選択してください';
 
   Future MailSignUp(username, faculity, grade) async {
-    print(username);
-    print(faculity);
-    print(grade);
     try {
       // バリデーション後のメールアドレスとパスワードでアカウント登録
       await auth.createUserWithEmailAndPassword(
@@ -82,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xffff6b6b),
+        color: const Color(0xffff6b6b),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(32),
@@ -91,12 +89,12 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 10),
+                  const Gap(10),
                   Container(
                     color: Colors.white,
                     width: 258,
                     height: 64,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'RITSBOOK',
                         style: TextStyle(
@@ -107,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  const Gap(60),
                   Container(
                     padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
@@ -115,18 +113,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderRadius: BorderRadius.circular(30)),
                     child: Column(
                       children: [
-                        Align(
+                        const Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             "メールアドレス",
                             style: TextStyle(fontSize: 12),
                           ),
-                          alignment: Alignment.centerLeft,
                         ),
-                        Container(
+                        SizedBox(
                           height: 33,
                           child: TextFormField(
-                              style: TextStyle(fontSize: 12),
-                              decoration: InputDecoration(
+                              style: const TextStyle(fontSize: 12),
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'メールアドレスを入力',
                                 fillColor: Colors.white,
@@ -141,19 +139,19 @@ class _SignUpPageState extends State<SignUpPage> {
                               }),
                         ),
                         const SizedBox(height: 8),
-                        Align(
+                        const Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
                             "パスワード",
                             style: TextStyle(fontSize: 12),
                           ),
-                          alignment: Alignment.centerLeft,
                         ),
                         const SizedBox(height: 8),
-                        Container(
+                        SizedBox(
                           height: 33,
                           child: TextFormField(
-                            style: TextStyle(fontSize: 12),
-                            decoration: InputDecoration(
+                            style: const TextStyle(fontSize: 12),
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "パスワードを作成",
                               fillColor: Colors.white,
@@ -173,15 +171,15 @@ class _SignUpPageState extends State<SignUpPage> {
                         const SizedBox(height: 8),
                         Text(infoText),
                         const SizedBox(height: 15),
-                        Align(
-                          child: Text("ユーザ名", style: TextStyle(fontSize: 12)),
+                        const Align(
                           alignment: Alignment.centerLeft,
+                          child: Text("ユーザ名", style: TextStyle(fontSize: 12)),
                         ),
                         Container(
                           height: 33,
                           child: TextFormField(
-                            style: TextStyle(fontSize: 12),
-                            decoration: InputDecoration(
+                            style: const TextStyle(fontSize: 12),
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "ユーザ名を入力",
                               fillColor: Colors.white,
@@ -198,9 +196,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Align(
-                          child: Text("学部学科", style: TextStyle(fontSize: 12)),
+                        const Align(
                           alignment: Alignment.centerLeft,
+                          child: Text("学部学科", style: TextStyle(fontSize: 12)),
                         ),
                         Container(
                           height: 33,
@@ -219,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
-                                      style: TextStyle(fontSize: 12)),
+                                      style: const TextStyle(fontSize: 12)),
                                 );
                               }).toList(),
                               //ドロップダウンから選択されたら、isSelected_faculityが更新される
@@ -233,9 +231,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Align(
-                          child: Text("学年", style: TextStyle(fontSize: 12)),
+                        const Align(
                           alignment: Alignment.centerLeft,
+                          child: Text("学年", style: TextStyle(fontSize: 12)),
                         ),
                         Container(
                           height: 33,
@@ -253,7 +251,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
-                                      style: TextStyle(fontSize: 12)),
+                                      style: const TextStyle(fontSize: 12)),
                                 );
                               }).toList(),
                               onChanged: (String? value) {
@@ -279,7 +277,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 isSelected_grade);
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.white,
+                            backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
                             ),
@@ -292,7 +290,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   TextButton(
@@ -301,7 +299,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginPage()));
+                                builder: (context) => const LoginPage()));
                       },
                       child: const Text(
                         "アカウントをお持ちの方はこちら",

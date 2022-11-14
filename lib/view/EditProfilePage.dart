@@ -9,7 +9,6 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   Future<void> _showDialogAfterEditingProfile() async {
-    print("ダイアログ");
     await showDialog(
       context: context,
       builder: (BuildContext context) {

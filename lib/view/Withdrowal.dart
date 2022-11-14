@@ -33,7 +33,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                   await deleteUser();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xffff6b6b),
+                  backgroundColor: Color(0xffff6b6b),
                 ),
                 child: Text("退会する")),
             ElevatedButton(

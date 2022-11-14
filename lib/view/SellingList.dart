@@ -44,7 +44,7 @@ class _SellingListState extends State<SellingList> {
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 return Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.grey,

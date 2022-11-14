@@ -26,7 +26,7 @@ class _NotificationPageState extends State<NotificationPage> {
             create: (_) => MainModel()..fetchNotifications(),
             child: Scaffold(
                 appBar: AppBar(
-                  title: Text(
+                  title: const Text(
                     "通知",
                     style: TextStyle(color: Colors.black),
                   ),
@@ -39,7 +39,7 @@ class _NotificationPageState extends State<NotificationPage> {
                       itemBuilder: (BuildContext context, int item) {
                         return ListTile(
                           title: Text(documentList[item]["information"]),
-                          trailing: Icon(Icons.arrow_forward_ios),
+                          trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
                             // final DocumentSnapshot test = getBook(documentList[item].id) as DocumentSnapshot;
                             getBook(documentList[item].id);

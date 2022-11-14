@@ -118,24 +118,21 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
             } else {
               _showDialog();
             }
-            else {
-              print('aa');
-            }
           },
-          child: Text(
+          backgroundColor: Colors.red,
+          child: const Text(
             "購入する",
             style: TextStyle(
                 fontSize: 12, fontWeight: FontWeight.w600, fontFamily: "Inter"),
           ),
-          backgroundColor: Colors.red,
           // child: const Icon(Icons.shopping_cart),
         ),
       ),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         title: Text(
           widget.document["item"],
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             fontFamily: "Inter",
@@ -162,7 +159,8 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   ),
                   child: Text(
                     widget.document["item"],
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
@@ -172,14 +170,15 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                   ),
                   child: Text(
                     '￥' + widget.document["price"].toString(),
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Text(
                   widget.document["description"],
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
-                Gap(32),
+                const Gap(32),
                 Row(
                   children: [
                     Expanded(
@@ -202,12 +201,12 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(widget.document["condition"]),
-                            Gap(8),
-                            Divider(
+                            const Gap(8),
+                            const Divider(
                               height: 1,
                               thickness: 1,
                             ),
-                            Gap(8),
+                            const Gap(8),
                             Text('￥' + widget.document["price"].toString()),
                           ]),
                     ),
@@ -224,7 +223,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                         height: 50,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Color(0xff727272),
+                            foregroundColor: const Color(0xff727272),
                             backgroundColor: Colors.white,
                             side: const BorderSide(
                                 width: 2.0, color: Color(0xff727272)),
@@ -248,10 +247,10 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: const Color(0xff727272),
+                              backgroundColor: Colors.white,
                               side: const BorderSide(
                                   width: 2.0, color: Color(0xff727272)),
-                              primary: Colors.white,
-                              onPrimary: Color(0xff727272),
                             ),
                             onPressed: () {
                               Navigator.push(
@@ -265,14 +264,14 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           ),
                         )
                       else if (widget.document["isSold"] == true)
-                        Container(
+                        SizedBox(
                           width: 200,
                           height: 50,
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Color(0xfff13838),
+                              foregroundColor: const Color(0xfff13838),
                               backgroundColor: Colors.white,
-                              side: BorderSide(
+                              side: const BorderSide(
                                   width: 2.0, color: Color(0xfff13838)),
                             ),
                             onPressed: () {
@@ -295,7 +294,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           ),
                         )
                       else
-                        SizedBox(
+                        const SizedBox(
                             width: 200,
                             height: 50,
                             child: ElevatedButton(
@@ -305,11 +304,12 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           widget.document["isSold"] == false)
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            foregroundColor:
+                                const Color.fromARGB(255, 74, 176, 106),
+                            backgroundColor: Colors.white,
                             side: const BorderSide(
                                 width: 2.0,
                                 color: Color.fromARGB(255, 74, 176, 106)),
-                            primary: Colors.white,
-                            onPrimary: Color.fromARGB(255, 74, 176, 106),
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -334,11 +334,12 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor:
+                                  const Color.fromARGB(255, 141, 83, 83),
+                              backgroundColor: Colors.white,
                               side: const BorderSide(
                                   width: 2.0,
                                   color: Color.fromARGB(255, 141, 83, 83)),
-                              primary: Colors.white,
-                              onPrimary: Color.fromARGB(255, 141, 83, 83),
                             ),
                             onPressed: () {
                               Navigator.push(

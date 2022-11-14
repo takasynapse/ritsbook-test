@@ -27,7 +27,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xffff6b6b),
+        color: const Color(0xffff6b6b),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(32),
@@ -35,28 +35,28 @@ class _ResetPasswordState extends State<ResetPassword> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
                   Container(
                     width: 30,
                     child: Image.asset('images/Bookimage.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "パスワード再設定メールを送信",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     height: 33,
                     child: TextFormField(
-                        style: TextStyle(fontSize: 12),
-                        decoration: InputDecoration(
+                        style: const TextStyle(fontSize: 12),
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'メールアドレスを入力',
                           fillColor: Colors.white,
@@ -98,7 +98,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     alignment: Alignment.center,
                     child: Text(
                       infoText,
-                      style: TextStyle(fontSize: 12, color: Colors.white),
+                      style: const TextStyle(fontSize: 12, color: Colors.white),
                     ),
                   )
                 ],
