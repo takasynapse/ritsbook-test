@@ -145,6 +145,7 @@ class _EditItemState extends State<EditItem> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -153,96 +154,94 @@ class _EditItemState extends State<EditItem> {
           backgroundColor: Colors.white,
         ),
       ),
-      body: Container(
-        child: ListView(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              const Text("商品名"),
-              TextField(
-                decoration: const InputDecoration(hintText: '商品名'),
-                controller: TextEditingController(text: item),
-                onChanged: (String? value) {
-                  setState(() {
-                    item = value;
+      body: ListView(
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            const Text("商品名"),
+            TextField(
+              decoration: const InputDecoration(hintText: '商品名'),
+              controller: TextEditingController(text: item),
+              onChanged: (String? value) {
+                setState(() {
+                  item = value;
+                });
+              },
+            ),
+            const Text("画像を選択"),
+            Image(image: NetworkImage(_imageurl)),
+            ElevatedButton(onPressed: _upload, child: const Text('画像を選択')),
+            TextField(
+              decoration: const InputDecoration(hintText: '商品の説明'),
+              controller: TextEditingController(text: description),
+              onChanged: (String text) {
+                setState(() {
+                  description = text;
+                });
+              },
+            ),
+            const Text("商品の状態"),
+            DropdownButton(
+              items:  const [
+                DropdownMenuItem(
+                  value: '新品・未使用',
+                  child: Text('新品・未使用'),
+                ),
+                DropdownMenuItem(
+                  value: '未使用に近い',
+                  child: Text('未使用に近い'),
+                ),
+                DropdownMenuItem(
+                  value: '目立った傷や汚れなし',
+                  child: Text('目立った傷や汚れなし'),
+                ),
+                DropdownMenuItem(
+                  value: '傷や汚れあり',
+                  child: Text('傷や汚れあり'),
+                ),
+                DropdownMenuItem(
+                  value: '全体的に状態が悪い',
+                  child: Text('全体的に状態が悪い'),
+                ),
+              ],
+              onChanged: (String? value) {
+                setState(() {
+                  condition = value;
+                });
+              },
+              value: condition,
+            ),
+            const Text("値段"),
+            TextField(
+              keyboardType: TextInputType.number,
+              controller: TextEditingController(text: price.toString()),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              decoration: const InputDecoration(hintText: ''),
+              onChanged: (value) {
+                price = int.parse(value);
+              },
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  var exhibit = FirebaseFirestore.instance
+                      .collection("textbooks")
+                      .doc(widget.document.id);
+                  exhibit.update({
+                    "condition": condition,
+                    "item": item,
+                    "description": description,
+                    "price": price,
+                    "userID": userID,
+                    "img_url": _imageurl,
+                    "isSold": true
                   });
                 },
-              ),
-              const Text("画像を選択"),
-              Image(image: NetworkImage(_imageurl)),
-              ElevatedButton(onPressed: _upload, child: const Text('画像を選択')),
-              TextField(
-                decoration: const InputDecoration(hintText: '商品の説明'),
-                controller: TextEditingController(text: description),
-                onChanged: (String text) {
-                  setState(() {
-                    description = text;
-                  });
+                child: const Text('出品する')),
+            ElevatedButton(
+                onPressed: () {
+                  _showDeleteDialog();
                 },
-              ),
-              const Text("商品の状態"),
-              DropdownButton(
-                items: const [
-                  DropdownMenuItem(
-                    child: Text('新品・未使用'),
-                    value: '新品・未使用',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('未使用に近い'),
-                    value: '未使用に近い',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('目立った傷や汚れなし'),
-                    value: '目立った傷や汚れなし',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('傷や汚れあり'),
-                    value: '傷や汚れあり',
-                  ),
-                  DropdownMenuItem(
-                    child: Text('全体的に状態が悪い'),
-                    value: '全体的に状態が悪い',
-                  ),
-                ],
-                onChanged: (String? value) {
-                  setState(() {
-                    condition = value;
-                  });
-                },
-                value: condition,
-              ),
-              const Text("値段"),
-              TextField(
-                keyboardType: TextInputType.number,
-                controller: TextEditingController(text: price.toString()),
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(hintText: ''),
-                onChanged: (value) {
-                  price = int.parse(value);
-                },
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    var exhibit = FirebaseFirestore.instance
-                        .collection("textbooks")
-                        .doc(widget.document.id);
-                    exhibit.update({
-                      "condition": condition,
-                      "item": item,
-                      "description": description,
-                      "price": price,
-                      "userID": userID,
-                      "img_url": _imageurl,
-                      "isSold": true
-                    });
-                  },
-                  child: const Text('出品する')),
-              ElevatedButton(
-                  onPressed: () {
-                    _showDeleteDialog();
-                  },
-                  child: const Text('商品を削除する'))
-            ]),
-      ),
+                child: const Text('商品を削除する'))
+          ]),
     );
   }
 }
