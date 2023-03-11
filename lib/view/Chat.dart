@@ -1,8 +1,4 @@
-// import 'dart:convert';
-// import 'dart:io';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart' show rootBundle;
-// import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +11,6 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  // List<types.Message> _messages = [];
   String message = '';
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
   final _controller = TextEditingController();

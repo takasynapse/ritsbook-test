@@ -207,7 +207,7 @@ class _ItemdetailPageState extends State<ItemdetailPage> {
                               thickness: 1,
                             ),
                             const Gap(8),
-                            Text('￥' + widget.document["price"].toString()),
+                            Text('￥${widget.document["price"]}'),
                           ]),
                     ),
                   ],

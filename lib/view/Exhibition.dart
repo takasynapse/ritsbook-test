@@ -40,10 +40,6 @@ class _Exhibition extends State<Exhibition> {
       if (user == null) {
         print('User is currently signed out!');
       } else {
-        print('User is signed in!');
-        print('userinfo:');
-        print(user);
-        // final Object userinfo = user;
         userID = user.uid;
       }
     });
