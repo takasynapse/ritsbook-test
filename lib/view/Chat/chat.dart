@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,9 +28,9 @@ class _ChatPageState extends State<ChatPage> {
   // final username = FirebaseAuth.instance.currentUser!.displayName;
   final _user = types.User(
     id: '313wfww',
-    firstName: 'test',
+    // firstName: 'test',
   );
-
+  @override
   void initState() {
     _getMessages();
     super.initState();
@@ -71,16 +69,21 @@ class _ChatPageState extends State<ChatPage> {
         .collection("chat")
         .doc()
         .set({
-      "createdAt": message.createdAt,
-      "id": message.id,
-      "text": message,
-      "user": {
-        "id": message.author.id,
-        "firstName": message.author.firstName,
-      }
-    });
+          "createdAt": message.createdAt,
+          "id": message.id,
+          "text": message,
+          "user": {
+            "id": message.author.id,
+            "firstName": message.author.firstName,
+          }
+        })
+        .then((value) => print("success"))
+        .catchError((error) {
+          print('-aaaaaaaaaaa');
+          print(error);
+        });
     // 通知処理
-       if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
+    if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
       await FirebaseFirestore.instance
           .collection('users')
           .doc(widget.document["userID"])
@@ -105,49 +108,17 @@ class _ChatPageState extends State<ChatPage> {
     );
     _addMessage(newMessage);
   }
-  
-  void _handleImageSelection() async {
-    final result = await ImagePicker().pickImage(
-      imageQuality: 70,
-      maxWidth: 1440,
-      source: ImageSource.gallery,
-    );
 
-    if (result != null) {
-      final bytes = await result.readAsBytes();
-      final image = await decodeImageFromList(bytes);
-
-      final message = types.ImageMessage(
-        author: _user,
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        height: image.height.toDouble(),
-        id: randomId,
-        name: result.name,
-        size: bytes.length,
-        uri: result.path,
-        width: image.width.toDouble(),
-      );
-
-      _addMessage(message);
-    }
-  }
   @override
-  Widget build(BuildContext context ) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("チャット"),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Chat(
-              messages: _messages,
-              onSendPressed: _handleSendPressed,
-              user: _user,
-              onAttachmentPressed: _handleImageSelection,
-            ),
-          ),
-        ],
+      body: Chat(
+        messages: _messages,
+        onSendPressed: _handleSendPressed,
+        user: _user,
       ),
     );
   }

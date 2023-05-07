@@ -103,9 +103,7 @@ class _ChatPageState extends State<ChatPage> {
           'message': message,
           'created': DateTime.now(),
           'userName': FirebaseAuth.instance.currentUser!.displayName,
-        })
-        .then((value) => print("success"))
-        .catchError((error) => print(error));
+        });
 
     if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
       await FirebaseFirestore.instance

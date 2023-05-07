@@ -31,7 +31,7 @@ class _Exhibition extends State<Exhibition> {
   String? seller;
   String? timestamp;
   String? userID;
-
+  
   //ライフサイクルフックにおいてcreated時にユーザがログインしているか検証
   @override
   void initState() {

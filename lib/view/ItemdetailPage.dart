@@ -2,12 +2,11 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/view/Chat/chat.dart';
+import 'package:projectritsbook_native/view/Chat.dart';
 import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
 
-// ignore: prefer_const_literals_to_create_immutables
 class ItemdetailPage extends StatefulWidget {
   final DocumentSnapshot document;
   ItemdetailPage(this.document);
