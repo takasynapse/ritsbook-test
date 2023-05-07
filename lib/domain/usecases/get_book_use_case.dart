@@ -1,6 +1,8 @@
 import 'package:projectritsbook_native/data/models/book_model.dart';
-import 'package:projectritsbook_native/data/repository/userrepository.dart';
 
+import '../repositories/book_repository.dart';
+
+//出品中のすべての本を取得
 class GetAllBooksUseCase {
   final BookRepository _bookRepository;
 
@@ -8,5 +10,16 @@ class GetAllBooksUseCase {
 
   Future<List<Book>> execute() async {
     return await _bookRepository.getBooks();
+  }
+}
+
+//本を出品時のユースケース
+class ExhibitionBookUseCase {
+  final BookRepository _bookRepository;
+
+  ExhibitionBookUseCase(this._bookRepository);
+
+  Future<Book> uploadBook(Book book) async {
+    return await _bookRepository.uploadBook(book);
   }
 }

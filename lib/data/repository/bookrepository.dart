@@ -1,9 +1,7 @@
 import 'package:projectritsbook_native/data/datasources/bookremotedatasource.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 
-abstract class BookRepository {
-  Future<List<Book>> getBooks();
-}
+import '../../domain/repositories/book_repository.dart';
 
 class BookRepositoryImpl implements BookRepository {
   final BookRemoteDataSource _bookRemoteDataSource;
@@ -13,5 +11,10 @@ class BookRepositoryImpl implements BookRepository {
   @override
   Future<List<Book>> getBooks() async {
     return await _bookRemoteDataSource.getBooks();
+  }
+
+  @override
+  Future<Book> uploadBook(Book book) async{
+    return await _bookRemoteDataSource.uploadBook(book);
   }
 }

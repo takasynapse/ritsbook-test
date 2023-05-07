@@ -71,15 +71,6 @@ class _BookItemState extends State<BookItem> {
               :
               //売り切れの商品は画像をグレーにする
               Stack(children: [
-                  const Center(
-                      child: Text(
-                    "売り切れ",
-                    style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 20,
-                      color: Colors.red,
-                    ),
-                  )),
                   Column(
                     children: [
                       SizedBox(
@@ -107,6 +98,15 @@ class _BookItemState extends State<BookItem> {
                       ),
                     ],
                   ),
+                  const Center(
+                      child: Text(
+                    "売り切れ",
+                    style: TextStyle(
+                      fontFamily: "Inter",
+                      fontSize: 20,
+                      color: Colors.red,
+                    ),
+                  )),
                 ])),
     );
   }
