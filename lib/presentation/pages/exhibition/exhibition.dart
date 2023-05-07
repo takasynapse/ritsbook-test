@@ -1,13 +1,10 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
-// import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:gap/gap.dart';
-
-
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
@@ -31,7 +28,7 @@ class _Exhibition extends State<Exhibition> {
   String? seller;
   String? timestamp;
   String? userID;
-  
+
   //ライフサイクルフックにおいてcreated時にユーザがログインしているか検証
   @override
   void initState() {
@@ -46,7 +43,6 @@ class _Exhibition extends State<Exhibition> {
   }
 
   void _uploadImage() async {
-    final ImagePicker _picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 80);
@@ -54,19 +50,14 @@ class _Exhibition extends State<Exhibition> {
     //ファイル名取得
     String filename = basename(file.path);
     FirebaseStorage storage = FirebaseStorage.instance;
-    try {
-      await storage.ref('images/$filename').putFile(file);
-      print("アップロード成功");
-      String uploadedImageURL =
-          await storage.ref().child('images/$filename').getDownloadURL();
-      setState(() {
-        _imageurl = uploadedImageURL;
-      });
-      print(_imageurl);
-    } catch (e) {
-      print(e);
-      print("アップロード失敗");
-    }
+    await storage.ref('images/$filename').putFile(file);
+    print("アップロード成功");
+    String uploadedImageURL =
+        await storage.ref().child('images/$filename').getDownloadURL();
+    setState(() {
+      _imageurl = uploadedImageURL;
+    });
+    print(_imageurl);
   }
 
   Future<void> _showDialog() async {
@@ -157,7 +148,6 @@ class _Exhibition extends State<Exhibition> {
     }).then((value) => _showDialogafterupload());
   }
 
-// ignore: prefer_const_literals_to_create_immutables
   @override
   Widget build(BuildContext context) {
     return Scaffold(
