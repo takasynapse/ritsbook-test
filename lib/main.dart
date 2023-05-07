@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/view/landingafterlogin.dart';
 import 'package:projectritsbook_native/view/exhibition.dart';
-import 'package:projectritsbook_native/view/Profile.dart';
+import 'package:projectritsbook_native/view/profile.dart';
 import 'package:projectritsbook_native/view/notification.dart';
 import 'package:projectritsbook_native/view/tradingitem.dart';
 import 'firebase_options.dart';
