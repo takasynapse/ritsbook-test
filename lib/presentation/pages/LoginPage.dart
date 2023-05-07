@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/presentation/view/LandingPage/landingpage.dart';
-import 'package:projectritsbook_native/presentation/view/resetpassword.dart';
-import 'package:projectritsbook_native/presentation/view/signup.dart';
+import 'package:projectritsbook_native/presentation/pages/LandingPage/landingpage.dart';
+import 'package:projectritsbook_native/presentation/pages/resetpassword.dart';
+import 'package:projectritsbook_native/presentation/pages/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

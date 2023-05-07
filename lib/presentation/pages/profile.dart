@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/presentation/view/editprofile.dart';
-import 'package:projectritsbook_native/presentation/view/tradingitem.dart';
-import 'package:projectritsbook_native/presentation/view/Withdrowal.dart';
-import 'package:projectritsbook_native/presentation/view/signup.dart';
+import 'package:projectritsbook_native/presentation/pages/editprofile.dart';
+import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
+import 'package:projectritsbook_native/presentation/pages/Withdrowal.dart';
+import 'package:projectritsbook_native/presentation/pages/signup.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {

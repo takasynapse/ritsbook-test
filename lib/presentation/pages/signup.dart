@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/presentation/view/LoginPage.dart';
+import 'package:projectritsbook_native/presentation/pages/LoginPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {

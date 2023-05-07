@@ -9,7 +9,7 @@ import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
-import 'package:projectritsbook_native/presentation/view/signup.dart';
+import 'package:projectritsbook_native/presentation/pages/signup.dart';
 
 class Exhibition extends StatefulWidget {
   @override

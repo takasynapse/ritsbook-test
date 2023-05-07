@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/presentation/view/LandingPage/landingpage.dart';
-import 'package:projectritsbook_native/presentation/view/exhibition/exhibition.dart';
-import 'package:projectritsbook_native/presentation/view/profile.dart';
-import 'package:projectritsbook_native/presentation/view/notification.dart';
-import 'package:projectritsbook_native/presentation/view/tradingitem.dart';
+import 'package:projectritsbook_native/presentation/pages/LandingPage/landingpage.dart';
+import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition.dart';
+import 'package:projectritsbook_native/presentation/pages/profile.dart';
+import 'package:projectritsbook_native/presentation/pages/notification.dart';
+import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'firebase_options.dart';
 
 void main() async {
