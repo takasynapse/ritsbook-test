@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 import 'package:projectritsbook_native/domain/usecases/exhibition_book_usecase.dart';
 
+import '../../providers.dart';
 import '../LandingPage/landingpage.dart';
 
 class ExhibitionPageBody extends ConsumerStatefulWidget {
@@ -12,8 +13,6 @@ class ExhibitionPageBody extends ConsumerStatefulWidget {
   _ExhibitionPageBodyState createState() => _ExhibitionPageBodyState();
 }
 
-final uploadBookUseCaseProvider =
-    Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
 
 class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
   _ExhibitionPageBodyState();

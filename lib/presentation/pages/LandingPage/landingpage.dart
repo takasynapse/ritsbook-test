@@ -1,24 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/data/datasources/bookremotedatasource.dart';
-import 'package:projectritsbook_native/data/models/book_model.dart';
-import 'package:projectritsbook_native/data/repository/bookrepository.dart';
-import 'package:projectritsbook_native/domain/usecases/get_book_use_case.dart';
 import 'package:projectritsbook_native/presentation/pages/LandingPage/book_item.dart';
+import 'package:projectritsbook_native/presentation/providers.dart';
 
-final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {
-  return FirebaseFirestore.instance;
-});
-final bookRepositoryProvider = Provider((ref) => BookRepositoryImpl(
-    bookRemoteDataSource: BookRemoteDataSourceImpl(
-        firebaseFirestore: ref.read(firebaseFirestoreProvider))));
-final getAllBooksUseCaseProvider =
-    Provider((ref) => GetAllBooksUseCase(ref.read(bookRepositoryProvider)));
-
-final bookFutureProvider = FutureProvider.autoDispose<List<Book>>((ref) async {
-  return ref.read(getAllBooksUseCaseProvider).execute();
-});
 
 class LandingPage extends ConsumerWidget {
   const LandingPage({Key? key}) : super(key: key);

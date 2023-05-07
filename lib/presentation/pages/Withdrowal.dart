@@ -24,7 +24,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
+            SizedBox(
               width: 300,
               child: Text(info1),
             ),
@@ -33,14 +33,14 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                   await deleteUser();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xffff6b6b),
+                  backgroundColor: const Color(0xffff6b6b),
                 ),
-                child: Text("退会する")),
+                child: const Text("退会する")),
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("戻る"))
+                child: const Text("戻る"))
           ],
         ),
       ),
