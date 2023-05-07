@@ -26,6 +26,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
         condition: data["condition"],
         isSold: data["isSold"],
         documentID: doc.id,
+        price: data["price"],
       );
     }).toList();
     return documentList;

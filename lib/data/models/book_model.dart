@@ -6,6 +6,7 @@ class Book {
   String condition;
   bool isSold;
   String documentID;
+  int price;
 
   Book({
     required this.title,
@@ -15,5 +16,6 @@ class Book {
     required this.condition,
     required this.isSold,
     required this.documentID,
+    required this.price,
   });
 }

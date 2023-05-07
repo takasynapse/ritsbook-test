@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:projectritsbook_native/presentation/view/itemdetail.dart';
 
 class SellingList extends StatefulWidget {
   @override
@@ -56,14 +55,14 @@ class _SellingListState extends State<SellingList> {
                     title: Text(document['item']),
                     leading: Image.network(document['img_url']),
                     subtitle: Text(document['price'].toString()),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ItemDetailPage(document),
-                        ),
-                      );
-                    },
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => (document),
+                    //     ),
+                    //   );
+                    // },
                   ),
                 );
               }).toList(),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/presentation/view/bookdetail.dart'; // new
+import 'package:projectritsbook_native/presentation/view/book_detail/bookdetail.dart'; // new
 
 class PurchasedList extends StatefulWidget {
   @override
@@ -77,15 +77,15 @@ class _PurchasedListState extends State<PurchasedList> {
                           subtitle: Text(snapshot.hasData
                               ? snapshot.data!.get('price').toString()
                               : ''),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    BookDetailPage(snapshot.data!),
-                              ),
-                            );
-                          },
+                          // onTap: () {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           BookDetailPage(snapshot.data!),
+                          //     ),
+                          //   );
+                          // },
                         ),
                       );
                     });
