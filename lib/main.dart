@@ -33,7 +33,7 @@ class _RitsbookState extends State<Ritsbook> {
   static final _screens = [
     LandingPage(),
     NotificationPage(),
-    Exhibition(),
+    ExhibitionPage(),
     TradingItem(),
     Profile()
   ];
