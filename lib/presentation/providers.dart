@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:projectritsbook_native/data/datasources/bookremotedatasource.dart';
-import 'package:projectritsbook_native/data/repository/bookrepository.dart';
+import 'package:projectritsbook_native/data/datasources/book_remote_data_source.dart';
+import 'package:projectritsbook_native/data/repository/book_repository.dart';
 import 'package:projectritsbook_native/domain/usecases/get_book_use_case.dart';
 import 'package:riverpod/riverpod.dart';
 
