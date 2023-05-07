@@ -3,7 +3,7 @@ import 'package:projectritsbook_native/data/models/book_model.dart';
 
 abstract class BookRemoteDataSource {
   Future<List<Book>> getBooks();
-  Future<Book> uploadBook(Book book);
+  Future uploadBook(Book book);
 }
 
 class BookRemoteDataSourceImpl implements BookRemoteDataSource {
@@ -36,7 +36,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
 
   //本の出品メソッド
   @override
-  Future<Book> uploadBook(Book book) async {
+  Future uploadBook(Book book) async {
     final doc = await _firebaseFirestore.collection("textbooks").add({
       "item": book.title,
       "userID": book.author,
@@ -47,6 +47,5 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
       "price": book.price,
       "timestamp": Timestamp.now(),
     });
-    return doc.id as Book;
   }
 }

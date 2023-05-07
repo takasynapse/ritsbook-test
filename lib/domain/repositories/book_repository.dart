@@ -4,5 +4,5 @@ abstract class BookRepository {
   //教科書の一覧取得メソッド
   Future<List<Book>> getBooks();
   //教科書の出品メソッド
-  Future<Book> uploadBook(Book book);
+  Future uploadBook(Book book);
 }
