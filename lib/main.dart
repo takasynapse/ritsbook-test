@@ -23,10 +23,6 @@ class Ritsbook extends StatefulWidget {
   _RitsbookState createState() => _RitsbookState();
 }
 
-final userIdProvider = StreamProvider.autoDispose((ref) {
-  return FirebaseAuth.instance.authStateChanges().map((user) => user?.uid);
-});
-
 class _RitsbookState extends State<Ritsbook> {
   var _navIndex = 0;
   static final _screens = [

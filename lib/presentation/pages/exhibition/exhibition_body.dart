@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 import 'package:projectritsbook_native/domain/usecases/exhibition_book_usecase.dart';
+import 'package:projectritsbook_native/presentation/pages/exhibition/pick_image.dart';
 
 import '../../providers.dart';
 import '../LandingPage/landingpage.dart';
@@ -12,7 +15,6 @@ class ExhibitionPageBody extends ConsumerStatefulWidget {
   @override
   _ExhibitionPageBodyState createState() => _ExhibitionPageBodyState();
 }
-
 
 class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
   _ExhibitionPageBodyState();
@@ -24,6 +26,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
   String? seller;
   String? timestamp;
   String? userID;
+  String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -162,11 +165,15 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                         const BorderSide(width: 2.0, color: Color(0xfff13838)),
                   ),
                   onPressed: () async {
+                    final pickedImage = pickImage();
+                    imageUrl = await ref
+                        .read(uploadBookUseCaseProvider)
+                        .uploadBookImage(pickedImage);
                     final book = Book(
                       title: bookName!,
                       author: seller!,
                       description: description!,
-                      imageUrl: "",
+                      imageUrl: imageUrl!,
                       condition: condition!,
                       isSold: false,
                       documentID: "",

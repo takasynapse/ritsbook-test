@@ -8,6 +8,10 @@ class ExhibitionBookUseCase {
 
   ExhibitionBookUseCase(this._bookRepository);
 
+  Future uploadBookImage(image) async {
+    await _bookRepository.uploadBookImage(image);
+  }
+
   Future uploadBook(Book book) async {
     await _bookRepository.uploadBook(book);
   }
