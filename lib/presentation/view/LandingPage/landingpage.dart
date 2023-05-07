@@ -5,6 +5,7 @@ import 'package:projectritsbook_native/data/datasources/bookremotedatasource.dar
 import 'package:projectritsbook_native/data/models/book_model.dart';
 import 'package:projectritsbook_native/data/repository/userrepository.dart';
 import 'package:projectritsbook_native/domain/usecases/get_book_use_case.dart';
+import 'package:projectritsbook_native/presentation/view/LandingPage/book_item.dart';
 
 final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {
   return FirebaseFirestore.instance;
@@ -19,6 +20,7 @@ final bookFutureProvider = FutureProvider.autoDispose<List<Book>>((ref) async {
 });
 
 class LandingPage extends ConsumerWidget {
+  const LandingPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final futureBooks = ref.watch(bookFutureProvider);
@@ -31,15 +33,15 @@ class LandingPage extends ConsumerWidget {
         ),
         body: futureBooks.when(
           data: (books) {
-            return ListView.builder(
+            return GridView.builder(
                 itemCount: books.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 4,
+                    childAspectRatio: 0.7),
                 itemBuilder: (BuildContext context, int item) {
-                  return ListTile(
-                    title: Text(books[item].title),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                    },
-                  );
+                  return BookItem(book: books[item]);
                 });
           },
           loading: () => const Center(child: CircularProgressIndicator()),
