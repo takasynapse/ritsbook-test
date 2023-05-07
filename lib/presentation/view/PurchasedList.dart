@@ -1,8 +1,8 @@
 //購入した商品一覧のペー
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:projectritsbook_native/presentation/view/itemdetail.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projectritsbook_native/presentation/view/bookdetail.dart'; // new
 
 class PurchasedList extends StatefulWidget {
   @override
@@ -82,7 +82,7 @@ class _PurchasedListState extends State<PurchasedList> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    ItemDetailPage(snapshot.data!),
+                                    BookDetailPage(snapshot.data!),
                               ),
                             );
                           },

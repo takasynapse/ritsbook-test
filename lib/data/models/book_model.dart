@@ -5,6 +5,7 @@ class Book {
   String imageUrl;
   String condition;
   bool isSold;
+  String documentID;
 
   Book({
     required this.title,
@@ -13,5 +14,6 @@ class Book {
     required this.imageUrl,
     required this.condition,
     required this.isSold,
+    required this.documentID,
   });
 }

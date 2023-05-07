@@ -2,20 +2,17 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:gap/gap.dart';
+import 'package:projectritsbook_native/data/models/book_model.dart';
 import 'package:projectritsbook_native/presentation/view/trade.dart';
 import 'package:projectritsbook_native/presentation/view/edititem.dart';
 import 'package:projectritsbook_native/presentation/view/signup.dart';
 
 import 'Chat/chat.dart';
 
-class ItemDetailPage extends StatefulWidget {
-  const ItemDetailPage(this.document);
-  final DocumentSnapshot document;
-  @override
-  _ItemDetailPageState createState() => _ItemDetailPageState();
-}
-
-class _ItemDetailPageState extends State<ItemDetailPage> {
+class BookDetailPage extends StatelessWidget {
+  BookDetailPage({Key? key, required this.selectedBook})
+      : super(key: key);
+  final Book selectedBook;
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
   Future<void> purchase(itemID) async {
     FirebaseAuth.instance.authStateChanges().listen((user) {
@@ -33,11 +30,11 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
         });
         FirebaseFirestore.instance
             .collection('users')
-            .doc(widget.document["userID"])
+            .doc(selectedBook.author)
             .collection('information')
-            .doc(widget.document.id)
+            .doc(selectedBook.documentID)
             .set({
-              'information': "出品中の商品「”${widget.document["item"]}”」が購入されました。",
+              'information': "出品中の商品「”$selectedBook”」が購入されました。",
               'isRead': false,
               'timestamp': DateTime.now(),
             })
@@ -47,7 +44,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
     });
   }
 
-  Future<void> _showDialog() async {
+  Future<void> _showDialog(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -63,11 +60,11 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
             TextButton(
               child: const Text('購入'),
               onPressed: () {
-                purchase(widget.document.id);
+                purchase(selectedBook.documentID);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TradeChatPage(widget.document),
+                      builder: (context) => TradeChatPage(selectedBook.documentID),
                     ));
               },
             ),
@@ -77,7 +74,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
     );
   }
 
-  Future<void> checkAuthDialog() async {
+  Future<void> checkAuthDialog(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
