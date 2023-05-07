@@ -48,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
   ];
   String isSelectedGrade = '選択してください';
 
-  Future MailSignUp(username, faculity, grade) async {
+  Future mailSignUp(username, faculty, grade) async {
     try {
       // バリデーション後のメールアドレスとパスワードでアカウント登録
       await auth.createUserWithEmailAndPassword(
@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
       final user = auth.currentUser;
       FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
         'name': username,
-        'faculity': faculity,
+        'faculty': faculty,
         'grade': grade,
         'email': user?.email
       }).then((value) {});
@@ -203,8 +203,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButton<String>(
                               underline: Container(),
-                              items: facultyList
-                                  .map((String dropDownStringItem) {
+                              items:
+                                  facultyList.map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
@@ -237,8 +237,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButton<String>(
                               underline: Container(),
-                              items:
-                                  gradeList.map((String dropDownStringItem) {
+                              items: gradeList.map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
@@ -263,8 +262,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ElevatedButton(
                           onPressed: () async {
                             //新規登録処理
-                            MailSignUp(username, isSelectedFaculty,
-                                isSelectedGrade);
+                            mailSignUp(
+                                username, isSelectedFaculty, isSelectedGrade);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,

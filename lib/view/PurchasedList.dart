@@ -82,7 +82,7 @@ class _PurchasedListState extends State<PurchasedList> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    ItemdetailPage(snapshot.data!),
+                                    ItemDetailPage(snapshot.data!),
                               ),
                             );
                           },

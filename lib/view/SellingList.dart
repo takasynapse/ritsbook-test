@@ -33,13 +33,13 @@ class _SellingListState extends State<SellingList> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return const Text('Something went wrong');
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return const Text("Loading");
             }
-            if (snapshot.data!.docs.length == 0) {
-              return Text("出品した商品はありません");
+            if (snapshot.data!.docs.isEmpty) {
+              return const Text("出品した商品はありません");
             }
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -60,7 +60,7 @@ class _SellingListState extends State<SellingList> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ItemdetailPage(document),
+                          builder: (context) => ItemDetailPage(document),
                         ),
                       );
                     },

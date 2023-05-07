@@ -7,14 +7,14 @@ import 'package:projectritsbook_native/view/SignUpPage.dart';
 import 'package:projectritsbook_native/view/Trade.dart';
 import 'package:projectritsbook_native/view/EditItem.dart';
 
-class ItemdetailPage extends StatefulWidget {
+class ItemDetailPage extends StatefulWidget {
+  const ItemDetailPage(this.document);
   final DocumentSnapshot document;
-  ItemdetailPage(this.document);
   @override
-  _ItemdetailPageState createState() => _ItemdetailPageState();
+  _ItemDetailPageState createState() => _ItemDetailPageState();
 }
 
-class _ItemdetailPageState extends State<ItemdetailPage> {
+class _ItemDetailPageState extends State<ItemDetailPage> {
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
   Future<void> Purchase(itemID) async {
     FirebaseAuth.instance.authStateChanges().listen((user) {

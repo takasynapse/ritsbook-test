@@ -60,7 +60,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ItemdetailPage(
+                                builder: (context) => ItemDetailPage(
                                   document,
                                 ),
                               ),
@@ -104,9 +104,10 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                                 fontSize: 18,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
-                                                backgroundColor: const Color.fromARGB(
-                                                        255, 107, 103, 103)
-                                                    .withOpacity(0.3),
+                                                backgroundColor:
+                                                    const Color.fromARGB(
+                                                            255, 107, 103, 103)
+                                                        .withOpacity(0.3),
                                               ),
                                             ),
                                           ),
@@ -149,9 +150,10 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                               fontSize: 18,
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w700,
-                                              backgroundColor: const Color.fromARGB(
-                                                      255, 107, 103, 103)
-                                                  .withOpacity(0.3),
+                                              backgroundColor:
+                                                  const Color.fromARGB(
+                                                          255, 107, 103, 103)
+                                                      .withOpacity(0.3),
                                             ),
                                           ),
                                         ),
