@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
-import 'package:projectritsbook_native/view/LandingPage/landingafterlogin.dart';
+import 'package:projectritsbook_native/presentation/view/LandingPage/landingafterlogin.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
@@ -63,7 +63,6 @@ class _EditItemState extends State<EditItem> {
       }
     });
   }
-
 
   void _upload() async {
     final ImagePicker _picker = ImagePicker();
@@ -136,7 +135,7 @@ class _EditItemState extends State<EditItem> {
                 _deleteItem();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LandingPageAfter()),
+                  MaterialPageRoute(builder: (context) => LandingPage()),
                 );
               },
             ),
@@ -182,7 +181,7 @@ class _EditItemState extends State<EditItem> {
             ),
             const Text("商品の状態"),
             DropdownButton(
-              items:  const [
+              items: const [
                 DropdownMenuItem(
                   value: '新品・未使用',
                   child: Text('新品・未使用'),

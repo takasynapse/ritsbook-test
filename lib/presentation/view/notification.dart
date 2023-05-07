@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/view/itemdetail.dart';
+import 'package:projectritsbook_native/presentation/view/itemdetail.dart';
 import 'package:projectritsbook_native/view_model/FetchNotifications.dart';
 
 class NotificationPage extends StatefulWidget {

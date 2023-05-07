@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:projectritsbook_native/view/itemdetail.dart';
+import 'package:projectritsbook_native/presentation/view/itemdetail.dart';
 
 class SellingList extends StatefulWidget {
   @override

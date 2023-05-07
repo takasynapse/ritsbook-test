@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/view/Chat.dart';
-import 'package:projectritsbook_native/view/trade.dart';
-import 'package:projectritsbook_native/view/edititem.dart';
-import 'package:projectritsbook_native/view/signup.dart';
+import 'package:projectritsbook_native/presentation/view/trade.dart';
+import 'package:projectritsbook_native/presentation/view/edititem.dart';
+import 'package:projectritsbook_native/presentation/view/signup.dart';
 
 class ItemDetailPage extends StatefulWidget {
   const ItemDetailPage(this.document);

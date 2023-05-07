@@ -3,21 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/view/LandingPage/landingafterlogin.dart';
-import 'package:projectritsbook_native/view/exhibition.dart';
-import 'package:projectritsbook_native/view/profile.dart';
-import 'package:projectritsbook_native/view/notification.dart';
-import 'package:projectritsbook_native/view/tradingitem.dart';
+import 'package:projectritsbook_native/presentation/view/LandingPage/landingafterlogin.dart';
+import 'package:projectritsbook_native/presentation/view/exhibition.dart';
+import 'package:projectritsbook_native/presentation/view/profile.dart';
+import 'package:projectritsbook_native/presentation/view/notification.dart';
+import 'package:projectritsbook_native/presentation/view/tradingitem.dart';
 import 'firebase_options.dart';
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options:DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ProviderScope(
-    child: Ritsbook()));
+  runApp(const ProviderScope(child: Ritsbook()));
 }
-class Ritsbook extends StatefulWidget{
+
+class Ritsbook extends StatefulWidget {
   const Ritsbook({Key? key}) : super(key: key);
   @override
   _RitsbookState createState() => _RitsbookState();
@@ -25,25 +26,32 @@ class Ritsbook extends StatefulWidget{
 
 final userIdProvider = StreamProvider.autoDispose((ref) {
   return FirebaseAuth.instance.authStateChanges().map((user) => user?.uid);
-} );
+});
 
-class _RitsbookState extends State<Ritsbook>{
+class _RitsbookState extends State<Ritsbook> {
   var _navIndex = 0;
-  static final _screens = [LandingPageAfter(),NotificationPage(),Exhibition(),TradingItem(),Profile()];
-  void _onItemTapped(int index){
+  static final _screens = [
+    LandingPage(),
+    NotificationPage(),
+    Exhibition(),
+    TradingItem(),
+    Profile()
+  ];
+  void _onItemTapped(int index) {
     setState(() {
       _navIndex = index;
     });
   }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: _screens[_navIndex],
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex:_navIndex,
+          currentIndex: _navIndex,
           onTap: _onItemTapped,
-          items:const <BottomNavigationBarItem> [
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'ホーム',

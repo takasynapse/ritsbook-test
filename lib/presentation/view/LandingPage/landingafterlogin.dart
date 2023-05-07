@@ -18,11 +18,10 @@ final bookFutureProvider = FutureProvider.autoDispose<List<Book>>((ref) async {
   return ref.read(getAllBooksUseCaseProvider).execute();
 });
 
-class LandingPageAfter extends ConsumerWidget {
-  late Future<List<Book>> _futureBooks;
+class LandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _futureBooks = ref.watch(bookFutureProvider);
+    final futureBooks = ref.watch(bookFutureProvider);
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0),
@@ -30,7 +29,7 @@ class LandingPageAfter extends ConsumerWidget {
             backgroundColor: Colors.white,
           ),
         ),
-        body: _futureBooks.when(
+        body: futureBooks.when(
           data: (books) {
             return ListView.builder(
                 itemCount: books.length,
@@ -39,12 +38,6 @@ class LandingPageAfter extends ConsumerWidget {
                     title: Text(books[item].title),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => ItemDetailPage(books[item]),
-                      //   ),
-                      // );
                     },
                   );
                 });

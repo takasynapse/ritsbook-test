@@ -20,12 +20,11 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
       final data = doc.data();
       return Book(
         title: data["item"],
-        // author: data["author"],
-        // description: data["description"],
-        // imageUrl: data["imageUrl"],
-        // url: data["url"],
-        // condition: data["condition"],
-        // isSold: data["isSold"],
+        author: data["userID"],
+        description: data["description"],
+        imageUrl: data["img_url"],
+        condition: data["condition"],
+        isSold: data["isSold"],
       );
     }).toList();
     return documentList;

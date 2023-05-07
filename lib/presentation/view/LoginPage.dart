@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/view/LandingPage/landingafterlogin.dart';
-import 'package:projectritsbook_native/view/resetpassword.dart';
-import 'package:projectritsbook_native/view/signup.dart';
+import 'package:projectritsbook_native/presentation/view/LandingPage/landingafterlogin.dart';
+import 'package:projectritsbook_native/presentation/view/resetpassword.dart';
+import 'package:projectritsbook_native/presentation/view/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +28,7 @@ class _LoginPage extends State<LoginPage> {
       //ログインに成功した場合
       await Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
-        return LandingPageAfter();
+        return LandingPage();
       }));
     } catch (e) {
       throw e;
