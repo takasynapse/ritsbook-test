@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/view/Chat.dart';
-import 'package:projectritsbook_native/view/SignUpPage.dart';
-import 'package:projectritsbook_native/view/Trade.dart';
-import 'package:projectritsbook_native/view/EditItem.dart';
+import 'package:projectritsbook_native/view/trade.dart';
+import 'package:projectritsbook_native/view/edititem.dart';
+import 'package:projectritsbook_native/view/signup.dart';
 
 class ItemDetailPage extends StatefulWidget {
   const ItemDetailPage(this.document);
@@ -16,7 +16,7 @@ class ItemDetailPage extends StatefulWidget {
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
-  Future<void> Purchase(itemID) async {
+  Future<void> purchase(itemID) async {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         FirebaseFirestore.instance
@@ -62,7 +62,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
             TextButton(
               child: const Text('購入'),
               onPressed: () {
-                Purchase(widget.document.id);
+                purchase(widget.document.id);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -76,7 +76,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
     );
   }
 
-  Future<void> _showDialogCheckauth() async {
+  Future<void> checkAuthDialog() async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -94,7 +94,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
+                  MaterialPageRoute(builder: (context) => const SignUpPage()),
                 );
               },
             ),
@@ -107,13 +107,13 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         width: 71,
         height: 71,
         child: FloatingActionButton(
           onPressed: () {
-            if (widget.document['isSold'] == true) if (uid == null) {
-              _showDialogCheckauth();
+            if (uid == null) {
+              checkAuthDialog();
             } else {
               _showDialog();
             }
@@ -168,7 +168,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                     bottom: 32,
                   ),
                   child: Text(
-                    '￥' + widget.document["price"].toString(),
+                    '￥${widget.document["price"]}',
                     style: const TextStyle(
                         fontSize: 40, fontWeight: FontWeight.bold),
                   ),
@@ -284,7 +284,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                                     null;
                                   }
                                 } else {
-                                  _showDialogCheckauth();
+                                  checkAuthDialog();
                                 }
                               });
                             },

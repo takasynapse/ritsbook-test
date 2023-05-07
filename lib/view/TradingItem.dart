@@ -1,7 +1,7 @@
 //購入した商品一覧のページ
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/view/PurchasedList.dart';
-import 'package:projectritsbook_native/view/SellingList.dart';
+import 'package:projectritsbook_native/view/sellinglist.dart';
 
 class TradingItem extends StatefulWidget {
   @override

@@ -1,16 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
-import 'package:projectritsbook_native/view/ItemdetailPage.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectritsbook_native/view/itemdetail.dart';
 import 'package:provider/provider.dart';
 
-class LandingPageAfter extends StatefulWidget {
-  @override
-  _LandingPageAfterState createState() => _LandingPageAfterState();
-}
 
-class _LandingPageAfterState extends State<LandingPageAfter> {
-  var documentList = [];
+class LandingPageAfter extends StatelessWidget{
+  LandingPageAfter({Key? key}) : super(key: key);
+  final documentList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,8 +93,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                             widthFactor: 0.5,
                                             alignment: Alignment.bottomLeft,
                                             child: Text(
-                                              '¥ ' +
-                                                  document['price'].toString(),
+                                              '¥ ${document['price']}',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 18,
@@ -164,9 +159,7 @@ class _LandingPageAfterState extends State<LandingPageAfter> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        document['item'] != null
-                                            ? document['item']
-                                            : 'No title',
+                                        document['item'] ?? 'No title',
                                         // 文字が長い場合の折り返し
                                         // overflow: TextOverflow.ellipsis,
                                         maxLines: 2,

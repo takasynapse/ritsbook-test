@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/view/ItemdetailPage.dart';
+import 'package:projectritsbook_native/view/itemdetail.dart';
 import 'package:projectritsbook_native/view_model/FetchNotifications.dart';
 import 'package:provider/provider.dart';
 

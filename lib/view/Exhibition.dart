@@ -7,12 +7,12 @@ import 'package:firebase_auth/firebase_auth.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:gap/gap.dart';
 
-import 'package:projectritsbook_native/view/SignUpPage.dart';
 
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
+import 'package:projectritsbook_native/view/signup.dart';
 
 class Exhibition extends StatefulWidget {
   @override
@@ -132,7 +132,7 @@ class _Exhibition extends State<Exhibition> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
+                  MaterialPageRoute(builder: (context) => const SignUpPage()),
                 );
               },
             ),
