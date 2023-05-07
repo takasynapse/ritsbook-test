@@ -1,20 +1,19 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 
-class BookDetailPage extends StatelessWidget{
-  const BookDetailPage({Key? key, required this.selectedBook}) : super(key: key);
+class BookDetailPage extends StatelessWidget {
+  const BookDetailPage({Key? key, required this.selectedBook})
+      : super(key: key);
   final Book selectedBook;
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Center(
+        title: Center(
           child: Text(
-            "商品詳細",
-            style: TextStyle(
+            selectedBook.title,
+            style: const TextStyle(
               color: Colors.black,
               fontFamily: "Inter",
               fontWeight: FontWeight.w700,

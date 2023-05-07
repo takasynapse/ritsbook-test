@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
-import 'package:projectritsbook_native/presentation/view/book_detail/bookdetail.dart';
-
 import '../book_detail/book_detail_page.dart';
 
 class BookItem extends StatefulWidget {
