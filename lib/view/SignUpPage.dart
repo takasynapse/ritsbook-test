@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gap/gap.dart';
-// import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-// import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
-// import 'package:projectritsbook_native/view/Profile.dart';
-// import 'package:projectritsbook_native/view_model/Signup.dart';
 import 'package:projectritsbook_native/view/LoginPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -19,8 +16,8 @@ class _SignUpPageState extends State<SignUpPage> {
   String infoText = "";
   String username = "";
   final FirebaseAuth auth = FirebaseAuth.instance;
-  String isSelected_faculity = '選択してください';
-  final faculity_list = <String>[
+  String isSelectedFaculty = '選択してください';
+  final facultyList = <String>[
     '選択してください',
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
@@ -42,14 +39,14 @@ class _SignUpPageState extends State<SignUpPage> {
     '薬学部薬学科',
     '薬学部創薬科学科',
   ];
-  final grade_list = <String>[
+  final gradeList = <String>[
     '選択してください',
     '1年',
     '2年',
     '3年',
     '4年',
   ];
-  String isSelected_grade = '選択してください';
+  String isSelectedGrade = '選択してください';
 
   Future MailSignUp(username, faculity, grade) async {
     try {
@@ -58,19 +55,13 @@ class _SignUpPageState extends State<SignUpPage> {
           email: email, password: password);
       // 確認メール送信
       await auth.currentUser?.sendEmailVerification();
-      print('メール送信');
-
       final user = auth.currentUser;
-      print(user);
       FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
         'name': username,
         'faculity': faculity,
         'grade': grade,
         'email': user?.email
       }).then((value) {});
-
-      // ユーザIDをドキュメントIDにして、ユーザ情報を登録する
-
     } catch (e) {
       throw e;
     }
@@ -175,7 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           alignment: Alignment.centerLeft,
                           child: Text("ユーザ名", style: TextStyle(fontSize: 12)),
                         ),
-                        Container(
+                        SizedBox(
                           height: 33,
                           child: TextFormField(
                             style: const TextStyle(fontSize: 12),
@@ -212,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.only(left: 16.0),
                             child: DropdownButton<String>(
                               underline: Container(),
-                              items: faculity_list
+                              items: facultyList
                                   .map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
@@ -223,10 +214,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               //ドロップダウンから選択されたら、isSelected_faculityが更新される
                               onChanged: (String? value) {
                                 setState(() {
-                                  isSelected_faculity = value!;
+                                  isSelectedFaculty = value!;
                                 });
                               },
-                              value: isSelected_faculity,
+                              value: isSelectedFaculty,
                             ),
                           ),
                         ),
@@ -247,7 +238,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: DropdownButton<String>(
                               underline: Container(),
                               items:
-                                  grade_list.map((String dropDownStringItem) {
+                                  gradeList.map((String dropDownStringItem) {
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem,
@@ -256,11 +247,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               }).toList(),
                               onChanged: (String? value) {
                                 setState(() {
-                                  isSelected_grade = value!;
-                                  print(isSelected_grade);
+                                  isSelectedGrade = value!;
                                 });
                               },
-                              value: isSelected_grade,
+                              value: isSelectedGrade,
                             ),
                           ),
                         ),
@@ -273,8 +263,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ElevatedButton(
                           onPressed: () async {
                             //新規登録処理
-                            MailSignUp(username, isSelected_faculity,
-                                isSelected_grade);
+                            MailSignUp(username, isSelectedFaculty,
+                                isSelectedGrade);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -316,67 +306,3 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
-
-// Align(
-//                     child: Text("メールアドレス"),
-//                     alignment: Alignment.centerLeft,
-//                   ),
-//                   TextFormField(
-//                       decoration: InputDecoration(
-//                         border: OutlineInputBorder(),
-//                         hintText: 'メールアドレスを入力',
-//                         fillColor: Colors.white,
-//                         filled: true,
-//                         contentPadding:
-//                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-//                       ),
-//                       onChanged: (String value) {
-//                         setState(() {
-//                           email = value;
-//                         });
-//                       }),
-//                   const SizedBox(height: 8),
-//                   Align(
-//                     child: Text("パスワード"),
-//                     alignment: Alignment.centerLeft,
-//                   ),
-//                   TextFormField(
-//                     decoration: InputDecoration(
-//                       border: OutlineInputBorder(),
-//                       hintText: "パスワードを作成",
-//                       fillColor: Colors.white,
-//                       filled: true,
-//                       contentPadding: EdgeInsets.symmetric(horizontal: 15),
-//                     ),
-//                     // パスワードガ見えないようにする
-//                     obscureText: true,
-//                     onChanged: (String value) {
-//                       setState(() {
-//                         password = value;
-//                       });
-//                     },
-//                   ),
-//                   const SizedBox(height: 8),
-//                   Text(infoText),
-//                   const SizedBox(height: 8),
-//                   const Divider(
-//                     color: Colors.white,
-//                     thickness: 1,
-//                   ),
-//                   const SizedBox(height: 16),
-//                   ElevatedButton(
-//                     onPressed: () async {
-//                       //ログイン処理
-//                       login();
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                       primary: Colors.white,
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(0),
-//                       ),
-//                     ),
-//                     child: const Text(
-//                       "ログインする",
-//                       style: TextStyle(color: Colors.black),
-//                     ),
-//                   )
