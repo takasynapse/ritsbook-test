@@ -33,3 +33,7 @@ final uploadBookUseCaseProvider =
 //UploadBookUseCaseを使って、本を出品
 final uploadImageUseCaseProvider =
     Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
+
+//ログイン状態の確認
+final checkAuthUseCaseProvider =
+    Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));

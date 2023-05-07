@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
+import 'package:projectritsbook_native/presentation/dialogs/check_login_dialog.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/pick_image.dart';
 
 import '../../providers.dart';
@@ -28,6 +29,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    final _auth = ref.watch(bookRepositoryProvider);
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -44,13 +46,19 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                 : Image.asset('images/camera.png'),
             ElevatedButton(
                 onPressed: () async {
-                  final _imageUrl = await pickImage().then((value) async =>
-                      imageUrl = await ref
-                          .read(uploadBookUseCaseProvider)
-                          .uploadBookImage(value));
-                  setState(() {
-                    imageUrl = _imageUrl;
-                  });
+                  if (_auth != null) {
+                    // final uploadedImageUrl = await pickImage().then(
+                    //     (value) async => imageUrl = await ref
+                    //         .read(uploadBookUseCaseProvider)
+                    //         .uploadBookImage(value));
+                    // setState(() {
+                    //   imageUrl = uploadedImageUrl;
+                    // });
+                    print(_auth);
+                    checkLoginDialog(context);
+                  } else {
+                    checkLoginDialog(context);
+                  }
                 },
                 child: const Text('画像を選択')),
             const Text("商品名(必須)",

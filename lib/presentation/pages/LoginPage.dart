@@ -38,6 +38,14 @@ class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // AppBarのタイトルを消す
+        title: const Text(''),
+        // AppBarの背景色を変更する
+        backgroundColor: const Color(0xffff6b6b),
+        // AppBarの下に影をつける
+        elevation: 0,
+      ),
       body: Container(
         color: const Color(0xffff6b6b),
         child: Center(
