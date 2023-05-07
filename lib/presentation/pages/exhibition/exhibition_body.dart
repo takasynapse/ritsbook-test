@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
-import 'package:projectritsbook_native/domain/usecases/exhibition_book_usecase.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/pick_image.dart';
 
 import '../../providers.dart';
-import '../LandingPage/landingpage.dart';
 
 class ExhibitionPageBody extends ConsumerStatefulWidget {
   const ExhibitionPageBody({Key? key}) : super(key: key);
@@ -41,8 +39,20 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                 style: TextStyle(
                   fontSize: 16,
                 )),
-            Image.asset('images/camera.png'),
-            const ElevatedButton(onPressed: null, child: Text('画像を選択')),
+            (imageUrl != null)
+                ? Image.network(imageUrl!)
+                : Image.asset('images/camera.png'),
+            ElevatedButton(
+                onPressed: () async {
+                  final _imageUrl = await pickImage().then((value) async =>
+                      imageUrl = await ref
+                          .read(uploadBookUseCaseProvider)
+                          .uploadBookImage(value));
+                  setState(() {
+                    imageUrl = _imageUrl;
+                  });
+                },
+                child: const Text('画像を選択')),
             const Text("商品名(必須)",
                 style: TextStyle(
                   color: Color(0xff8f8f8f),
@@ -165,10 +175,6 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                         const BorderSide(width: 2.0, color: Color(0xfff13838)),
                   ),
                   onPressed: () async {
-                    final pickedImage = pickImage();
-                    imageUrl = await ref
-                        .read(uploadBookUseCaseProvider)
-                        .uploadBookImage(pickedImage);
                     final book = Book(
                       title: bookName!,
                       author: seller!,

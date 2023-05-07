@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:projectritsbook_native/data/datasources/bookremotedatasource.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 
@@ -19,7 +21,7 @@ class BookRepositoryImpl implements BookRepository {
   }
 
   @override
-  Future<String> uploadBookImage(image) async {
+  Future<String> uploadBookImage(File image) async {
     return await _bookRemoteDataSource.uploadBookImage(image);
   }
 }

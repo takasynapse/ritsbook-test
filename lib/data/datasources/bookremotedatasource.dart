@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 import 'package:path/path.dart';
@@ -6,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 abstract class BookRemoteDataSource {
   Future<List<Book>> getBooks();
   Future uploadBook(Book book);
-  Future<String> uploadBookImage(image);
+  Future<String> uploadBookImage(File image);
 }
 
 class BookRemoteDataSourceImpl implements BookRemoteDataSource {
@@ -55,12 +57,11 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
 
   //本の画像をアップロードするメソッド
   @override
-  Future<String> uploadBookImage(image) async {
+  Future<String> uploadBookImage(File image) async {
     String filename = basename(image.path);
     final ref = _firebaseStorage.ref("images/$filename");
     final uploadTask = ref.putFile(image);
-    final snapshot = await uploadTask.whenComplete(() => null);
-    final downloadUrl = await snapshot.ref.getDownloadURL();
+    final downloadUrl = await (await uploadTask).ref.getDownloadURL();
     return downloadUrl;
   }
 }

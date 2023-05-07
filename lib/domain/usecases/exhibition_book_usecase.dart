@@ -1,4 +1,6 @@
 //本を出品時のユースケース
+import 'dart:io';
+
 import 'package:projectritsbook_native/domain/repositories/book_repository.dart';
 
 import '../../data/models/book_model.dart';
@@ -8,7 +10,7 @@ class ExhibitionBookUseCase {
 
   ExhibitionBookUseCase(this._bookRepository);
 
-  Future uploadBookImage(image) async {
+  Future uploadBookImage(File image) async {
     await _bookRepository.uploadBookImage(image);
   }
 
