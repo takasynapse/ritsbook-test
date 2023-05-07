@@ -13,13 +13,4 @@ class GetAllBooksUseCase {
   }
 }
 
-//本を出品時のユースケース
-class ExhibitionBookUseCase {
-  final BookRepository _bookRepository;
 
-  ExhibitionBookUseCase(this._bookRepository);
-
-  Future<Book> uploadBook(Book book) async {
-    return await _bookRepository.uploadBook(book);
-  }
-}
