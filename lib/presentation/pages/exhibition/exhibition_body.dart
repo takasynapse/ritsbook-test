@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:projectritsbook_native/data/models/book_model.dart';
+import 'package:projectritsbook_native/domain/usecases/exhibition_book_usecase.dart';
 
-class ExhibitionPageBody extends StatefulWidget {
+import '../LandingPage/landingpage.dart';
+
+class ExhibitionPageBody extends ConsumerStatefulWidget {
   const ExhibitionPageBody({Key? key}) : super(key: key);
   @override
   _ExhibitionPageBodyState createState() => _ExhibitionPageBodyState();
 }
 
-class _ExhibitionPageBodyState extends State<ExhibitionPageBody> {
+final uploadBookUseCaseProvider =
+    Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
+
+class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
   _ExhibitionPageBodyState();
   String? condition;
   String? description;
   bool? isSold;
-  String? item;
+  String? bookName;
   int? price;
   String? seller;
   String? timestamp;
   String? userID;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -50,7 +59,7 @@ class _ExhibitionPageBodyState extends State<ExhibitionPageBody> {
                     )),
                 onChanged: (String text) {
                   setState(() {
-                    item = text;
+                    bookName = text;
                   });
                 },
               ),
@@ -131,7 +140,11 @@ class _ExhibitionPageBodyState extends State<ExhibitionPageBody> {
                     labelText: '値段',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                    price = int.parse(value);
+                  });
+                },
               ),
             ),
             const SizedBox(
@@ -149,8 +162,18 @@ class _ExhibitionPageBodyState extends State<ExhibitionPageBody> {
                     side:
                         const BorderSide(width: 2.0, color: Color(0xfff13838)),
                   ),
-                  onPressed: () {
-                    
+                  onPressed: () async {
+                    final book = Book(
+                      title: bookName!,
+                      author: seller!,
+                      description: description!,
+                      imageUrl: "",
+                      condition: condition!,
+                      isSold: false,
+                      documentID: "",
+                      price: price!,
+                    );
+                    await ref.read(uploadBookUseCaseProvider).uploadBook(book);
                   },
                   icon: const Icon(Icons.camera_alt_outlined),
                   label: const Text("出品する"),

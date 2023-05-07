@@ -15,6 +15,6 @@ class BookRepositoryImpl implements BookRepository {
 
   @override
   Future uploadBook(Book book) async {
-    return await _bookRemoteDataSource.uploadBook(book);
+    await _bookRemoteDataSource.uploadBook(book);
   }
 }

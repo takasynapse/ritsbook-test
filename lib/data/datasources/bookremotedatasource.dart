@@ -37,7 +37,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
   //本の出品メソッド
   @override
   Future uploadBook(Book book) async {
-    final doc = await _firebaseFirestore.collection("textbooks").add({
+    await _firebaseFirestore.collection("textbooks").add({
       "item": book.title,
       "userID": book.author,
       "description": book.description,

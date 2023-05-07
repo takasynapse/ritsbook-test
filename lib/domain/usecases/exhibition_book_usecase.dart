@@ -8,7 +8,7 @@ class ExhibitionBookUseCase {
 
   ExhibitionBookUseCase(this._bookRepository);
 
-  Future<Book> uploadBook(Book book) async {
-    return await _bookRepository.uploadBook(book);
+  Future uploadBook(Book book) async {
+    await _bookRepository.uploadBook(book);
   }
 }
