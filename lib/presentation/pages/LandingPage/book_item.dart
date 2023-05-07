@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/data/models/book_model.dart';
 import '../book_detail/book_detail_page.dart';
 
@@ -38,31 +39,59 @@ class _BookItemState extends State<BookItem> {
       child: Card(
           key: _key,
           clipBehavior: Clip.antiAlias,
-          elevation: 3,
+          elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
-          ),
+              // borderRadius: BorderRadius.circular(10),
+              ),
           child: (book.isSold)
               ? Column(
                   children: [
-                    SizedBox(
+                    Container(
+                      color: Colors.grey[300],
                       width: double.infinity,
-                      height: height * 0.7,
+                      height: height * 0.75,
                       child: Image.network(
                         book.imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(
-                      height: height * 0.2,
-                      width: double.infinity,
-                      child: Text(
-                        book.title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: const TextStyle(
-                          fontFamily: "Inter",
-                          fontSize: 14,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0,left:8.0),
+                      child: SizedBox(
+                        height: height * 0.1,
+                        width: double.infinity,
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Text(
+                            book.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontFamily: "Inter",
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left:8.0),
+                      child: SizedBox(
+                        height: height * 0.1,
+                        width: double.infinity,
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Text(
+                            "¥${book.price}",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontFamily: "Inter",
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ),
