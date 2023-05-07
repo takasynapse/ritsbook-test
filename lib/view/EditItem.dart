@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
-import 'package:projectritsbook_native/view/landingafterlogin.dart';
+import 'package:projectritsbook_native/view/LandingPage/landingafterlogin.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';

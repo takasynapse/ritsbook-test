@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:provider/provider.dart';
-
 class TradeChatPage extends StatefulWidget {
   // const ChatPage({super.key});
   final DocumentSnapshot document;
@@ -34,62 +32,62 @@ class _TradeChatPageState extends State<TradeChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer(builder: (context, model, child) {
-        return Column(
-          children: <Widget>[
-            Expanded(
-                child: RefreshIndicator(
-              onRefresh: () async {
-                await _loadData();
-              },
-              child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection("textbooks")
-                      .doc(widget.document.id)
-                      .collection("Tradechat")
-                      // .orderBy("createdAt", descending: true)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    final List<DocumentSnapshot> documents =
-                        snapshot.data!.docs;
-                    // print(documents);
-                    // print(widget.document.id);
-                    return ListView(
-                      reverse: true,
-                      children: documents
-                          .map((document) => ListTile(
-                                title: Text(document['message']),
-                                subtitle: Text(document['userName'] ?? "匿名さん"),
-                                // subtitle: Text(document['createdAt']
-                                // .toDate()
-                                // .toString()),
-                              ))
-                          .toList(),
-                    );
-                  }),
-            )),
-            TextField(
-              controller: _controller,
-              onChanged: (value) => message = value,
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {
-                    _addMessage(message);
-                    _controller.clear();
-                  },
-                ),
-                hintText: 'メッセージを入力してください',
-              ),
-            ),
-          ],
-        );
-      }),
+      // body: Consumer(builder: (context, model, child) {
+      //   return Column(
+      //     children: <Widget>[
+      //       Expanded(
+      //           child: RefreshIndicator(
+      //         onRefresh: () async {
+      //           await _loadData();
+      //         },
+      //         child: StreamBuilder<QuerySnapshot>(
+      //             stream: FirebaseFirestore.instance
+      //                 .collection("textbooks")
+      //                 .doc(widget.document.id)
+      //                 .collection("Tradechat")
+      //                 // .orderBy("createdAt", descending: true)
+      //                 .snapshots(),
+      //             builder: (context, snapshot) {
+      //               if (!snapshot.hasData) {
+      //                 return const Center(
+      //                   child: CircularProgressIndicator(),
+      //                 );
+      //               }
+      //               final List<DocumentSnapshot> documents =
+      //                   snapshot.data!.docs;
+      //               // print(documents);
+      //               // print(widget.document.id);
+      //               return ListView(
+      //                 reverse: true,
+      //                 children: documents
+      //                     .map((document) => ListTile(
+      //                           title: Text(document['message']),
+      //                           subtitle: Text(document['userName'] ?? "匿名さん"),
+      //                           // subtitle: Text(document['createdAt']
+      //                           // .toDate()
+      //                           // .toString()),
+      //                         ))
+      //                     .toList(),
+      //               );
+      //             }),
+      //       )),
+      //       TextField(
+      //         controller: _controller,
+      //         onChanged: (value) => message = value,
+      //         decoration: InputDecoration(
+      //           suffixIcon: IconButton(
+      //             icon: const Icon(Icons.send),
+      //             onPressed: () {
+      //               _addMessage(message);
+      //               _controller.clear();
+      //             },
+      //           ),
+      //           hintText: 'メッセージを入力してください',
+      //         ),
+      //       ),
+      //     ],
+      //   );
+      // }),
     );
   }
 

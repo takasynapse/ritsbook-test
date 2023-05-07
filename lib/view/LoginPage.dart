@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/view/landingafterlogin.dart';
+import 'package:projectritsbook_native/view/LandingPage/landingafterlogin.dart';
 import 'package:projectritsbook_native/view/resetpassword.dart';
 import 'package:projectritsbook_native/view/signup.dart';
 

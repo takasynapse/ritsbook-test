@@ -1,14 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainModel extends ChangeNotifier{
-  List documentList = [];
-  Future<void> fetchBooks()async{
-    final docs = await FirebaseFirestore.instance.collection("textbooks").orderBy("timestamp",descending: true).get();
-    final documentList = docs.docs.
-    map((doc)=>doc)
-    .toList();
-    this.documentList = documentList;
-    notifyListeners();
-  }
-}
