@@ -283,7 +283,7 @@ class _Exhibition extends State<Exhibition> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       height: 50,
                       child: ElevatedButton.icon(

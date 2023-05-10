@@ -2,7 +2,7 @@ import 'package:projectritsbook_native/data/models/book_model.dart';
 
 import '../repositories/book_repository.dart';
 
-//出品中のすべての本を取得
+///出品中のすべての本を取得
 class GetAllBooksUseCase {
   final BookRepository _bookRepository;
 

@@ -17,7 +17,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
 
   BookRemoteDataSourceImpl({required FirebaseFirestore firebaseFireStore})
       : _firebaseFireStore = firebaseFireStore;
-  //本の一覧取得メソッド
+  ///本の一覧取得メソッド
   @override
   Future<List<Book>> getBooks() async {
     final docs = await _firebaseFireStore
@@ -40,7 +40,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
     return documentList;
   }
 
-  //本の出品メソッド
+  ///本の出品メソッド
   @override
   Future uploadBook(Book book) async {
     await _firebaseFireStore.collection("textbooks").add({
@@ -55,7 +55,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
     });
   }
 
-  //本の画像をアップロードするメソッド
+  ///本の画像をアップロードするメソッド
   @override
   Future<String> uploadBookImage(File image) async {
     String filename = basename(image.path);

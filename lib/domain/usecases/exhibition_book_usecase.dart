@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:projectritsbook_native/domain/repositories/book_repository.dart';
 
 import '../../data/models/book_model.dart';
-
+///本のCLUDを行うユースケース
 class ExhibitionBookUseCase {
   final BookRepository _bookRepository;
 
