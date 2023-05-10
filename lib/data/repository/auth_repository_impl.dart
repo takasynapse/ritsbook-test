@@ -6,7 +6,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl({required AuthRemoteDataSource authRemoteDataSource})
       : _authRemoteDataSource = authRemoteDataSource;
-
   @override
   Future login(String email, String password) async {
     return await _authRemoteDataSource.login(email, password);

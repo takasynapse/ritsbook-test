@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+///認証系のリモートデータソースの抽象クラス
 abstract class AuthRemoteDataSource {
   Future login(String email, String password);
   Future signUp(String email, String password);

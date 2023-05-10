@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/presentation/pages/LandingPage/landingpage.dart';
-import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition.dart';
+import 'package:projectritsbook_native/presentation/pages/LandingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
 import 'package:projectritsbook_native/presentation/pages/profile.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
 import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';

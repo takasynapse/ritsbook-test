@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectritsbook_native/core/validation/email_validation.dart';
+import 'package:projectritsbook_native/core/validation/password_validation.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
 
-  @override
-  _LoginPage createState() => _LoginPage();
-}
-
-class _LoginPage extends ConsumerState<LoginPage> {
-  _LoginPage({Key? key});
+class LoginPage extends StatelessWidget {
+  LoginPage({Key? key}) : super(key: key);
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final _mailAddressController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -80,23 +76,21 @@ class _LoginPage extends ConsumerState<LoginPage> {
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                        SizedBox(
-                          height: 33,
-                          child: TextFormField(
-                              style: const TextStyle(fontSize: 12),
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'メールアドレスを入力',
-                                fillColor: Colors.white,
-                                filled: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 15),
-                              ),
-                              onChanged: (String value) {
-                                setState(() {
-                                  // email = value;
-                                });
-                              }),
+                        TextFormField(
+                            style: const TextStyle(fontSize: 12),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'メールアドレスを入力',
+                              fillColor: Colors.white,
+                              filled: true,
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 15),
+                            ),
+                            controller: _mailAddressController,
+                            validator: (value){
+                              return EmailValidator.validate(value!);
+                            },
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
                         const SizedBox(height: 8),
                         const Align(
@@ -107,24 +101,23 @@ class _LoginPage extends ConsumerState<LoginPage> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        SizedBox(
-                          height: 33,
-                          child: TextFormField(
-                            style: const TextStyle(fontSize: 12),
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "パスワードを作成",
-                              fillColor: Colors.white,
-                              filled: true,
-                              contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 15),
-                            ),
-                            // パスワードガ見えないようにする
-                            obscureText: true,
-                            onChanged: (String value) {
-                              setState(() {});
-                            },
+                        TextFormField(
+                          style: const TextStyle(fontSize: 12),
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "パスワードを作成",
+                            fillColor: Colors.white,
+                            filled: true,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                           ),
+                          controller: _passwordController,
+                          validator: (value){
+                            return PassWordValidator.validate(value!);
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          // パスワードが見えないようにする
+                          obscureText: true,
                         ),
                         const SizedBox(height: 8),
                         const Divider(
@@ -134,6 +127,17 @@ class _LoginPage extends ConsumerState<LoginPage> {
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: () async {
+                            if (_key.currentState!.validate()) {
+                              // バリデーションチェックに問題がなければ、ログイン処理を行う
+                              // await context
+                              //     .read(loginUseCaseProvider)
+                              //     .login(_mailAddressController.text,
+                              //         _passwordController.text);
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => HomePage()));
+                            }
                             //ログイン処理
                             // login();
                           },
