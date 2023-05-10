@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/core/validation/email_validation.dart';
 import 'package:projectritsbook_native/core/validation/password_validation.dart';
 import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/presentation/dialogs/success_sign_up_dialog.dart';
 import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_view_model.dart';
 import 'package:projectritsbook_native/presentation/providers.dart';
 
@@ -253,18 +254,28 @@ class SignUpPage extends ConsumerWidget {
                             onPressed: () async {
                               //新規登録処理
                               if (_formKey.currentState!.validate()) {
-                                ref.read(signUpViewModelProvider).signUp(
-                                    _mailAddressController.text,
-                                    _passwordController.text,
-                                    UserData(
-                                      name: _usernameController.text,
-                                      faculty: ref
-                                          .read(selectedItemProvider.notifier)
-                                          .state,
-                                      grade: ref
-                                          .read(selectedGradeProvider.notifier)
-                                          .state,
-                                    ));
+                                ref
+                                    .read(signUpViewModelProvider)
+                                    .signUp(
+                                        _mailAddressController.text,
+                                        _passwordController.text,
+                                        UserData(
+                                          name: _usernameController.text,
+                                          faculty: ref
+                                              .read(
+                                                  selectedItemProvider.notifier)
+                                              .state,
+                                          grade: ref
+                                              .read(selectedGradeProvider
+                                                  .notifier)
+                                              .state,
+                                        ))
+                                    .then(
+                                        (value) => SuccessSignUpDialog(context))
+                                    .catchError((e) =>
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(e.toString()))));
                               }
                             },
                             style: ElevatedButton.styleFrom(

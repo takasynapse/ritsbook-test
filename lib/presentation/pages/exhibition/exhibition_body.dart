@@ -48,7 +48,6 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                   // setState(() {
                   //   imageUrl = uploadedImageUrl;
                   // });
-                  print(auth);
                   checkLoginDialog(context);
                 } else {
                   checkLoginDialog(context);
