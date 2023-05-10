@@ -46,9 +46,11 @@ final checkAuthUseCaseProvider =
 
 ///AuthレポジトリのProvider
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  final authRemoteDataSource = AuthRemoteDataSourceImpl(FirebaseAuth.instance);
+  final authRemoteDataSource = AuthRemoteDataSourceImpl(
+      FirebaseAuth.instance, FirebaseFirestore.instance);
   return AuthRepositoryImpl(authRemoteDataSource: authRemoteDataSource);
 });
+
 ///ログインユースケースのProvider
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
   final authRepository = ref.read(authRepositoryProvider);
