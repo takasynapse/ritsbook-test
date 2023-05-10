@@ -25,7 +25,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = ref.watch(bookRepositoryProvider);
+    final auth = ref.watch(bookRepositoryProvider);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -40,7 +40,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
               : Image.asset('images/camera.png'),
           ElevatedButton(
               onPressed: () async {
-                if (_auth != null) {
+                if (auth != null) {
                   // final uploadedImageUrl = await pickImage().then(
                   //     (value) async => imageUrl = await ref
                   //         .read(uploadBookUseCaseProvider)
@@ -48,7 +48,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                   // setState(() {
                   //   imageUrl = uploadedImageUrl;
                   // });
-                  print(_auth);
+                  print(auth);
                   checkLoginDialog(context);
                 } else {
                   checkLoginDialog(context);

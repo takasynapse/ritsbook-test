@@ -1,39 +1,55 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:projectritsbook_native/data/data_sources/auth_remote_data_sources.dart';
 import 'package:projectritsbook_native/data/data_sources/book_remote_data_source.dart';
+import 'package:projectritsbook_native/data/repository/auth_repository_impl.dart';
 import 'package:projectritsbook_native/data/repository/book_repository_impl.dart';
+import 'package:projectritsbook_native/domain/repositories/auth_repository.dart';
+import 'package:projectritsbook_native/domain/usecases/auth/login_use_case.dart';
 import 'package:projectritsbook_native/domain/usecases/book/get_book_use_case.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../domain/entities/book_model.dart';
 import '../domain/usecases/book/exhibition_book_usecase.dart';
 
-//FireStoreのインスタンスを作成
+///FireStoreのインスタンスを作成
 final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {
   return FirebaseFirestore.instance;
 });
 
-//FireStoreのインスタンスを使って、BookRepositoryを作成
+///FireStoreのインスタンスを使って、BookRepositoryを作成
 final bookRepositoryProvider = Provider((ref) => BookRepositoryImpl(
     bookRemoteDataSource: BookRemoteDataSourceImpl(
         firebaseFireStore: ref.read(firebaseFirestoreProvider))));
 
-//BookRepositoryを使って、GetAllBooksUseCaseを作成
+///BookRepositoryを使って、GetAllBooksUseCaseを作成
 final getAllBooksUseCaseProvider =
     Provider((ref) => GetAllBooksUseCase(ref.read(bookRepositoryProvider)));
 
-//GetAllBooksUseCaseを使って、出品中のすべての本を取得
+///GetAllBooksUseCaseを使って、出品中のすべての本を取得
 final bookFutureProvider = FutureProvider.autoDispose<List<Book>>((ref) async {
   return ref.read(getAllBooksUseCaseProvider).execute();
 });
 
-//BookRepositoryを使って、UploadBookUseCaseを作成
+///BookRepositoryを使って、UploadBookUseCaseを作成
 final uploadBookUseCaseProvider =
     Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
 
-//UploadBookUseCaseを使って、本を出品
+///UploadBookUseCaseを使って、本を出品
 final uploadImageUseCaseProvider =
     Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
 
-//ログイン状態の確認
+///ログイン状態の確認
 final checkAuthUseCaseProvider =
     Provider((ref) => ExhibitionBookUseCase(ref.read(bookRepositoryProvider)));
+
+///AuthレポジトリのProvider
+final authRepositoryProvider = Provider<AuthRepository>((ref) {
+  final authRemoteDataSource = AuthRemoteDataSourceImpl(FirebaseAuth.instance);
+  return AuthRepositoryImpl(authRemoteDataSource: authRemoteDataSource);
+});
+///ログインユースケースのProvider
+final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
+  final authRepository = ref.read(authRepositoryProvider);
+  return LoginUseCase(authRepository);
+});

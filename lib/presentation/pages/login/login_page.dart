@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/core/validation/email_validation.dart';
 import 'package:projectritsbook_native/core/validation/password_validation.dart';
+import 'package:projectritsbook_native/presentation/pages/login/login_view_model.dart';
+import 'package:projectritsbook_native/presentation/providers.dart';
 
-
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   LoginPage({Key? key}) : super(key: key);
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final _mailAddressController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  final loginViewModelProvider = ChangeNotifierProvider<LoginViewModel>((ref) {
+    final loginUseCase = ref.watch(loginUseCaseProvider);
+    return LoginViewModel(loginUseCase);
+  });
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         // AppBarのタイトルを消す
@@ -77,20 +81,20 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
-                            style: const TextStyle(fontSize: 12),
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'メールアドレスを入力',
-                              fillColor: Colors.white,
-                              filled: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 15),
-                            ),
-                            controller: _mailAddressController,
-                            validator: (value){
-                              return EmailValidator.validate(value!);
-                            },
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                          style: const TextStyle(fontSize: 12),
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'メールアドレスを入力',
+                            fillColor: Colors.white,
+                            filled: true,
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 15),
+                          ),
+                          controller: _mailAddressController,
+                          validator: (value) {
+                            return EmailValidator.validate(value!);
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
                         const SizedBox(height: 8),
                         const Align(
@@ -112,7 +116,7 @@ class LoginPage extends StatelessWidget {
                                 EdgeInsets.symmetric(horizontal: 15),
                           ),
                           controller: _passwordController,
-                          validator: (value){
+                          validator: (value) {
                             return PassWordValidator.validate(value!);
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -126,20 +130,14 @@ class LoginPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         ElevatedButton(
-                          onPressed: () async {
+                          onPressed: () {
                             if (_key.currentState!.validate()) {
                               // バリデーションチェックに問題がなければ、ログイン処理を行う
-                              // await context
-                              //     .read(loginUseCaseProvider)
-                              //     .login(_mailAddressController.text,
-                              //         _passwordController.text);
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => HomePage()));
+                              final viewModel =
+                                  ref.read(loginViewModelProvider);
+                              viewModel.login(_mailAddressController.text,
+                                  _passwordController.text);
                             }
-                            //ログイン処理
-                            // login();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -157,7 +155,6 @@ class LoginPage extends StatelessWidget {
                         ),
                         TextButton(
                             onPressed: () {
-                              //ログイン画面に飛ばす処理
                               // Navigator.push(
                               //     context,
                               //     MaterialPageRoute(
@@ -172,10 +169,6 @@ class LoginPage extends StatelessWidget {
                         TextButton(
                             onPressed: () {
                               //ログイン画面に飛ばす処理
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => SignUpPage()));
                             },
                             child: const Text(
                               "新規登録の方はこちら",
