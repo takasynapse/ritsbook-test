@@ -5,10 +5,7 @@ import 'package:projectritsbook_native/presentation/pages/LandingPage/landingpag
 import 'package:projectritsbook_native/presentation/pages/resetpassword.dart';
 import 'package:projectritsbook_native/presentation/pages/signup.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,6 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+  
   String email = '';
   String password = '';
 
@@ -211,27 +209,6 @@ class _LoginPage extends State<LoginPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MainContent extends StatefulWidget {
-  const MainContent({Key? key}) : super(key: key);
-
-  @override
-  _MainContentState createState() => _MainContentState();
-}
-
-class _MainContentState extends State<MainContent> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('成功'),
-      ),
-      body: const Center(
-        child: Text('ログイン成功！'),
       ),
     );
   }
