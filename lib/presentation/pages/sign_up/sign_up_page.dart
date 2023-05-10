@@ -271,7 +271,7 @@ class SignUpPage extends ConsumerWidget {
                                               .state,
                                         ))
                                     .then(
-                                        (value) => SuccessSignUpDialog(context))
+                                        (value) => successSignUpDialog(context))
                                     .catchError((e) =>
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(

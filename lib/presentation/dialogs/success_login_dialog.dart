@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
 
-Future<void> successSignUpDialog(BuildContext context) async {
+Future<void> successLoginDialog(BuildContext context) async {
   await showDialog(
     context: context,
     barrierDismissible: false,
@@ -9,13 +9,12 @@ Future<void> successSignUpDialog(BuildContext context) async {
       return WillPopScope(
         onWillPop: () async => false,
         child: AlertDialog(
-          title: const Text('登録完了'),
-          content: const Text('登録が完了しました。'),
+          title: const Text('ログイン成功'),
           actions: <Widget>[
             TextButton(
               child: const Text('OK'),
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LandingPage())),
+                  MaterialPageRoute(builder: (context) => const LandingPage())),
             ),
           ],
         ),

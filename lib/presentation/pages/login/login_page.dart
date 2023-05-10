@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/core/validation/email_validation.dart';
 import 'package:projectritsbook_native/core/validation/password_validation.dart';
+import 'package:projectritsbook_native/presentation/dialogs/success_login_dialog.dart';
 import 'package:projectritsbook_native/presentation/pages/login/login_view_model.dart';
 import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:projectritsbook_native/presentation/providers.dart';
@@ -136,8 +137,17 @@ class LoginPage extends ConsumerWidget {
                               // バリデーションチェックに問題がなければ、ログイン処理を行う
                               final viewModel =
                                   ref.read(loginViewModelProvider);
-                              viewModel.login(_mailAddressController.text,
-                                  _passwordController.text);
+                              viewModel
+                                  .login(_mailAddressController.text,
+                                      _passwordController.text)
+                                  .then((value) => successLoginDialog(context))
+                                  .catchError((error) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(error.toString()),
+                                  ),
+                                );
+                              });
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -169,7 +179,6 @@ class LoginPage extends ConsumerWidget {
                             )),
                         TextButton(
                             onPressed: () {
-                              //ログイン画面に飛ばす処理
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
