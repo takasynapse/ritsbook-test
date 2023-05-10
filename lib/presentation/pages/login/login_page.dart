@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/core/validation/email_validation.dart';
 import 'package:projectritsbook_native/core/validation/password_validation.dart';
 import 'package:projectritsbook_native/presentation/pages/login/login_view_model.dart';
+import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:projectritsbook_native/presentation/providers.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -169,6 +170,10 @@ class LoginPage extends ConsumerWidget {
                         TextButton(
                             onPressed: () {
                               //ログイン画面に飛ばす処理
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpPage()));
                             },
                             child: const Text(
                               "新規登録の方はこちら",

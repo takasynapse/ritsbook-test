@@ -6,6 +6,7 @@ import 'package:projectritsbook_native/data/repository/auth_repository_impl.dart
 import 'package:projectritsbook_native/data/repository/book_repository_impl.dart';
 import 'package:projectritsbook_native/domain/repositories/auth_repository.dart';
 import 'package:projectritsbook_native/domain/usecases/auth/login_use_case.dart';
+import 'package:projectritsbook_native/domain/usecases/auth/sign_up_use_case.dart';
 import 'package:projectritsbook_native/domain/usecases/book/get_book_use_case.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -52,4 +53,10 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
   final authRepository = ref.read(authRepositoryProvider);
   return LoginUseCase(authRepository);
+});
+
+///新規登録ユースケースのProvider
+final signUpUseCaseProvider = Provider<SignUpUseCase>((ref) {
+  final authRepository = ref.read(authRepositoryProvider);
+  return SignUpUseCase(authRepository);
 });

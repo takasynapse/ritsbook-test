@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/presentation/pages/editprofile.dart';
+import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'package:projectritsbook_native/presentation/pages/Withdrowal.dart';
-import 'package:projectritsbook_native/presentation/pages/signup.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {
@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SignUpPage()),
+                  MaterialPageRoute(builder: (context) => SignUpPage()),
                 );
               },
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/presentation/pages/LoginPage.dart';
+import 'package:projectritsbook_native/presentation/pages/login/login_page.dart';
 
 Future<void> checkLoginDialog(BuildContext context) async {
   await showDialog(
@@ -8,7 +8,7 @@ Future<void> checkLoginDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return WillPopScope(
         onWillPop: () async {
-          MaterialPageRoute(builder: (context) => const LoginPage());
+          MaterialPageRoute(builder: (context) => LoginPage());
           return true;
         },
         child: AlertDialog(
@@ -24,7 +24,7 @@ Future<void> checkLoginDialog(BuildContext context) async {
                   Navigator.of(context).pop();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 }),
           ],
