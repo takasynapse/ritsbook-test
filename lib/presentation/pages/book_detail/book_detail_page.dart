@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/data/models/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model.dart';
 
 class BookDetailPage extends StatelessWidget {
   const BookDetailPage({Key? key, required this.selectedBook})

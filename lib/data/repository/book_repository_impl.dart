@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:projectritsbook_native/data/data_sources/book_remote_data_source.dart';
-import 'package:projectritsbook_native/data/models/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model.dart';
 
 import '../../domain/repositories/book_repository.dart';
 

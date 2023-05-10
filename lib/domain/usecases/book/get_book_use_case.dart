@@ -1,6 +1,6 @@
-import 'package:projectritsbook_native/data/models/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model.dart';
 
-import '../repositories/book_repository.dart';
+import '../../repositories/book_repository.dart';
 
 ///出品中のすべての本を取得
 class GetAllBooksUseCase {

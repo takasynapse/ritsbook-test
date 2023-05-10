@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:projectritsbook_native/data/impl/book_remote_data_data_source_impl.dart';
+import 'package:projectritsbook_native/data/data_sources/book_remote_data_source.dart';
 import 'package:projectritsbook_native/data/repository/book_repository_impl.dart';
-import 'package:projectritsbook_native/domain/usecases/get_book_use_case.dart';
+import 'package:projectritsbook_native/domain/usecases/book/get_book_use_case.dart';
 import 'package:riverpod/riverpod.dart';
 
-import '../data/models/book_model.dart';
-import '../domain/usecases/exhibition_book_usecase.dart';
+import '../domain/entities/book_model.dart';
+import '../domain/usecases/book/exhibition_book_usecase.dart';
 
 //FireStoreのインスタンスを作成
 final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {
