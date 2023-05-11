@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/domain/entities/book_model.dart';
 import 'package:projectritsbook_native/presentation/dialogs/check_login_dialog.dart';
+import 'package:projectritsbook_native/presentation/pages/exhibition/pick_image.dart';
 import '../../providers.dart';
 
 class ExhibitionPageBody extends ConsumerStatefulWidget {
@@ -25,7 +26,7 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = ref.watch(bookRepositoryProvider);
+    final auth = ref.watch(authStateChangesProvider);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -40,18 +41,34 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
               : Image.asset('images/camera.png'),
           ElevatedButton(
               onPressed: () async {
+                //ログイン状態を確認
                 if (auth != null) {
-                  // final uploadedImageUrl = await pickImage().then(
-                  //     (value) async => imageUrl = await ref
-                  //         .read(uploadBookUseCaseProvider)
-                  //         .uploadBookImage(value));
-                  // setState(() {
-                  //   imageUrl = uploadedImageUrl;
-                  // });
-                  checkLoginDialog(context);
+                  //画像を選択
+                  pickImage().then((value) async {
+                    //画像をアップロード
+                    final uploadedImageUrl = await ref
+                        .read(uploadBookUseCaseProvider)
+                        .uploadBookImage(value);
+                    setState(() {
+                      imageUrl = uploadedImageUrl;
+                    });
+                  });
                 } else {
+                  //ログインしていない場合はログイン画面に遷移
                   checkLoginDialog(context);
                 }
+                // if (auth != null){
+                //   pickImage().then((value) async {
+                //     final uploadedImageUrl = await ref
+                //         .read(uploadBookUseCaseProvider)
+                //         .uploadBookImage(value);
+                //     setState(() {
+                //       imageUrl = uploadedImageUrl;
+                //     });
+                //   });
+                // } else {
+                //   checkLoginDialog(context);
+                // }
               },
               child: const Text('画像を選択')),
           const Text(

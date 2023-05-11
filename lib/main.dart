@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
-import 'package:projectritsbook_native/presentation/pages/profile.dart';
+import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
 import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'firebase_options.dart';
@@ -13,6 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const ProviderScope(child: Ritsbook()));
 }
 
@@ -29,7 +30,7 @@ class _RitsbookState extends State<Ritsbook> {
     NotificationPage(),
     const ExhibitionPage(),
     TradingItem(),
-    Profile()
+    MyPage()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -40,6 +41,10 @@ class _RitsbookState extends State<Ritsbook> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color(0xffff6b6b),
+      ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: _screens[_navIndex],
         bottomNavigationBar: BottomNavigationBar(

@@ -26,4 +26,16 @@ class AuthRepositoryImpl implements AuthRepository {
   Future addUser(String uid, UserData userData) async {
     return await _authRemoteDataSource.addUser(uid, userData);
   }
+
+  ///ログイン状態を確認するメソッド
+  @override
+  User? getCurrentUser() {
+    return _authRemoteDataSource.getCurrentUser();
+  }
+
+  ///自身のユーザー情報を取得するメソッド
+  @override
+  Future<UserData> getUserData(String uid) async {
+    return await _authRemoteDataSource.getUserData(uid);
+  }
 }

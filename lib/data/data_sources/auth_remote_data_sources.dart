@@ -7,6 +7,8 @@ abstract class AuthRemoteDataSource {
   Future login(String email, String password);
   Future signUp(String email, String password);
   Future addUser(String uid, UserData userData);
+  User? getCurrentUser();
+  Future<UserData> getUserData(String uid);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -37,5 +39,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future addUser(String uid, UserData userData) async {
     return await _firebaseFirestore.collection('users').doc(uid).set(userData.toMap());
+  }
+
+  ///ログイン状態を確認するメソッド
+  @override
+  User? getCurrentUser() {
+    return _firebaseAuth.currentUser;
+  }
+
+///自身のユーザー情報を取得するメソッド
+  @override
+  Future<UserData> getUserData(String uid) async {
+    final DocumentSnapshot doc = await _firebaseFirestore.collection('users').doc(uid).get();
+    return UserData.fromMap(doc);
   }
 }
