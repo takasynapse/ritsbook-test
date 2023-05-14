@@ -38,7 +38,8 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             const Gap(20),
             const Text("商品情報を入力してください",
                 style: TextStyle(
@@ -47,38 +48,42 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
             (imageUrl != null)
                 ? Image.network(imageUrl!)
                 : Image.asset('images/camera.png'),
+            const Gap(20),
             ElevatedButton(
                 onPressed: () async {
                   //ログイン状態を確認
                   if (auth != null) {
-                    //画像を選択
-                    pickImage().then((value) async {
-                      //画像をアップロード
-                      final uploadedImageUrl = await ref
-                          .read(uploadBookUseCaseProvider)
-                          .uploadBookImage(value);
-                      setState(() {
-                        imageUrl = uploadedImageUrl;
-                      });
-                    });
+                    //   //画像を選択
+                    //   pickImage().then((value) async {
+                    //     //画像をアップロード
+                    //     final uploadedImageUrl = await ref
+                    //         .read(uploadBookUseCaseProvider)
+                    //         .uploadBookImage(value);
+                    //     setState(() {
+                    //       imageUrl = uploadedImageUrl;
+                    //     });
+                    //   });
+                    checkLoginDialog(context);
                   } else {
                     //ログインしていない場合はログイン画面に遷移
                     checkLoginDialog(context);
                   }
-                  // if (auth != null){
-                  //   pickImage().then((value) async {
-                  //     final uploadedImageUrl = await ref
-                  //         .read(uploadBookUseCaseProvider)
-                  //         .uploadBookImage(value);
-                  //     setState(() {
-                  //       imageUrl = uploadedImageUrl;
-                  //     });
-                  //   });
-                  // } else {
-                  //   checkLoginDialog(context);
-                  // }
                 },
+                // if (auth != null){
+                //   pickImage().then((value) async {
+                //     final uploadedImageUrl = await ref
+                //         .read(uploadBookUseCaseProvider)
+                //         .uploadBookImage(value);
+                //     setState(() {
+                //       imageUrl = uploadedImageUrl;
+                //     });
+                //   });
+                // } else {
+                //   checkLoginDialog(context);
+                // }
+
                 child: const Text('画像を選択')),
+            const Gap(20),
             const Text(
               "商品名",
             ),
@@ -183,7 +188,8 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: const Color(0xfff13838),
                     backgroundColor: Colors.white,
-                    side: const BorderSide(width: 2.0, color: Color(0xfff13838)),
+                    side:
+                        const BorderSide(width: 2.0, color: Color(0xfff13838)),
                   ),
                   onPressed: () async {
                     final book = Book(
