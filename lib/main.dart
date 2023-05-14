@@ -7,23 +7,23 @@ import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
 import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'firebase_options.dart';
+import 'color_schemes.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  runApp(const ProviderScope(child: Ritsbook()));
+  runApp(const ProviderScope(child: RitsBook()));
 }
 
-class Ritsbook extends StatefulWidget {
-  const Ritsbook({Key? key}) : super(key: key);
+class RitsBook extends StatefulWidget {
+  const RitsBook({Key? key}) : super(key: key);
   @override
-  _RitsbookState createState() => _RitsbookState();
+  _RitsBookState createState() => _RitsBookState();
 }
 
-class _RitsbookState extends State<Ritsbook> {
+class _RitsBookState extends State<RitsBook> {
   var _navIndex = 0;
   static final _screens = [
     const LandingPage(),
@@ -41,15 +41,16 @@ class _RitsbookState extends State<Ritsbook> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: const Color(0xffff6b6b),
-      ),
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       debugShowCheckedModeBanner: false,
+      
       home: Scaffold(
         body: _screens[_navIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _navIndex,
           onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

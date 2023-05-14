@@ -16,7 +16,7 @@ class _TradingItemState extends State<TradingItem> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             title: const Center(
                 child: Text(
               "商品一覧 ",

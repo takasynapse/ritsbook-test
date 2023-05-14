@@ -18,7 +18,7 @@ class MyPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイページ'),
-        backgroundColor: const Color(0xffff6b6b),
+        // backgroundColor: const Color(0xffff6b6b),
         elevation: 0,
       ),
       body: ListView(

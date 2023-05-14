@@ -11,7 +11,6 @@ class LandingPage extends ConsumerWidget {
     return Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
-          backgroundColor: Colors.grey,
           title: const Text(
             '商品一覧',
             style: TextStyle(color: Colors.black),

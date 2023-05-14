@@ -16,7 +16,6 @@ class Profile extends StatefulWidget {
 String username = '未設定';
 String qualifity = '未設定';
 String grade = '未設定';
-
 Object? currentUser = '';
 
 class _ProfileState extends State<Profile> {
@@ -74,7 +73,7 @@ class _ProfileState extends State<Profile> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
         ),
       ),
       body: ListView(

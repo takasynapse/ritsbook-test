@@ -16,8 +16,8 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ChatPage extends StatefulWidget {
-  final DocumentSnapshot document;
-  ChatPage(this.document);
+  final String documentId;
+  ChatPage(this.documentId);
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -39,7 +39,7 @@ class _ChatPageState extends State<ChatPage> {
   void _getMessages() async {
     final getData = await FirebaseFirestore.instance
         .collection("textbooks")
-        .doc(widget.document.id)
+        .doc(widget.documentId)
         .collection("chat")
         .get();
 
@@ -65,7 +65,7 @@ class _ChatPageState extends State<ChatPage> {
     });
     await FirebaseFirestore.instance
         .collection("textbooks")
-        .doc(widget.document.id)
+        .doc(widget.documentId)
         .collection("chat")
         .doc()
         .set({
@@ -79,24 +79,22 @@ class _ChatPageState extends State<ChatPage> {
         })
         .then((value) => print("success"))
         .catchError((error) {
-          print('-aaaaaaaaaaa');
-          print(error);
         });
     // 通知処理
-    if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(widget.document["userID"])
-          .collection('information')
-          .doc(widget.document.id)
-          .set({
-            'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
-            'isRead': false,
-            'timestamp': DateTime.now(),
-          })
-          .then((value) => print("success"))
-          .catchError((error) => print(error));
-    }
+    // if (FirebaseAuth.instance.currentUser!.uid != widget.['userID']) {
+    //   await FirebaseFirestore.instance
+    //       .collection('users')
+    //       .doc(widget.document["userID"])
+    //       .collection('information')
+    //       .doc(widget.document.id)
+    //       .set({
+    //         'information': "出品中の商品「”${widget.document["item"]}”」にメッセージを送信しました。",
+    //         'isRead': false,
+    //         'timestamp': DateTime.now(),
+    //       })
+    //       .then((value) => print("success"))
+    //       .catchError((error) => print(error));
+    // }
   }
 
   void _handleSendPressed(types.PartialText message) {

@@ -10,7 +10,7 @@ class ExhibitionPage extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0),
           child: AppBar(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
           ),
         ),
         body: const ExhibitionPageBody());

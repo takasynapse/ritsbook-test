@@ -151,7 +151,7 @@ class _EditItemState extends State<EditItem> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
         ),
       ),
       body: ListView(

@@ -154,7 +154,7 @@ class _Exhibition extends State<Exhibition> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
         ),
       ),
       body: SingleChildScrollView(

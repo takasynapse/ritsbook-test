@@ -56,7 +56,7 @@ class _BookItemState extends State<BookItem> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.0,left:8.0),
+                      padding: const EdgeInsets.only(top: 4.0, left: 8.0),
                       child: SizedBox(
                         height: height * 0.1,
                         width: double.infinity,
@@ -76,7 +76,7 @@ class _BookItemState extends State<BookItem> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: SizedBox(
                         height: height * 0.1,
                         width: double.infinity,
@@ -104,7 +104,7 @@ class _BookItemState extends State<BookItem> {
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        height: height * 0.7,
+                        height: height * 0.75,
                         child: Image.network(
                           book.imageUrl,
                           fit: BoxFit.cover,
@@ -112,28 +112,56 @@ class _BookItemState extends State<BookItem> {
                           colorBlendMode: BlendMode.saturation,
                         ),
                       ),
-                      SizedBox(
-                        height: height * 0.2,
-                        width: double.infinity,
-                        child: Text(
-                          book.title,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: const TextStyle(
-                            fontFamily: "Inter",
-                            fontSize: 14,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, left: 8.0),
+                        child: SizedBox(
+                          height: height * 0.1,
+                          width: double.infinity,
+                          child: Text(
+                            book.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontFamily: "Inter",
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: SizedBox(
+                          height: height * 0.1,
+                          width: double.infinity,
+                          child: Opacity(
+                            opacity: 0.8,
+                            child: Text(
+                              "¥${book.price}",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: const TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                   const Center(
-                      child: Text(
-                    "売り切れ",
-                    style: TextStyle(
-                      fontFamily: "Inter",
-                      fontSize: 20,
-                      color: Colors.red,
+                      child: Padding(
+                    padding: EdgeInsets.only(bottom: 40.0),
+                    child: Text(
+                      "SOLD",
+                      style: TextStyle(
+                        fontFamily: "Inter",
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   )),
                 ])),
