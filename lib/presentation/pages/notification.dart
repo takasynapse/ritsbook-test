@@ -19,6 +19,20 @@ Future getBook(itemID) async {
 class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "通知",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      body: const Center(child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("出品された商品が購入された際や、\nコメントがつくと通知が送られます"),
+      ))
+    );
+  }
+}
+
         // body: ChangeNotifierProvider<MainModel>(
         //     create: (_) => MainModel()..fetchNotifications(),
         //     child: Scaffold(
@@ -50,6 +64,3 @@ class _NotificationPageState extends State<NotificationPage> {
         //                 );
         //               });
         //         }))));
-    );
-  }
-}

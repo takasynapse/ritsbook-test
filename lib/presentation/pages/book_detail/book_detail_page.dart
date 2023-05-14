@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/domain/entities/book_model.dart';
 import 'package:projectritsbook_native/presentation/pages/Chat/chat.dart';
 
@@ -37,10 +38,11 @@ class BookDetailPage extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            selectedBook.price.toString(),
+            "¥${selectedBook.price}",
             style: const TextStyle(
               color: Colors.black,
               fontFamily: "Inter",
+              fontSize: 24,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -69,6 +71,7 @@ class BookDetailPage extends StatelessWidget {
             ),
           ),
         ),
+        ListTile(),
         ElevatedButton(onPressed: (){
           Navigator.push(context, 
           MaterialPageRoute(builder: (context) =>  ChatPage(selectedBook.documentID))

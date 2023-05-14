@@ -19,11 +19,11 @@ class _TradingItemState extends State<TradingItem> {
             // backgroundColor: Colors.white,
             title: const Center(
                 child: Text(
-              "商品一覧 ",
+              "取引一覧",
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: "Inter",
-                fontWeight: FontWeight.w700,
+                // fontWeight: FontWeight.w700,
               ),
             )),
             bottom: const TabBar(
