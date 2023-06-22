@@ -4,7 +4,7 @@ part 'book_model.freezed.dart';
 part 'book_model.g.dart';
 
 @freezed
-class Book {
+class Book with _$Book {
   const factory Book({
     required String title,
     required String author,
