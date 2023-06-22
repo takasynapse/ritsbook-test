@@ -38,7 +38,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ///FireStoreにユーザー情報を登録するメソッド
   @override
   Future addUser(String uid, UserData userData) async {
-    return await _firebaseFirestore.collection('users').doc(uid).set(userData.toMap());
+    return await _firebaseFirestore.collection('users').doc(uid).set(userData.toJson());
   }
 
   ///ログイン状態を確認するメソッド
@@ -51,6 +51,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserData> getUserData(String uid) async {
     final DocumentSnapshot doc = await _firebaseFirestore.collection('users').doc(uid).get();
-    return UserData.fromMap(doc);
+    final data = doc.data() as Map<String, dynamic>;
+    return UserData.fromJson(data);
   }
 }
