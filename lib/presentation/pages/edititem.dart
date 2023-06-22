@@ -12,30 +12,30 @@ import 'package:projectritsbook_native/presentation/pages/landingPage/landing_pa
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
 
-class EditItema extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('上記の内容で出品しますか？'),
-      actions: <Widget>[
-        GestureDetector(
-          child: const Text('はい'),
-          onTap: () {},
-        )
-      ],
-    );
-  }
-}
+// class EditItema extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return AlertDialog(
+//       title: const Text('上記の内容で出品しますか？'),
+//       actions: <Widget>[
+//         GestureDetector(
+//           child: const Text('はい'),
+//           onTap: () {},
+//         )
+//       ],
+//     );
+//   }
+// }
 // ignore_for_file: avoid_print
 
 class EditItem extends StatefulWidget {
   final DocumentSnapshot document;
-  EditItem(this.document);
+  const EditItem(this.document, {super.key});
   @override
-  _EditItemState createState() => _EditItemState();
+  EditItemState createState() => EditItemState();
 }
 
-class _EditItemState extends State<EditItem> {
+class EditItemState extends State<EditItem> {
   //null許容でとりあえず教科書の状態の変数宣言
   late String? condition = widget.document["condition"];
   late String? description = widget.document["description"];
@@ -151,8 +151,8 @@ class _EditItemState extends State<EditItem> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
-          // backgroundColor: Colors.white,
-        ),
+            // backgroundColor: Colors.white,
+            ),
       ),
       body: ListView(
           // ignore: prefer_const_literals_to_create_immutables

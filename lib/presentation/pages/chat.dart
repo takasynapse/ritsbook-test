@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatPage extends StatefulWidget {
   final DocumentSnapshot document;
-  ChatPage(this.document);
+  const ChatPage(this.document, {super.key});
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -12,10 +12,10 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   String message = '';
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
-  final _controller = TextEditingController();
+  final controller = TextEditingController();
 
-  Future _loadData() async {
-    await Future.delayed(Duration(seconds: 1));
+  Future loadData() async {
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
@@ -91,18 +91,18 @@ class _ChatPageState extends State<ChatPage> {
   }
 
 // ignore_for_file: avoid_print
-  void _addMessage(String message) async {
+  void addMessage(String message) async {
     await FirebaseFirestore.instance
         .collection('textbooks')
         .doc(widget.document.id)
         .collection('chat')
         .doc()
         .set({
-          'uid': FirebaseAuth.instance.currentUser!.uid,
-          'message': message,
-          'created': DateTime.now(),
-          'userName': FirebaseAuth.instance.currentUser!.displayName,
-        });
+      'uid': FirebaseAuth.instance.currentUser!.uid,
+      'message': message,
+      'created': DateTime.now(),
+      'userName': FirebaseAuth.instance.currentUser!.displayName,
+    });
 
     if (FirebaseAuth.instance.currentUser!.uid != widget.document['userID']) {
       await FirebaseFirestore.instance

@@ -20,10 +20,10 @@ void main() async {
 class RitsBook extends StatefulWidget {
   const RitsBook({Key? key}) : super(key: key);
   @override
-  _RitsBookState createState() => _RitsBookState();
+  RitsBookState createState() => RitsBookState();
 }
 
-class _RitsBookState extends State<RitsBook> {
+class RitsBookState extends State<RitsBook> {
   var _navIndex = 0;
   static final _screens = [
     const LandingPage(),

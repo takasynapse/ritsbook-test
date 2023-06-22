@@ -9,11 +9,10 @@ import '../../providers.dart';
 class ExhibitionPageBody extends ConsumerStatefulWidget {
   const ExhibitionPageBody({Key? key}) : super(key: key);
   @override
-  _ExhibitionPageBodyState createState() => _ExhibitionPageBodyState();
+  ExhibitionPageBodyState createState() => ExhibitionPageBodyState();
 }
 
-class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
-  _ExhibitionPageBodyState();
+class ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
   String? condition;
   String? description;
   bool? isSold;
@@ -52,18 +51,16 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
             ElevatedButton(
                 onPressed: () async {
                   //ログイン状態を確認
-                  if (auth != null) {
-                    //   //画像を選択
-                    //   pickImage().then((value) async {
-                    //     //画像をアップロード
-                    //     final uploadedImageUrl = await ref
-                    //         .read(uploadBookUseCaseProvider)
-                    //         .uploadBookImage(value);
-                    //     setState(() {
-                    //       imageUrl = uploadedImageUrl;
-                    //     });
-                    //   });
-                    checkLoginDialog(context);
+                  if (auth.value != null) {
+                    //ログインしている場合は画像を選択
+                    pickImage().then((value) async {
+                      final uploadedImageUrl = await ref
+                          .read(uploadBookUseCaseProvider)
+                          .uploadBookImage(value);
+                      setState(() {
+                        imageUrl = uploadedImageUrl;
+                      });
+                    });
                   } else {
                     //ログインしていない場合はログイン画面に遷移
                     checkLoginDialog(context);
@@ -81,7 +78,6 @@ class _ExhibitionPageBodyState extends ConsumerState<ExhibitionPageBody> {
                 // } else {
                 //   checkLoginDialog(context);
                 // }
-
                 child: const Text('画像を選択')),
             const Gap(20),
             const Text(

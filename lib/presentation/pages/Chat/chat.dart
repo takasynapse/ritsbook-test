@@ -3,7 +3,7 @@ import "package:cloud_firestore/cloud_firestore.dart";
 
 class ChatPage extends StatelessWidget {
   final String documentId;
-  ChatPage(this.documentId);
+  const ChatPage(this.documentId, {super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

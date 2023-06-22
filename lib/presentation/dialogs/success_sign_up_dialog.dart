@@ -14,8 +14,8 @@ Future<void> successSignUpDialog(BuildContext context) async {
           actions: <Widget>[
             TextButton(
               child: const Text('OK'),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LandingPage())),
+              onPressed: () => Navigator.pop(context,
+                  MaterialPageRoute(builder: (context) => const LandingPage())),
             ),
           ],
         ),

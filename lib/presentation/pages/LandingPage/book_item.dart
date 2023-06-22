@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/domain/entities/book_model.dart';
 import '../book_detail/book_detail_page.dart';
 
 class BookItem extends StatefulWidget {
-  BookItem({Key? key, required this.book}) : super(key: key);
+  const BookItem({Key? key, required this.book}) : super(key: key);
   final Book book;
   @override
-  _BookItemState createState() => _BookItemState(book: book);
+  BookItemState createState() => BookItemState(book: book);
 }
 
-class _BookItemState extends State<BookItem> {
-  _BookItemState({Key? key, required this.book});
+class BookItemState extends State<BookItem> {
+  BookItemState({Key? key, required this.book});
   final Book book;
   final _key = GlobalKey();
   double height = 0;
@@ -40,7 +39,7 @@ class _BookItemState extends State<BookItem> {
           key: _key,
           clipBehavior: Clip.antiAlias,
           elevation: 0,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               // borderRadius: BorderRadius.circular(10),
               ),
           child: (book.isSold)

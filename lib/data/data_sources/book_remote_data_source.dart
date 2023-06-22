@@ -60,7 +60,7 @@ class BookRemoteDataSourceImpl implements BookRemoteDataSource {
   @override
   Future<String> uploadBookImage(File image) async {
     final fileName = basename(image.path);
-    final ref = _firebaseStorage.ref().child("books/$fileName");
+    final ref = _firebaseStorage.ref("images/$fileName");
     await ref.putFile(image);
     final downloadUrl = await ref.getDownloadURL();
     return downloadUrl;

@@ -4,11 +4,13 @@ import 'package:projectritsbook_native/presentation/pages/PurchasedList.dart';
 import 'package:projectritsbook_native/presentation/pages/sellinglist.dart';
 
 class TradingItem extends StatefulWidget {
+  const TradingItem({super.key});
+
   @override
-  _TradingItemState createState() => _TradingItemState();
+  TradingItemState createState() => TradingItemState();
 }
 
-class _TradingItemState extends State<TradingItem> {
+class TradingItemState extends State<TradingItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

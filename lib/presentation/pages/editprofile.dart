@@ -4,19 +4,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
+  EditProfilePageState createState() => EditProfilePageState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class EditProfilePageState extends State<EditProfilePage> {
   Future<void> _showDialogAfterEditingProfile() async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('プロフィール編集が完了しました。\n しばらくすると更新されます。'),
+          title: const Text('プロフィール編集が完了しました。\n しばらくすると更新されます。'),
           actions: [
             TextButton(
-              child: Text('閉じる'),
+              child: const Text('閉じる'),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -36,7 +36,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           'grade': grade,
           'email': user.email
         }).then((value) {
-          print("ダイアログ呼びだし");
           _showDialogAfterEditingProfile();
         });
       }
@@ -67,13 +66,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
     '薬学部薬学科',
     '薬学部創薬科学科',
   ];
-  final grade_list = <String>[
+  final gradeList = <String>[
     '1年',
     '2年',
     '3年',
     '4年',
   ];
-  String isSelected_grade = '1年';
+  String isSelectedGrade = '1年';
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +80,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         body: Center(
             child: ListView(
       children: <Widget>[
-        Text('ユーザ名'),
+        const Text('ユーザ名'),
         TextField(
           onChanged: (value) {
             setState(() {
@@ -90,8 +89,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
             });
           },
         ),
-        Text('学部学科（選択してください）'),
-        Container(
+        const Text('学部学科（選択してください）'),
+        SizedBox(
           height: 50.0,
           child: DropdownButton<String>(
             items: faculity_list.map((String dropDownStringItem) {
@@ -109,11 +108,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             value: isSelected_faculity,
           ),
         ),
-        Text('学年(選択してください)'),
+        const Text('学年(選択してください)'),
         Container(
           height: 50.0,
           child: DropdownButton<String>(
-            items: grade_list.map((String dropDownStringItem) {
+            items: gradeList.map((String dropDownStringItem) {
               return DropdownMenuItem<String>(
                 value: dropDownStringItem,
                 child: Text(dropDownStringItem),
@@ -121,18 +120,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
             }).toList(),
             onChanged: (String? value) {
               setState(() {
-                isSelected_grade = value!;
-                print(isSelected_grade);
+                isSelectedGrade = value!;
+                print(isSelectedGrade);
               });
             },
-            value: isSelected_grade,
+            value: isSelectedGrade,
           ),
         ),
         ElevatedButton(
           onPressed: () {
-            Edit_profile(username, isSelected_faculity, isSelected_grade);
+            Edit_profile(username, isSelected_faculity, isSelectedGrade);
           },
-          child: Text('編集を完了する'),
+          child: const Text('編集を完了する'),
         )
       ],
     )));

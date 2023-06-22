@@ -35,7 +35,7 @@ class _Exhibition extends State<Exhibition> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
+        // print('User is currently signed out!');
       } else {
         userID = user.uid;
       }
@@ -51,13 +51,13 @@ class _Exhibition extends State<Exhibition> {
     String filename = basename(file.path);
     FirebaseStorage storage = FirebaseStorage.instance;
     await storage.ref('images/$filename').putFile(file);
-    print("アップロード成功");
+    // print("アップロード成功");
     String uploadedImageURL =
         await storage.ref().child('images/$filename').getDownloadURL();
     setState(() {
       _imageurl = uploadedImageURL;
     });
-    print(_imageurl);
+    // print(_imageurl);
   }
 
   Future<void> _showDialog() async {
