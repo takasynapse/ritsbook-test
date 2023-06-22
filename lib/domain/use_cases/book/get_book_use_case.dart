@@ -1,4 +1,4 @@
-import 'package:projectritsbook_native/domain/entities/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 
 import '../../repositories/book_repository.dart';
 

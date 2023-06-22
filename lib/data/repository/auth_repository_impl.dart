@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projectritsbook_native/data/data_sources/auth_remote_data_sources.dart';
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 import 'package:projectritsbook_native/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

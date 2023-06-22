@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 
 ///認証系のリモートデータソースの抽象クラス
 abstract class AuthRemoteDataSource {

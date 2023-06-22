@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:projectritsbook_native/domain/entities/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 
 abstract class BookRepository {
   ///教科書の一覧取得メソッド

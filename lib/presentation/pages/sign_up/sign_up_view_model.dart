@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 import 'package:projectritsbook_native/domain/use_cases/auth/sign_up_use_case.dart';
 
 class SignUpViewModel extends ChangeNotifier{

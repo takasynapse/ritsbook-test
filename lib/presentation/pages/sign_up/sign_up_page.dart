@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/core/validation/email_validation.dart';
 import 'package:projectritsbook_native/core/validation/password_validation.dart';
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 import 'package:projectritsbook_native/presentation/dialogs/success_sign_up_dialog.dart';
 import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_view_model.dart';
 import 'package:projectritsbook_native/presentation/providers.dart';

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 
 abstract class AuthRepository {
   ///ログイン(レポジトリ)

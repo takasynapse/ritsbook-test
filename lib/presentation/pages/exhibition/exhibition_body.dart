@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/domain/entities/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 import 'package:projectritsbook_native/presentation/dialogs/check_login_dialog.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/pick_image.dart';
 import '../../providers.dart';

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:projectritsbook_native/domain/entities/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 // ignore: depend_on_referenced_packages

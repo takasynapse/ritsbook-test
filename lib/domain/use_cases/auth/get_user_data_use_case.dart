@@ -1,4 +1,4 @@
-import 'package:projectritsbook_native/domain/entities/user_model.dart';
+import 'package:projectritsbook_native/domain/entities/user_model/user_model.dart';
 import 'package:projectritsbook_native/domain/repositories/auth_repository.dart';
 
 class GetUserDataUseCase {
