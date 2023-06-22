@@ -1,107 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:projectritsbook_native/view/LandingAfterLogin.dart';
-import 'package:projectritsbook_native/view/Exhibition.dart';
-import 'package:projectritsbook_native/view/Profile.dart';
-import 'package:projectritsbook_native/view/Notifications.dart';
-import 'package:projectritsbook_native/view/TradingItem.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
+import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
+import 'package:projectritsbook_native/presentation/pages/notification.dart';
+import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'firebase_options.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter/rendering.dart';
+import 'color_schemes.g.dart';
 
-
-// final constProvider =StateProvider((ref)=>0);
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options:DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-  // runApp(const MyApp(const ProviderScope(child:MyApp())));
-  // WidgetsFlutterBinding.ensureInitialized();
-
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-  NotificationSettings settings = await messaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-  // print('User granted permission: ${settings.authorizationStatus}');
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-  // print('Got a message whilst in the foreground!');
-  // print('Message data: ${message.data}');
-
-  if (message.notification != null) {
-    // print('Message also contained a notification: ${message.notification}');
-  }
-  });
-
-
-  // debugPaintSizeEnabled=true;
-  runApp(
-    MaterialApp(
-      // debug削除
-      debugShowCheckedModeBanner: false,
-      home:MyApp(),
-      )
-      );
+  runApp(const ProviderScope(child: RitsBook()));
 }
 
-
-class MyApp extends StatefulWidget {
+class RitsBook extends StatefulWidget {
+  const RitsBook({Key? key}) : super(key: key);
   @override
-  State<StatefulWidget>createState(){
-    return _State();
-  }
+  RitsBookState createState() => RitsBookState();
 }
 
-class _State extends State<MyApp>{
+class RitsBookState extends State<RitsBook> {
   var _navIndex = 0;
-  var _label = '';
-  // var _titles = [LandingPageAfter(),Exhibition(),Profile(),NotificationPage(),TradingItem()];
-     final _titles = [LandingPageAfter(),NotificationPage(),Exhibition(),TradingItem(),Profile()];
-  void _onItemTapped(int index){
+  static final _screens = [
+    const LandingPage(),
+    NotificationPage(),
+    const ExhibitionPage(),
+    TradingItem(),
+    MyPage()
+  ];
+  void _onItemTapped(int index) {
     setState(() {
       _navIndex = index;
     });
   }
+
   @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Ritsbook'),
-      // ),
-      body: _titles[_navIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex:_navIndex,
-        onTap: _onItemTapped,
-        items:const <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'ホーム',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'お知らせ',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt_outlined),
-            label: '出品',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.compare_arrows_outlined),
-            label: '取引',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'マイページ',
-          ),
-        ],
-    type: BottomNavigationBarType.fixed,
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      debugShowCheckedModeBanner: false,
+      
+      home: Scaffold(
+        body: _screens[_navIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _navIndex,
+          onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'ホーム',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: 'お知らせ',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.camera_alt_outlined),
+              label: '出品',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.compare_arrows_outlined),
+              label: '取引',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'マイページ',
+            ),
+          ],
+        ),
       ),
     );
   }
