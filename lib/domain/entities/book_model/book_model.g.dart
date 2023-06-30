@@ -6,6 +6,7 @@ part of 'book_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       title: json['title'] as String,
       author: json['author'] as String,
@@ -17,6 +18,7 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       price: json['price'] as int,
     );
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'title': instance.title,
       'author': instance.author,

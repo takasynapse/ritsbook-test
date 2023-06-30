@@ -58,7 +58,7 @@ class SignUpPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Form(
         key: _formKey,
@@ -200,7 +200,6 @@ class SignUpPage extends ConsumerWidget {
                                         style: const TextStyle(fontSize: 12)),
                                   );
                                 }).toList(),
-                                //ドロップダウンから選択されたら、isSelected_faculityが更新される
                                 value: ref.watch(selectedItemProvider),
                                 onChanged: (String? newValue) {
                                   ref

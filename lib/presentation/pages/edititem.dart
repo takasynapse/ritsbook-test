@@ -6,13 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart'; // new // new
 import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
 
-// class EditItema extends StatelessWidget {
+// class EditItem extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return AlertDialog(
@@ -51,17 +52,7 @@ class EditItemState extends State<EditItem> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-        print('userinfo:');
-        print(user);
-        // final Object userinfo = user;
-        userID = user.uid;
-      }
-    });
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {});
   }
 
   void _upload() async {
@@ -135,7 +126,7 @@ class EditItemState extends State<EditItem> {
                 _deleteItem();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LandingPage()),
+                  MaterialPageRoute(builder: (context) => const LandingPage()),
                 );
               },
             ),

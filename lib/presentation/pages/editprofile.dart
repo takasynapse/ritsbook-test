@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({super.key});
+
   @override
   EditProfilePageState createState() => EditProfilePageState();
 }
@@ -27,12 +29,12 @@ class EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Future<void> Edit_profile(name, faculty, grade) async {
+  Future<void> editProfile(name, faculty, grade) async {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         FirebaseFirestore.instance.collection('users').doc(user.uid).set({
           'name': name,
-          'faculity': faculty,
+          'faculty': faculty,
           'grade': grade,
           'email': user.email
         }).then((value) {
@@ -44,8 +46,8 @@ class EditProfilePageState extends State<EditProfilePage> {
   }
 
   String? username = FirebaseAuth.instance.currentUser?.displayName;
-  String isSelected_faculty = '情報理工学部情報理工学科';
-  final faculty_list = <String>[
+  String isSelectedFaculty = '情報理工学部情報理工学科';
+  final facultyList = <String>[
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -93,23 +95,22 @@ class EditProfilePageState extends State<EditProfilePage> {
         SizedBox(
           height: 50.0,
           child: DropdownButton<String>(
-            items: faculty_list.map((String dropDownStringItem) {
+            items: facultyList.map((String dropDownStringItem) {
               return DropdownMenuItem<String>(
                 value: dropDownStringItem,
                 child: Text(dropDownStringItem),
               );
             }).toList(),
-            //ドロップダウンから選択されたら、isSelected_faculityが更新される
             onChanged: (String? value) {
               setState(() {
-                isSelected_faculty = value!;
+                isSelectedFaculty = value!;
               });
             },
-            value: isSelected_faculty,
+            value: isSelectedFaculty,
           ),
         ),
         const Text('学年(選択してください)'),
-        Container(
+        SizedBox(
           height: 50.0,
           child: DropdownButton<String>(
             items: gradeList.map((String dropDownStringItem) {
@@ -129,7 +130,7 @@ class EditProfilePageState extends State<EditProfilePage> {
         ),
         ElevatedButton(
           onPressed: () {
-            Edit_profile(username, isSelected_faculty, isSelectedGrade);
+            editProfile(username, isSelectedFaculty, isSelectedGrade);
           },
           child: const Text('編集を完了する'),
         )

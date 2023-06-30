@@ -5,7 +5,6 @@ import 'package:projectritsbook_native/presentation/pages/landingPage/landing_pa
 import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
 import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
-import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
 import 'package:projectritsbook_native/firebase_options.dart';
 import 'package:projectritsbook_native/color_schemes.g.dart';
 
@@ -27,9 +26,9 @@ class RitsBookState extends State<RitsBook> {
   var _navIndex = 0;
   static final _screens = [
     const LandingPage(),
-    NotificationPage(),
+    const NotificationPage(),
     const ExhibitionPage(),
-    TradingItem(),
+    // TradingItem(),
     MyPage()
   ];
   void _onItemTapped(int index) {

@@ -3,15 +3,14 @@ import 'package:projectritsbook_native/domain/entities/book_model/book_model.dar
 import 'package:projectritsbook_native/presentation/pages/book_detail/book_detail_page.dart';
 
 class BookItem extends StatefulWidget {
-  const BookItem({Key? key, required this.book}) : super(key: key);
   final Book book;
+  const BookItem({Key? key, required this.book}) : super(key: key);
   @override
-  BookItemState createState() => BookItemState(book: book);
+  BookItemState createState() => BookItemState();
 }
 
 class BookItemState extends State<BookItem> {
-  BookItemState({Key? key, required this.book});
-  final Book book;
+  BookItemState({Key? key});
   final _key = GlobalKey();
   double height = 0;
   @override
@@ -26,6 +25,7 @@ class BookItemState extends State<BookItem> {
 
   @override
   Widget build(BuildContext context) {
+    final book = widget.book;
     return GestureDetector(
       onTap: () {
         Navigator.push(

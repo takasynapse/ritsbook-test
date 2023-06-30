@@ -1,14 +1,15 @@
-//購入した商品一覧のペー
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class PurchasedList extends StatefulWidget {
+  const PurchasedList({super.key});
+
   @override
-  _PurchasedListState createState() => _PurchasedListState();
+  PurchasedListState createState() => PurchasedListState();
 }
 
-class _PurchasedListState extends State<PurchasedList> {
+class PurchasedListState extends State<PurchasedList> {
   String? userID;
   //ライフサイクルフックにおいてcreated時にユーザがログインしているか検証
   @override
@@ -16,10 +17,7 @@ class _PurchasedListState extends State<PurchasedList> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        // print('User is currently signed out!');
       } else {
-        // print('User is signed in!');
-        // print('userinfo:');
         userID = user.uid;
       }
     });
@@ -58,7 +56,7 @@ class _PurchasedListState extends State<PurchasedList> {
                     builder: (BuildContext context,
                         AsyncSnapshot<DocumentSnapshot> snapshot) {
                       return Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
                               color: Colors.grey,

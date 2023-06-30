@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:projectritsbook_native/domain/repositories/book_repository.dart';
 
-import '../../entities/book_model/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 ///本のCLUDを行うユースケース
 class ExhibitionBookUseCase {
   final BookRepository _bookRepository;
