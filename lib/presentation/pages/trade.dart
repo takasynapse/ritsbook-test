@@ -18,9 +18,9 @@ class _TradeChatPageState extends State<TradeChatPage> {
   // List<types.Message> _messages = [];
   String message = '';
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
-  final _controller = TextEditingController();
+  final controller = TextEditingController();
 
-  Future _loadData() async {
+  Future loadData() async {
     await Future.delayed(const Duration(seconds: 1));
   }
 
@@ -92,7 +92,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
   }
 
 // ignore_for_file: avoid_print
-  void _addMessage(String message) async {
+  void addMessage(String message) async {
     await FirebaseFirestore.instance
         .collection('textbooks')
         .doc(widget.document.id)

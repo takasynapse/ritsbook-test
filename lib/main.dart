@@ -6,8 +6,8 @@ import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_
 import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
 import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
-import 'firebase_options.dart';
-import 'color_schemes.g.dart';
+import 'package:projectritsbook_native/firebase_options.dart';
+import 'package:projectritsbook_native/color_schemes.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

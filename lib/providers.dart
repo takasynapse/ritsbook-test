@@ -13,7 +13,7 @@ import 'package:projectritsbook_native/domain/use_cases/book/get_book_use_case.d
 import 'package:riverpod/riverpod.dart';
 
 
-import 'domain/entities/book_model/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 
 ///FireStoreのインスタンスを作成
 final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {

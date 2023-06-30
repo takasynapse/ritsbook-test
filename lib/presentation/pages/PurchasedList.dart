@@ -17,10 +17,10 @@ class _PurchasedListState extends State<PurchasedList> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
+        // print('User is currently signed out!');
       } else {
-        print('User is signed in!');
-        print('userinfo:');
+        // print('User is signed in!');
+        // print('userinfo:');
         userID = user.uid;
       }
     });

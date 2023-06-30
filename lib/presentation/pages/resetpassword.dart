@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ResetPassword extends StatefulWidget {
   @override
@@ -18,7 +17,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       await _auth.sendPasswordResetEmail(email: email);
       return 'success';
     } catch (error) {
-      print("エラー");
+      // print("エラー");
       return error;
     }
   }

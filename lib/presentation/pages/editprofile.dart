@@ -85,7 +85,7 @@ class EditProfilePageState extends State<EditProfilePage> {
           onChanged: (value) {
             setState(() {
               username = value;
-              print(username);
+              // print(username);
             });
           },
         ),
@@ -121,7 +121,7 @@ class EditProfilePageState extends State<EditProfilePage> {
             onChanged: (String? value) {
               setState(() {
                 isSelectedGrade = value!;
-                print(isSelectedGrade);
+                // print(isSelectedGrade);
               });
             },
             value: isSelectedGrade,

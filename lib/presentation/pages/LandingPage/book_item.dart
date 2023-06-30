@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
-import '../book_detail/book_detail_page.dart';
+import 'package:projectritsbook_native/presentation/pages/book_detail/book_detail_page.dart';
 
 class BookItem extends StatefulWidget {
   const BookItem({Key? key, required this.book}) : super(key: key);
