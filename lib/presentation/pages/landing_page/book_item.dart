@@ -50,10 +50,6 @@ class BookItemState extends State<BookItem> {
                       color: Colors.grey[300],
                       width: double.infinity,
                       height: height * 0.75,
-                      // child: Image.network(
-                      //   book.imageUrl,
-                      //   fit: BoxFit.cover,
-                      // ),
                       child: CachedNetworkImage(
                         imageUrl: book.imageUrl,
                         fit: BoxFit.cover,
