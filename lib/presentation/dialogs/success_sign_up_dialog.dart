@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/landing_page/landing_page.dart';
 
 Future<void> successSignUpDialog(BuildContext context) async {
   await showDialog(

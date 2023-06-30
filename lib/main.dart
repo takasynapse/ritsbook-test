@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/landing_page/landing_page.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
 import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';
-import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
-import 'firebase_options.dart';
-import 'color_schemes.g.dart';
+import 'package:projectritsbook_native/firebase_options.dart';
+import 'package:projectritsbook_native/color_schemes.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +26,9 @@ class RitsBookState extends State<RitsBook> {
   var _navIndex = 0;
   static final _screens = [
     const LandingPage(),
-    NotificationPage(),
+    const NotificationPage(),
     const ExhibitionPage(),
-    TradingItem(),
+    // TradingItem(),
     MyPage()
   ];
   void _onItemTapped(int index) {

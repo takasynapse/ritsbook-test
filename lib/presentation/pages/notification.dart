@@ -2,12 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatefulWidget {
+  const NotificationPage({super.key});
+
   @override
-  _NotificationPageState createState() => _NotificationPageState();
+  NotificationPageState createState() => NotificationPageState();
 }
 
-var itemData;
 // <>の中は戻り値の指定
+// ignore: prefer_typing_uninitialized_variables
+var itemData;
 Future getBook(itemID) async {
   DocumentSnapshot docs = await FirebaseFirestore.instance
       .collection("textbooks")
@@ -16,20 +19,21 @@ Future getBook(itemID) async {
   itemData = docs;
 }
 
-class _NotificationPageState extends State<NotificationPage> {
+class NotificationPageState extends State<NotificationPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "通知",
-          style: TextStyle(color: Colors.black),
+        appBar: AppBar(
+          title: const Text(
+            "通知",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-      ),
-      body: const Center(child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text("出品された商品が購入された際や、\nコメントがつくと通知が送られます"),
-      ))
-    );
+        body: const Center(
+            child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text("出品された商品が購入された際や、\nコメントがつくと通知が送られます"),
+        )));
   }
 }
 

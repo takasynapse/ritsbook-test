@@ -5,6 +5,7 @@
         "firestore",
         "projectritsbook",
         "Ritsbook",
-        "riverpod"
+        "riverpod",
+        "subosito"
     ]
 }

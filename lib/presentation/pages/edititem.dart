@@ -6,13 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart'; // new // new
 import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
-import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/landing_page/landing_page.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
 
-// class EditItema extends StatelessWidget {
+// class EditItem extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return AlertDialog(
@@ -39,7 +40,7 @@ class EditItemState extends State<EditItem> {
   //null許容でとりあえず教科書の状態の変数宣言
   late String? condition = widget.document["condition"];
   late String? description = widget.document["description"];
-  late String _imageurl = widget.document["img_url"];
+  late String imageUrl = widget.document["img_url"];
   late bool? isSold = widget.document["isSold"];
   late String? item = widget.document["item"];
   late int? price = widget.document["price"];
@@ -51,21 +52,11 @@ class EditItemState extends State<EditItem> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-        print('userinfo:');
-        print(user);
-        // final Object userinfo = user;
-        userID = user.uid;
-      }
-    });
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {});
   }
 
   void _upload() async {
-    final ImagePicker _picker = ImagePicker();
+    // final ImagePicker picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 80);
@@ -79,7 +70,7 @@ class EditItemState extends State<EditItem> {
       String uploadedImageURL =
           await storage.ref().child('images/$filename').getDownloadURL();
       setState(() {
-        _imageurl = uploadedImageURL;
+        imageUrl = uploadedImageURL;
       });
     } catch (e) {
       print(e);
@@ -113,7 +104,7 @@ class EditItemState extends State<EditItem> {
     deleteItem.delete().then(((value) {
       print("商品を削除しました");
       _showDialogAfterDelete();
-    })).catchError((e) => print(e));
+    }));
   }
 
   Future<void> _showDeleteDialog() async {
@@ -135,7 +126,7 @@ class EditItemState extends State<EditItem> {
                 _deleteItem();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LandingPage()),
+                  MaterialPageRoute(builder: (context) => const LandingPage()),
                 );
               },
             ),
@@ -168,7 +159,7 @@ class EditItemState extends State<EditItem> {
               },
             ),
             const Text("画像を選択"),
-            Image(image: NetworkImage(_imageurl)),
+            Image(image: NetworkImage(imageUrl)),
             ElevatedButton(onPressed: _upload, child: const Text('画像を選択')),
             TextField(
               decoration: const InputDecoration(hintText: '商品の説明'),
@@ -231,7 +222,7 @@ class EditItemState extends State<EditItem> {
                     "description": description,
                     "price": price,
                     "userID": userID,
-                    "img_url": _imageurl,
+                    "img_url": imageUrl,
                     "isSold": true
                   });
                 },

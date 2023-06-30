@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_body.dart';
 
 class ExhibitionPage extends StatelessWidget {

@@ -2,28 +2,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/presentation/pages/editprofile.dart';
 import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_page.dart';
-import 'package:projectritsbook_native/presentation/pages/tradingitem.dart';
-import 'package:projectritsbook_native/presentation/pages/Withdrowal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {
+  const Profile({super.key});
+
   @override
-  _ProfileState createState() => _ProfileState();
+  ProfileState createState() => ProfileState();
 }
 
 String username = '未設定';
-String qualifity = '未設定';
+String faculty = '未設定';
 String grade = '未設定';
 Object? currentUser = '';
 
-class _ProfileState extends State<Profile> {
+class ProfileState extends State<Profile> {
   final url = Uri.parse("https://twitter.com/ritsbook");
   final terms = Uri.parse("https://ritsbook.netlify.app/policy");
   final guide = Uri.parse("https://ritsbook.netlify.app/guide");
   final uid = FirebaseAuth.instance.currentUser?.uid;
-  Future<void> _showDialogCheckauth() async {
+  Future<void> showDialogCheckAuth() async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -61,11 +60,11 @@ class _ProfileState extends State<Profile> {
               FirebaseFirestore.instance.collection('users').doc(user.uid);
           users.get().then((DocumentSnapshot ds) {
             username = user.displayName!;
-            qualifity = ds["faculity"];
+            faculty = ds["faculty"];
             grade = ds["grade"];
           });
         } catch (e) {
-          print(e);
+          // print(e);
         }
       }
     });
@@ -73,8 +72,8 @@ class _ProfileState extends State<Profile> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
-          // backgroundColor: Colors.white,
-        ),
+            // backgroundColor: Colors.white,
+            ),
       ),
       body: ListView(
         children: <Widget>[
@@ -97,7 +96,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           ),
-          if (uid ==true)
+          // if (uid ==true)
           Padding(
             padding: const EdgeInsets.only(right: 32, bottom: 10),
             child: Align(
@@ -110,29 +109,28 @@ class _ProfileState extends State<Profile> {
                 ),
                 onPressed: () {
                   FirebaseAuth.instance.authStateChanges().listen((User? user) {
-                    if (user != null) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditProfilePage()),
-                      );
-                    } else {
-                      _showDialogCheckauth();
-                    }
+                    // if (user != null) {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => EditProfilePage()),
+                    //   );
+                    // } else {
+                    //   showDialogCheckAuth();
+                    // }
                   });
                 },
                 child: const Icon(Icons.edit_outlined),
               ),
             ),
           ),
-          if (uid ==true)
+          // if (uid ==true)
           Padding(
             padding: const EdgeInsets.only(
               right: 40.0,
               left: 36,
             ),
-            child: 
-            Container(
+            child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: const Color(0xffff6b6b)),
                 borderRadius: BorderRadius.circular(20),
@@ -147,9 +145,9 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   // mainAxisSize: MainAxisSize.min,
                   children: [
-                    Column(
+                    const Column(
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text('ユーザー名',
                             style: TextStyle(
                               fontSize: 16,
@@ -175,7 +173,7 @@ class _ProfileState extends State<Profile> {
                         children: [
                           Text(username),
                           const Gap(10),
-                          Text(qualifity),
+                          Text(faculty),
                           const Gap(10),
                           Text(grade),
                         ],
@@ -192,10 +190,9 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           )
-          else
-          const SizedBox(
-            height: 200,
-            child: Center(child: Text('ログインしてください'))),
+          // else
+          ,
+          const SizedBox(height: 200, child: Center(child: Text('ログインしてください'))),
           Padding(
             padding: const EdgeInsets.only(
               top: 52,
@@ -212,10 +209,10 @@ class _ProfileState extends State<Profile> {
                     leading: const Icon(Icons.check_box_outlined),
                     title: const Text('出品した商品・購入した商品'),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TradingItem()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => TradingItem()),
+                      // );
                     },
                   ),
                 ),
@@ -279,21 +276,21 @@ class _ProfileState extends State<Profile> {
                   height: 1,
                   thickness: 1,
                 ),
-                if (uid ==true)
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
-                  child: ListTile(
-                    leading: const Icon(Icons.exit_to_app),
-                    title: const Text('退会する'),
-                    onTap: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WithdrawalPage()),
-                      );
-                    },
+                // if (uid == true)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 8, bottom: 8),
+                    child: ListTile(
+                      leading: const Icon(Icons.exit_to_app),
+                      title: const Text('退会する'),
+                      onTap: () async {
+                        // Navigator.push(
+                        // context,
+                        // MaterialPageRoute(
+                        // builder: (context) => WithdrawalPage()),
+                        // );
+                      },
+                    ),
                   ),
-                ),
                 Container(
                   height: 100,
                 )
@@ -305,12 +302,3 @@ class _ProfileState extends State<Profile> {
     ));
   }
 }
-
-// 後でこれで書き直す
-// listview.separated
-// Widget _menuItem(String title, Icon icon, Function onTap()) {
-//   return ListTile(
-//     leading: icon,
-//     title: Text(title),
-//   );
-// }

@@ -8,12 +8,12 @@ import 'package:projectritsbook_native/domain/repositories/auth_repository.dart'
 import 'package:projectritsbook_native/domain/use_cases/auth/get_user_data_use_case.dart';
 import 'package:projectritsbook_native/domain/use_cases/auth/login_use_case.dart';
 import 'package:projectritsbook_native/domain/use_cases/auth/sign_up_use_case.dart';
-import 'package:projectritsbook_native/domain/use_cases/book/exhibition_book_usecase.dart';
+import 'package:projectritsbook_native/domain/use_cases/book/exhibition_book_use_case.dart';
 import 'package:projectritsbook_native/domain/use_cases/book/get_book_use_case.dart';
 import 'package:riverpod/riverpod.dart';
 
 
-import 'domain/entities/book_model/book_model.dart';
+import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 
 ///FireStoreのインスタンスを作成
 final firebaseFirestoreProvider = Provider<FirebaseFirestore>((ref) {

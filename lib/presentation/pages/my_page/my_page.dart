@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:projectritsbook_native/presentation/providers.dart';
+// import 'package:projectritsbook_native/presentation/providers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyPage extends ConsumerWidget {
@@ -13,8 +13,8 @@ class MyPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authStateChangesProvider);
-    final getUserData = ref.watch(getUserDataUseCaseProvider);
+    // final auth = ref.watch(authStateChangesProvider);
+    // final getUserData = ref.watch(getUserDataUseCaseProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('マイページ'),
@@ -54,7 +54,6 @@ class MyPage extends ConsumerWidget {
           //                   builder: (context) => EditProfilePage()),
           //             );
           //           } else {
-          //             _showDialogCheckauth();
           //           }
           //         });
           //       },
@@ -112,7 +111,6 @@ class MyPage extends ConsumerWidget {
           //               children: [
           //                 Text(username),
           //                 const Gap(10),
-          //                 Text(qualifity),
           //                 const Gap(10),
           //                 Text(grade),
           //               ],

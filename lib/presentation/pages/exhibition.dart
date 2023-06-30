@@ -5,22 +5,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // new
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:gap/gap.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 // /画像選択パッケージ
 import 'package:image_picker/image_picker.dart';
 import 'package:projectritsbook_native/presentation/pages/sign_up/sign_up_page.dart';
 
-class Exhibition extends StatefulWidget {
+class ExhibitionPage extends StatefulWidget {
+  const ExhibitionPage({super.key});
+
   @override
-  _Exhibition createState() => _Exhibition();
+  ExhibitionPageState createState() => ExhibitionPageState();
 }
 
-class _Exhibition extends State<Exhibition> {
+class ExhibitionPageState extends State<ExhibitionPage> {
   //null許容でとりあえず教科書の状態の変数宣言
   String? condition;
   String? description;
-  String _imageurl =
+  String imageUrl =
       "https://firebasestorage.googleapis.com/v0/b/ritsbook-997bf.appspot.com/o/images%2Fcamera.png?alt=media&token=de6c74f8-f799-448d-8625-f8a34258b531";
   bool? isSold;
   String? item;
@@ -55,9 +58,8 @@ class _Exhibition extends State<Exhibition> {
     String uploadedImageURL =
         await storage.ref().child('images/$filename').getDownloadURL();
     setState(() {
-      _imageurl = uploadedImageURL;
+      imageUrl = uploadedImageURL;
     });
-    // print(_imageurl);
   }
 
   Future<void> _showDialog() async {
@@ -86,7 +88,7 @@ class _Exhibition extends State<Exhibition> {
     );
   }
 
-  Future<void> _showDialogafterupload() async {
+  Future<void> showDialogAfterUpload() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -105,7 +107,7 @@ class _Exhibition extends State<Exhibition> {
     );
   }
 
-  Future<void> _showDialogCheckauth() async {
+  Future<void> showDialogCheckAuth() async {
     await showDialog(
       context: this.context,
       builder: (BuildContext context) {
@@ -142,10 +144,10 @@ class _Exhibition extends State<Exhibition> {
       "description": description,
       "price": price,
       "userID": userID,
-      "img_url": _imageurl,
+      "img_url": imageUrl,
       "timestamp": FieldValue.serverTimestamp(),
       "isSold": true
-    }).then((value) => _showDialogafterupload());
+    }).then((value) => showDialogAfterUpload());
   }
 
   @override
@@ -169,7 +171,7 @@ class _Exhibition extends State<Exhibition> {
                       style: TextStyle(
                         fontSize: 16,
                       )),
-                  Image(image: NetworkImage(_imageurl)),
+                  Image(image: NetworkImage(imageUrl)),
                   ElevatedButton(
                       onPressed: _uploadImage, child: const Text('画像を選択')),
                   const Text("商品名(必須)",
@@ -300,7 +302,7 @@ class _Exhibition extends State<Exhibition> {
                             if (user != null) {
                               _showDialog();
                             } else {
-                              _showDialogCheckauth();
+                              showDialogCheckAuth();
                             }
                           });
                         },

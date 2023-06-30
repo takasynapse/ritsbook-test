@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class TradeChatPage extends StatefulWidget {
   // const ChatPage({super.key});
   final DocumentSnapshot document;
-  TradeChatPage(this.document);
+  const TradeChatPage(this.document, {super.key});
   @override
   State<TradeChatPage> createState() => _TradeChatPageState();
 }
@@ -18,9 +18,9 @@ class _TradeChatPageState extends State<TradeChatPage> {
   // List<types.Message> _messages = [];
   String message = '';
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
-  final _controller = TextEditingController();
+  final controller = TextEditingController();
 
-  Future _loadData() async {
+  Future loadData() async {
     await Future.delayed(const Duration(seconds: 1));
   }
 
@@ -31,7 +31,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // body: Consumer(builder: (context, model, child) {
       //   return Column(
       //     children: <Widget>[
@@ -44,7 +44,6 @@ class _TradeChatPageState extends State<TradeChatPage> {
       //             stream: FirebaseFirestore.instance
       //                 .collection("textbooks")
       //                 .doc(widget.document.id)
-      //                 .collection("Tradechat")
       //                 // .orderBy("createdAt", descending: true)
       //                 .snapshots(),
       //             builder: (context, snapshot) {
@@ -92,11 +91,11 @@ class _TradeChatPageState extends State<TradeChatPage> {
   }
 
 // ignore_for_file: avoid_print
-  void _addMessage(String message) async {
+  void addMessage(String message) async {
     await FirebaseFirestore.instance
         .collection('textbooks')
         .doc(widget.document.id)
-        .collection('Tradechat')
+        .collection('TradeChat')
         .doc()
         .set({
           'uid': FirebaseAuth.instance.currentUser!.uid,
