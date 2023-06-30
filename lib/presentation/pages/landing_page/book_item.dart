@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 import 'package:projectritsbook_native/presentation/pages/book_detail/book_detail_page.dart';
@@ -49,8 +50,12 @@ class BookItemState extends State<BookItem> {
                       color: Colors.grey[300],
                       width: double.infinity,
                       height: height * 0.75,
-                      child: Image.network(
-                        book.imageUrl,
+                      // child: Image.network(
+                      //   book.imageUrl,
+                      //   fit: BoxFit.cover,
+                      // ),
+                      child: CachedNetworkImage(
+                        imageUrl: book.imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
