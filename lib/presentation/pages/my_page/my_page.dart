@@ -54,7 +54,6 @@ class MyPage extends ConsumerWidget {
           //                   builder: (context) => EditProfilePage()),
           //             );
           //           } else {
-          //             _showDialogCheckauth();
           //           }
           //         });
           //       },
@@ -112,7 +111,6 @@ class MyPage extends ConsumerWidget {
           //               children: [
           //                 Text(username),
           //                 const Gap(10),
-          //                 Text(qualifity),
           //                 const Gap(10),
           //                 Text(grade),
           //               ],

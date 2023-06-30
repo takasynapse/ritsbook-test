@@ -27,12 +27,12 @@ class EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
-  Future<void> Edit_profile(name, faculity, grade) async {
+  Future<void> Edit_profile(name, faculty, grade) async {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         FirebaseFirestore.instance.collection('users').doc(user.uid).set({
           'name': name,
-          'faculity': faculity,
+          'faculity': faculty,
           'grade': grade,
           'email': user.email
         }).then((value) {
@@ -44,8 +44,8 @@ class EditProfilePageState extends State<EditProfilePage> {
   }
 
   String? username = FirebaseAuth.instance.currentUser?.displayName;
-  String isSelected_faculity = '情報理工学部情報理工学科';
-  final faculity_list = <String>[
+  String isSelected_faculty = '情報理工学部情報理工学科';
+  final faculty_list = <String>[
     '情報理工学部情報理工学科',
     '経済学部経済学科国際専攻',
     '経済学部経済学科経済専攻',
@@ -93,7 +93,7 @@ class EditProfilePageState extends State<EditProfilePage> {
         SizedBox(
           height: 50.0,
           child: DropdownButton<String>(
-            items: faculity_list.map((String dropDownStringItem) {
+            items: faculty_list.map((String dropDownStringItem) {
               return DropdownMenuItem<String>(
                 value: dropDownStringItem,
                 child: Text(dropDownStringItem),
@@ -102,10 +102,10 @@ class EditProfilePageState extends State<EditProfilePage> {
             //ドロップダウンから選択されたら、isSelected_faculityが更新される
             onChanged: (String? value) {
               setState(() {
-                isSelected_faculity = value!;
+                isSelected_faculty = value!;
               });
             },
-            value: isSelected_faculity,
+            value: isSelected_faculty,
           ),
         ),
         const Text('学年(選択してください)'),
@@ -129,7 +129,7 @@ class EditProfilePageState extends State<EditProfilePage> {
         ),
         ElevatedButton(
           onPressed: () {
-            Edit_profile(username, isSelected_faculity, isSelectedGrade);
+            Edit_profile(username, isSelected_faculty, isSelectedGrade);
           },
           child: const Text('編集を完了する'),
         )
