@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:projectritsbook_native/data/data_sources/book_remote_data_source.dart';
 import 'package:projectritsbook_native/domain/entities/book_model/book_model.dart';
 
-import '../../domain/repositories/book_repository.dart';
+import 'package:projectritsbook_native/domain/repositories/book_repository.dart';
 
 class BookRepositoryImpl implements BookRepository {
   final BookRemoteDataSource _bookRemoteDataSource;

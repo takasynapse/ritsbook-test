@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projectritsbook_native/presentation/pages/book_detail/bookdetail_page.dart'; // new
 
 class PurchasedList extends StatefulWidget {
   @override

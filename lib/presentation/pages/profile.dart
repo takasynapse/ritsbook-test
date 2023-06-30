@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
             grade = ds["grade"];
           });
         } catch (e) {
-          print(e);
+          // print(e);
         }
       }
     });

@@ -65,7 +65,7 @@ class EditItemState extends State<EditItem> {
   }
 
   void _upload() async {
-    final ImagePicker picker = ImagePicker();
+    // final ImagePicker picker = ImagePicker();
     // imagePickerで画像を選択
     final pickerFile = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 80);
