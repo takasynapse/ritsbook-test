@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/presentation/pages/landingPage/landing_page.dart';
+import 'package:projectritsbook_native/presentation/pages/landing_page/landing_page.dart';
 import 'package:projectritsbook_native/presentation/pages/exhibition/exhibition_page.dart';
 import 'package:projectritsbook_native/presentation/pages/my_page/my_page.dart';
 import 'package:projectritsbook_native/presentation/pages/notification.dart';

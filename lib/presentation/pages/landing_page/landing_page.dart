@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectritsbook_native/presentation/pages/landingPage/book_item.dart';
+import 'package:projectritsbook_native/presentation/pages/landing_page/book_item.dart';
 import 'package:projectritsbook_native/presentation/providers.dart';
 
 class LandingPage extends ConsumerWidget {
