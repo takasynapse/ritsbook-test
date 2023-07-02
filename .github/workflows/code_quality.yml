@@ -12,7 +12,14 @@ jobs:
       - uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: '3.10.5'
-      - name: Install packages
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.os }}-flutter-install-cache-stable
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: stable      - name: Install packages
         run: flutter pub get
       - name: Linter
         run: flutter analyze
