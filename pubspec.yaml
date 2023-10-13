@@ -46,7 +46,7 @@ dependencies:
   gap: ^3.0.0
   # flutter_firebase_chat_core: ^1.6.3
   flutter_chat_ui: ^1.6.6
-  file_picker: ^5.2.5
+  file_picker: ^6.0.0
   mime: ^1.0.4
   open_filex: ^4.3.2
   riverpod: ^1.0.3
