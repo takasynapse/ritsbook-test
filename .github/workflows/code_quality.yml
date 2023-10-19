@@ -8,7 +8,7 @@ jobs:
     name: Check the source code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: '3.10.5'
