@@ -38,7 +38,7 @@ dependencies:
   flutter_riverpod: ^1.0.4
   google_sign_in: ^6.0.0
   firebase_core: ^2.14.0
-  firebase_auth: ^4.6.3
+  firebase_auth: ^6.0.0
   image_picker: ^1.0.0
   firebase_storage: ^11.2.4
   # firebase_messaging: ^13.1.0
