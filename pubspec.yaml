@@ -52,7 +52,7 @@ dependencies:
   riverpod: ^1.0.3
   freezed_annotation: ^2.2.0
   json_serializable: ^6.6.2
-  cloud_firestore: ^4.8.2
+  cloud_firestore: ^6.0.0
   cached_network_image: ^3.2.3
 
 dev_dependencies:
